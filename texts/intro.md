@@ -1,9 +1,12 @@
 # Bem-vindo aos Arquivos do Multiverso
 
-Na sua frente está o futuro da humanidade, um universo onde o conhecido se funde ao extraordinário. Os brilhos do sol atravessam as frestas de uma megaestrutura que, de longe, parece uma escultura envolta em luz.
+Diante de você, o futuro da humanidade desdobra-se — um cosmos onde o familiar dissolve-se no extraordinário. Imagine a luz de um sol artificial filtrando-se pelas frestas de uma megaestrutura, tão colossal que, à distância, confunde-se com uma constelação feita pela mão humana.  
 
-O "Cérebro de Matriosca" – uma das maiores criações da nossa espécie – abriga trilhões de mentes, sustentadas pela energia de uma estrela, que vivem realidades virtuais em um sonho eterno.
 
-Nesse cenário, as máquinas e I.A.s zelam pela proteção diante de fenômenos naturais, enquanto um sistema inteligente seleciona, com base nos desejos humanos, realidades para compor "O Arquivo".
+No coração desse universo pulsante, ergue-se o Cérebro de Matriosca: obra-prima da engenhosidade humana, uma catedral de neurônios sintéticos que abriga trilhões de mentes. Alimentadas pela energia crua de uma estrela, essas consciências habitam realidades virtuais — sonhos eternos moldados por desejos arquetípicos.  
 
-Cada conto registrado revela um universo onde os limites da imaginação se expandem ao infinito.
+
+Vigiar esse equilíbrio delicado são os Maltuks, arquivistas enigmáticos (cujos segredos serão revelados adiante), e suas máquinas zeladoras. Juntos, enfrentam catástrofes cósmicas enquanto selecionam as realidades dignas de compor O Arquivo.  
+
+
+Cada história aqui preservada é um universo em si mesma. Cada linha que você lerá a seguir é uma fenda por onde escapa o infinito.  
