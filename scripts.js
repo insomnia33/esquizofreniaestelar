@@ -36,8 +36,8 @@ async function loadTextos() {
     const container = document.getElementById('textos');
     
     try {
-        // Busca a lista de arquivos .md do texts.json
-        const response = await fetch('texts/texts.json');
+        // Busca a lista de arquivos .md do texts.json na raiz
+        const response = await fetch('texts.json');
         const mdFiles = await response.json();
 
         if (mdFiles.length === 0) {
@@ -50,7 +50,7 @@ async function loadTextos() {
             if (file !== 'intro.md') {
                 htmlContent += `
                     <div class="markdown-item">
-                        <button onclick="loadTexto('${file}')">${file.replace('.md', '')}</button>
+                        <button onclick="loadTexto('texts/${file}')">${file.replace('.md', '')}</button>
                     </div>
                 `;
             }
@@ -62,11 +62,11 @@ async function loadTextos() {
     }
 }
 
-async function loadTexto(fileName) {
+async function loadTexto(filePath) {
     const container = document.getElementById('textos');
     
     try {
-        const response = await fetch(`texts/${fileName}`);
+        const response = await fetch(filePath);
         const mdContent = await response.text();
         container.innerHTML = `
             <div class="markdown-content">
@@ -75,7 +75,7 @@ async function loadTexto(fileName) {
             <button onclick="loadTextos()" class="back-button">Voltar</button>
         `;
     } catch (error) {
-        console.error(`Erro ao carregar o texto ${fileName}:`, error);
+        console.error(`Erro ao carregar o texto ${filePath}:`, error);
         container.innerHTML = '<p class="empty-message">Erro ao carregar o texto</p>';
     }
 }
