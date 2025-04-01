@@ -7,4 +7,3 @@ O "Cérebro de Matriosca" – uma das maiores criações da nossa espécie – a
 Nesse cenário, as máquinas e I.A.s zelam pela proteção diante de fenômenos naturais, enquanto um sistema inteligente seleciona, com base nos desejos humanos, realidades para compor "O Arquivo".
 
 Cada conto registrado revela um universo onde os limites da imaginação se expandem ao infinito.
-

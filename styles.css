@@ -1,0 +1,147 @@
+:root {
+    --font-main: system-ui, sans-serif;
+    --color-text: #e0e0e0;
+    --color-bg: #1a1a1a;
+    --color-accent: #4a90e2;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background: var(--color-bg);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-link {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.home-link:hover {
+    color: var(--color-accent);
+}
+
+.main-nav {
+    margin: 1.5rem 0;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--color-accent);
+}
+
+.content-display {
+    border-top: 1px solid #333;
+    padding: 2rem 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.markdown-content {
+    max-width: 65ch;
+    margin: 0 auto;
+}
+
+.media-container {
+    display: grid;
+    gap: 2rem;
+}
+
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #2a2a2a;
+}
+
+.embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.empty-message {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: #666;
+}
+
+/* Adicione no seu arquivo CSS */
+.back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para os botões da lista de contos */
+.markdown-item button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: capitalize;
+    transition: background-color 0.3s ease;
+}
+
+.markdown-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Centraliza os botões na lista */
+.media-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
