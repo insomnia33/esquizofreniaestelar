@@ -36,17 +36,9 @@ async function loadTextos() {
     const container = document.getElementById('textos');
     
     try {
-        // Busca os arquivos .md na pasta texts
-        const response = await fetch('texts/');
-        const text = await response.text();
-        const parser = new DOMParser();
-        const htmlDoc = parser.parseFromString(text, 'text/html');
-        const links = Array.from(htmlDoc.querySelectorAll('a'));
-        
-        // Filtra os arquivos .md, ignorando intro.md
-        const mdFiles = links
-            .map(link => link.href.split('/').pop())
-            .filter(name => name.endsWith('.md') && name !== 'intro.md');
+        // Busca a lista de arquivos .md do texts.json
+        const response = await fetch('texts/texts.json');
+        const mdFiles = await response.json();
 
         if (mdFiles.length === 0) {
             container.innerHTML = '<p class="empty-message">Em desenvolvimento...</p>';
@@ -55,11 +47,13 @@ async function loadTextos() {
 
         let htmlContent = '<div class="media-container">';
         for (const file of mdFiles) {
-            htmlContent += `
-                <div class="markdown-item">
-                    <button onclick="loadTexto('${file}')">${file.replace('.md', '')}</button>
-                </div>
-            `;
+            if (file !== 'intro.md') {
+                htmlContent += `
+                    <div class="markdown-item">
+                        <button onclick="loadTexto('${file}')">${file.replace('.md', '')}</button>
+                    </div>
+                `;
+            }
         }
         container.innerHTML = htmlContent + '</div>';
     } catch (error) {
