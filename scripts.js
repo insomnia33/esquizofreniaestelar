@@ -16,10 +16,6 @@ const converter = new showdown.Converter({
     ]
 });
 
-// Carregamento inicial
-window.onload = async () => {
-    await loadIntro();
-};
 
 async function loadIntro() {
     try {
@@ -30,15 +26,32 @@ async function loadIntro() {
         console.error('Erro ao carregar intro:', error);
     }
 }
+// Variável global para cache dos contos
+let cachedMdFiles = null;
+
+// Carregamento inicial
+window.onload = async () => {
+    await loadIntro();
+    preloadTextos(); // Precarrega os contos em segundo plano
+};
+
+async function preloadTextos() {
+    try {
+        const response = await fetch('texts.json');
+        cachedMdFiles = await response.json();
+        console.log('Contos pré-carregados:', cachedMdFiles);
+    } catch (error) {
+        console.error('Erro ao pré-carregar contos:', error);
+    }
+}
 
 async function loadTextos() {
     showSection('textos');
     const container = document.getElementById('textos');
-    
+
     try {
-        // Busca a lista de arquivos .md do texts.json na raiz
-        const response = await fetch('texts.json');
-        const mdFiles = await response.json();
+        // Usa o cache se disponível, caso contrário, faz a requisição
+        const mdFiles = cachedMdFiles || (await (await fetch('texts.json')).json());
 
         if (mdFiles.length === 0) {
             container.innerHTML = '<p class="empty-message">Em desenvolvimento...</p>';

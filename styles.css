@@ -1,8 +1,9 @@
 :root {
     --font-main: system-ui, sans-serif;
-    --color-text: #e0e0e0;
-    --color-bg: #1a1a1a;
-    --color-accent: #4a90e2;
+    --color-text: #eeeeee;
+    --color-bg: #111111;
+    --color-accent: #e6a817;
+    --color-secondary: #666; /* Nova variável para cores secundárias */
 }
 
 body {
@@ -15,19 +16,24 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 50%;
     margin: 0 auto;
 }
 
 header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* Reduzido de 2rem para 1rem */
 }
 
 .logo {
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem; /* Reduzido de 0.5rem para 0.25rem */
 }
+
+h1, h2{
+    margin: 0 0 1px 0
+}
+
 
 .home-link {
     cursor: pointer;
@@ -38,8 +44,9 @@ header {
     color: var(--color-accent);
 }
 
+/* Ajuste de espaçamento nos menus */
 .main-nav {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 0.5rem 0; /* Mantém a margem superior, reduz a inferior */
 }
 
 .nav-link {
@@ -66,7 +73,7 @@ header {
 }
 
 .markdown-content {
-    max-width: 65ch;
+    max-width: 72ch;
     margin: 0 auto;
 }
 
@@ -101,16 +108,20 @@ header {
 
 footer {
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     color: #666;
+}
+
+footer p {
+    margin: 0;
 }
 
 /* Adicione no seu arquivo CSS */
 .back-button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--color-accent);
+    color: #111111;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -124,8 +135,8 @@ footer {
 .markdown-item button {
     margin: 10px;
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--color-accent);
+    color: #111111;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -135,7 +146,7 @@ footer {
 }
 
 .markdown-item button:hover {
-    background-color: #0056b3;
+    background-color: #ce9e2f;
 }
 
 /* Centraliza os botões na lista */
