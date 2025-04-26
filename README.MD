@@ -2,8 +2,8 @@
 
 
 **Utilizo**: 
-> * **VSCode** para edição do código-fonte e administração ampla do repositório, 
-> * **Obsidian** para organização do projeto e edição do texto e 
-> * **GitHub** como repositório e hospedagem da página web.
+> * **VSCode** para edição do código-fonte e administração ampla do repositório 
+> * **Obsidian** para organização do projeto e edição do texto 
+> * **GitHub** como repositório e hospedagem da página web
 > * **LLM** para revisão de texto e criação de arte (temporariamente)
 
