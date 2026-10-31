@@ -1,0 +1,121 @@
+{
+  "activePreset": "matrioshka-amber",
+  "colors": {
+    "bgPrimary": "#050609",
+    "bgSecondary": "#0b0e16",
+    "bgSurface": "rgba(12, 17, 26, 0.82)",
+    "textPrimary": "#e6edf5",
+    "textSecondary": "#8b9bb4",
+    "accentPrimary": "#e6a817",
+    "accentSecondary": "#00f0ff",
+    "matrixGlow": "#00ff9d",
+    "border": "rgba(230, 168, 23, 0.28)"
+  },
+  "typography": {
+    "fontDisplay": "'Orbitron', sans-serif",
+    "fontBody": "'Space Grotesk', sans-serif",
+    "fontReading": "'Merriweather', Georgia, serif",
+    "fontMono": "'JetBrains Mono', monospace",
+    "baseSizePx": 18,
+    "lineHeight": 1.75
+  },
+  "cosmos": {
+    "starCount": 150,
+    "matrixStreamCount": 32,
+    "speed": 0.45,
+    "nebulaOpacity": 0.35,
+    "matrixOpacity": 0.18,
+    "pauseOnReading": true
+  },
+  "presets": {
+    "matrioshka-amber": {
+      "name": "Matrioshka Amber",
+      "description": "Padrao de ouro quente e ambar estelar inspirado no nucleo de energia do Cerebro de Matriosca.",
+      "colors": {
+        "bgPrimary": "#050609",
+        "bgSecondary": "#0b0e16",
+        "bgSurface": "rgba(12, 17, 26, 0.82)",
+        "textPrimary": "#e6edf5",
+        "textSecondary": "#8b9bb4",
+        "accentPrimary": "#e6a817",
+        "accentSecondary": "#00f0ff",
+        "matrixGlow": "#00ff9d",
+        "border": "rgba(230, 168, 23, 0.28)"
+      },
+      "cosmos": {
+        "starCount": 150,
+        "matrixStreamCount": 32,
+        "speed": 0.45,
+        "nebulaOpacity": 0.35,
+        "matrixOpacity": 0.18
+      }
+    },
+    "matrix-emerald": {
+      "name": "Matrix Emerald",
+      "description": "Fluxo denso de glifos esmeralda e terminal bio-cibernetico dos zeladores do Arquivo.",
+      "colors": {
+        "bgPrimary": "#030806",
+        "bgSecondary": "#06130c",
+        "bgSurface": "rgba(6, 19, 12, 0.85)",
+        "textPrimary": "#e0f8ed",
+        "textSecondary": "#72a98f",
+        "accentPrimary": "#00ff88",
+        "accentSecondary": "#38ef7d",
+        "matrixGlow": "#00ff66",
+        "border": "rgba(0, 255, 136, 0.28)"
+      },
+      "cosmos": {
+        "starCount": 120,
+        "matrixStreamCount": 48,
+        "speed": 0.55,
+        "nebulaOpacity": 0.25,
+        "matrixOpacity": 0.28
+      }
+    },
+    "cyber-nebula-cyan": {
+      "name": "Cyber Nebula Cyan",
+      "description": "Resfriamento criogenico e radiacao Cerenkov dos condutores de dados quanticos.",
+      "colors": {
+        "bgPrimary": "#040914",
+        "bgSecondary": "#081326",
+        "bgSurface": "rgba(8, 19, 38, 0.82)",
+        "textPrimary": "#e0f2fe",
+        "textSecondary": "#7dd3fc",
+        "accentPrimary": "#00f0ff",
+        "accentSecondary": "#7000ff",
+        "matrixGlow": "#38bdf8",
+        "border": "rgba(0, 240, 255, 0.28)"
+      },
+      "cosmos": {
+        "starCount": 180,
+        "matrixStreamCount": 28,
+        "speed": 0.4,
+        "nebulaOpacity": 0.4,
+        "matrixOpacity": 0.16
+      }
+    },
+    "crimson-singularity": {
+      "name": "Crimson Singularity",
+      "description": "Horizonte de eventos de buraco negro e alerta de colapso de dobra dimensional dos Thyrexianos.",
+      "colors": {
+        "bgPrimary": "#0c0406",
+        "bgSecondary": "#18080c",
+        "bgSurface": "rgba(24, 8, 12, 0.85)",
+        "textPrimary": "#ffe4e6",
+        "textSecondary": "#fb7185",
+        "accentPrimary": "#ff2a5f",
+        "accentSecondary": "#f59e0b",
+        "matrixGlow": "#ff0055",
+        "border": "rgba(255, 42, 95, 0.3)"
+      },
+      "cosmos": {
+        "starCount": 140,
+        "matrixStreamCount": 26,
+        "speed": 0.5,
+        "nebulaOpacity": 0.45,
+        "matrixOpacity": 0.2
+      }
+    }
+  }
+}
+

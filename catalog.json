@@ -1,0 +1,167 @@
+{
+  "version": "2.0",
+  "updatedAt": "2026-10-31T01:30:00Z",
+  "introFile": "texts/intro.md",
+  "categories": [
+    "Raças & Entidades",
+    "Crônicas & Sagas",
+    "Transmissões Sonoras",
+    "Registros Visuais",
+    "Arquivos Técnicos"
+  ],
+  "items": [
+    {
+      "id": "01-os-arquivistas",
+      "title": "Os Arquivistas",
+      "slug": "os-arquivistas",
+      "type": "text",
+      "status": "published",
+      "category": "Raças & Entidades",
+      "saga": "Cérebro de Matriosca",
+      "tags": [
+        "Maltuks",
+        "Quinta Dimensão",
+        "Máquinas Sencientes"
+      ],
+      "summary": "Apresentação do primeiro contato com um Maltuk e suas canções em vibrações inexplicáveis traduzidas pelas máquinas sencientes zeladoras do Arquivo.",
+      "coverImage": "images/maltuk1.png",
+      "file": "texts/01_os_arquivistas.md",
+      "readingTime": 2,
+      "createdAt": "2025-01-15",
+      "relatedIds": [
+        "02-metamorphis",
+        "audio-podcast-estelar"
+      ]
+    },
+    {
+      "id": "02-metamorphis",
+      "title": "A Saga Metamorphis",
+      "slug": "a-saga-metamorphis",
+      "type": "text",
+      "status": "published",
+      "category": "Crônicas & Sagas",
+      "saga": "Conselho Solar da Nova Era",
+      "tags": [
+        "Conselho Solar",
+        "Maltuks",
+        "Thyrexianos",
+        "Prelúdio do Caos"
+      ],
+      "summary": "Prelúdio do Caos: registros sobre a formação, ascensão e declínio do Conselho Solar da Nova Era e as tensões entre Maltuks e Thyrexianos mecanos.",
+      "coverImage": "images/conselho_solar_01.png",
+      "file": "texts/02_metamorphis.md",
+      "readingTime": 2,
+      "createdAt": "2025-02-10",
+      "relatedIds": [
+        "01-os-arquivistas"
+      ]
+    },
+    {
+      "id": "audio-podcast-estelar",
+      "title": "Podcast Estelar",
+      "slug": "podcast-estelar",
+      "type": "audio",
+      "status": "published",
+      "category": "Transmissões Sonoras",
+      "saga": "Ecos da Quinta Dimensão",
+      "tags": [
+        "Podcast",
+        "Transmissão",
+        "Multiverso"
+      ],
+      "summary": "Frequência de áudio captada nos setores externos do Cérebro de Matriosca — relatos narrados sobre as realidades simuladas.",
+      "url": "https://open.spotify.com/episode/4D7Spo0DC4JL6r36zhKAZe",
+      "createdAt": "2025-01-20",
+      "relatedIds": [
+        "01-os-arquivistas"
+      ]
+    },
+    {
+      "id": "video-coleta-sisab-gestantes",
+      "title": "Exercício de coleta de dados SISAB - Gestantes",
+      "slug": "exercicio-coleta-dados-sisab-gestantes",
+      "type": "video",
+      "status": "published",
+      "category": "Arquivos Técnicos",
+      "saga": "Arquivos do Multiverso",
+      "tags": [
+        "SISAB",
+        "Dados",
+        "Saúde Pública",
+        "Instrução Técnica"
+      ],
+      "summary": "Exercício técnico de extração e consolidação de registros de dados no sistema de informação em saúde.",
+      "url": "https://youtu.be/j-t7r_016bM",
+      "createdAt": "2024-11-10",
+      "relatedIds": []
+    },
+    {
+      "id": "video-ilya-breshov",
+      "title": "Ilya Breshov - dlya nashego zdorov'ya",
+      "slug": "ilya-breshov-dlya-nashego-zdorovya",
+      "type": "video",
+      "status": "published",
+      "category": "Registros Visuais",
+      "saga": "Transmissões Terrestres",
+      "tags": [
+        "Registro Audiovisual",
+        "Ilya Breshov",
+        "Histórico"
+      ],
+      "summary": "Registro audiovisual histórico resgatado dos arquivos terrestres antigos.",
+      "url": "https://youtu.be/VeegmvsqbcQ",
+      "createdAt": "2024-12-05",
+      "relatedIds": []
+    },
+    {
+      "id": "video-itk-snap-segmentacao",
+      "title": "ITK-SNAP - Segmentação de RM Flair",
+      "slug": "itk-snap-segmentacao-rm-flair",
+      "type": "video",
+      "status": "published",
+      "category": "Arquivos Técnicos",
+      "saga": "Neurociência Computacional",
+      "tags": [
+        "ITK-SNAP",
+        "Ressonância Magnética",
+        "Segmentação",
+        "Neuroimagem"
+      ],
+      "summary": "Procedimento de segmentação volumétrica em imagens de ressonância magnética utilizando protocolo Flair no ITK-SNAP.",
+      "url": "https://youtu.be/bPWUpCkYksM",
+      "createdAt": "2025-01-08",
+      "relatedIds": [
+        "01-os-arquivistas"
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "id": "note-catedral-neuronios",
+      "title": "Catedral de Neurônios Sintéticos - A Estrela Branca",
+      "category": "Crônicas & Sagas",
+      "tags": [
+        "Cérebro de Matriosca",
+        "Estrela Branca",
+        "Supercomputador",
+        "Cosmologia"
+      ],
+      "content": "A estrutura de esferas concêntricas captura a radiação total da anã branca moribunda para alimentar os bilhões de nós sinápticos. As mentes arquivadas não sabem que habitam um invólucro estelar.",
+      "createdAt": "2025-02-15"
+    },
+    {
+      "id": "note-cantos-maltuks",
+      "title": "Anatomia e Cantos Vibracionais dos Maltuks",
+      "category": "Raças & Entidades",
+      "tags": [
+        "Maltuks",
+        "Anatomia",
+        "Bioacústica",
+        "Quinta Dimensão"
+      ],
+      "content": "Com carapaças quitinosas de reflexo obsidiano e órgãos ressonantes na cavidade torácica, os Maltuks emitem frequências moduladas capazes de desestabilizar hologramas e sintonizar cordas dimensionais.",
+      "createdAt": "2025-02-18"
+    }
+  ]
+}
+

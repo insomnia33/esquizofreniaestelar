@@ -3,37 +3,284 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Esquizofrenia Estelar - Os Arquivos do Multiverso</title>
+    <meta name="description" content="Esquizofrenia Estelar — Os Arquivos do Multiverso. Crônicas cósmicas, ficção científica cyberpunk e registros dimensionais do Cérebro de Matriosca.">
+    <title>Esquizofrenia Estelar — Os Arquivos do Multiverso</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">ƎƎ</div>
-            <h1>Esquizofrenia Estelar</h1>
-            <h2 class="home-link" onclick="showSection('intro')">Os Arquivos do Multiverso</h2>
-            <nav class="main-nav">
-                <button class="nav-link" onclick="loadTextos()">Textos</button>
-                <button class="nav-link" onclick="loadAudios()">Áudios</button>
-                <button class="nav-link" onclick="loadVideos()">Vídeos</button>
+<body data-reading-theme="abyssal" data-reading-font="serif" data-reading-width="default">
+
+    <!-- Top Reading Progress Bar (Active when reading stories) -->
+    <div id="reading-progress-bar" class="reading-progress-bar" role="progressbar" aria-label="Progresso da Leitura" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- Animated Canvas Background (CosmosEngine) -->
+    <canvas id="cosmos-canvas" aria-hidden="true"></canvas>
+
+    <!-- Discreet Search Trigger Button (Top-Right) -->
+    <button id="btn-open-search" class="search-trigger-btn" type="button" onclick="openSearchOverlay()" aria-label="Pesquisar nos arquivos" title="Pesquisar (Ctrl+K / /)">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </button>
+
+    <div class="site-wrapper">
+
+        <!-- Main Portal Header & Navigation -->
+        <header class="main-header" role="banner">
+            <div class="logo-cluster" onclick="navigateTo('intro')" role="button" tabindex="0" aria-label="Ir para a página inicial">
+                <div class="emblem-wrapper" aria-hidden="true">
+                    <svg class="emblem-orbit" viewBox="0 0 100 100" width="80" height="80">
+                        <circle class="orbit-outer" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 6"></circle>
+                        <circle class="orbit-middle" cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="1"></circle>
+                        <polygon class="orbit-inner-poly" points="50,18 78,68 22,68" fill="none" stroke="currentColor" stroke-width="1"></polygon>
+                        <text x="50" y="58" class="emblem-glyph" text-anchor="middle" dominant-baseline="middle">ƎƎ</text>
+                    </svg>
+                </div>
+
+                <div class="header-titles">
+                    <h1 class="portal-title">ESQUIZOFRENIA ESTELAR</h1>
+                    <div class="portal-subheading">
+                        <span class="subheading-accent">◈</span>
+                        <span class="subheading-text">OS ARQUIVOS DO MULTIVERSO</span>
+                        <span class="subheading-accent">◈</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Navigation Bar (Only 3 simple buttons: Textos, Áudios, Vídeos) -->
+            <nav class="main-nav" role="navigation" aria-label="Navegação Principal do Acervo">
+                <button id="nav-btn-textos" class="nav-tab" type="button" onclick="navigateTo('textos')">
+                    <span>Textos</span>
+                    <span id="badge-count-textos" class="nav-badge count-badge">0</span>
+                </button>
+
+                <button id="nav-btn-audios" class="nav-tab" type="button" onclick="navigateTo('audios')">
+                    <span>Áudios</span>
+                    <span id="badge-count-audios" class="nav-badge count-badge">0</span>
+                </button>
+
+                <button id="nav-btn-videos" class="nav-tab" type="button" onclick="navigateTo('videos')">
+                    <span>Vídeos</span>
+                    <span id="badge-count-videos" class="nav-badge count-badge">0</span>
+                </button>
             </nav>
         </header>
 
-        <main>
-            <section class="content-display">
-                <div id="intro" class="markdown-content"></div>
-                <div id="textos" class="hidden"></div>
-                <div id="audios" class="hidden"></div>
-                <div id="videos" class="hidden"></div>
+        <!-- Main Content Area -->
+        <main id="main-content" class="content-display" role="main">
+
+            <!-- Section 1: Intro (Visão Inicial) -->
+            <section id="section-intro" class="catalog-section" aria-label="Apresentação dos Arquivos">
+                <!-- Intro Markdown Container -->
+                <article id="intro-markdown" class="markdown-content intro-article" aria-label="Texto de introdução"></article>
             </section>
+
+            <!-- Section 2: Textos -->
+            <section id="section-textos" class="catalog-section hidden" aria-label="Textos">
+                <div id="grid-textos" class="cards-grid"></div>
+            </section>
+
+            <!-- Section 3: Áudios -->
+            <section id="section-audios" class="catalog-section hidden" aria-label="Áudios">
+                <div id="grid-audios" class="cards-grid audio-grid"></div>
+            </section>
+
+            <!-- Section 4: Vídeos -->
+            <section id="section-videos" class="catalog-section hidden" aria-label="Vídeos">
+                <div id="grid-videos" class="cards-grid video-grid"></div>
+            </section>
+
+
+            <!-- Section 6: Immersive Story Reader (Hidden by default) -->
+            <section id="story-reader" class="story-reader-view hidden" aria-label="Leitor Imersivo de Histórias">
+
+                <!-- Sticky Accessible Reading Comfort Toolbar -->
+                <div id="reader-toolbar" class="reader-toolbar" role="toolbar" aria-label="Barra de Acessibilidade e Conforto de Leitura">
+                    <!-- Back Button -->
+                    <button id="btn-reader-back" class="reader-btn reader-back-btn" type="button" onclick="closeStory()" aria-label="Retornar à lista de textos">
+                        <svg class="reader-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <span>RETORNAR AOS TEXTOS</span>
+                    </button>
+
+                    <!-- Reading Controls Group -->
+                    <div class="reader-controls-cluster">
+                        <!-- Font Size Adjustment -->
+                        <div class="reader-tool-item" title="Ajuste do tamanho do texto">
+                            <button id="btn-font-dec" class="reader-icon-btn" type="button" aria-label="Diminuir tamanho da fonte" onclick="adjustStoryFontSize(-1)">
+                                <span class="btn-text-glyph">A-</span>
+                            </button>
+                            <span id="font-size-display" class="reader-stat-val">18px</span>
+                            <button id="btn-font-inc" class="reader-icon-btn" type="button" aria-label="Aumentar tamanho da fonte" onclick="adjustStoryFontSize(1)">
+                                <span class="btn-text-glyph">A+</span>
+                            </button>
+                        </div>
+
+                        <!-- Typography Selector -->
+                        <div class="reader-tool-item" title="Família tipográfica de leitura">
+                            <label for="reader-font-select" class="reader-label-tiny">FONTE:</label>
+                            <select id="reader-font-select" class="reader-select" aria-label="Família tipográfica de leitura" onchange="setStoryFontFamily(this.value)">
+                                <option value="serif">Serifada (Literária)</option>
+                                <option value="sans">Sans (Técnica)</option>
+                                <option value="mono">Terminal (Mono)</option>
+                            </select>
+                        </div>
+
+                        <!-- Line Width Selector -->
+                        <div class="reader-tool-item" title="Largura da coluna de leitura">
+                            <label for="reader-width-select" class="reader-label-tiny">COLUNA:</label>
+                            <select id="reader-width-select" class="reader-select" aria-label="Largura da coluna de texto" onchange="setStoryColumnWidth(this.value)">
+                                <option value="narrow">Estreita (60ch)</option>
+                                <option value="default" selected>Padrão (72ch)</option>
+                                <option value="wide">Ampla (90ch)</option>
+                            </select>
+                        </div>
+
+                        <!-- Reading Theme / Contrast Selector -->
+                        <div class="reader-tool-item" title="Tema de contraste do leitor">
+                            <label for="reader-contrast-select" class="reader-label-tiny">CONTRASTE:</label>
+                            <select id="reader-contrast-select" class="reader-select" aria-label="Modo de contraste do leitor" onchange="setStoryContrastTheme(this.value)">
+                                <option value="abyssal" selected>Abissal</option>
+                                <option value="matrix">Fósforo Matrix</option>
+                                <option value="amber">Âmbar Matriosca</option>
+                                <option value="light">Alto Contraste (Luz)</option>
+                            </select>
+                        </div>
+
+                        <!-- Fullscreen Focus Mode -->
+                        <button id="btn-reader-focus" class="reader-btn reader-focus-btn" type="button" aria-label="Alternar modo de imersão total" title="Ocultar cabeçalhos para leitura imersiva" onclick="toggleStoryFocusMode()">
+                            <svg class="reader-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <polyline points="9 21 3 21 3 15"></polyline>
+                                <line x1="21" y1="3" x2="14" y2="10"></line>
+                                <line x1="3" y1="21" x2="10" y2="14"></line>
+                            </svg>
+                            <span id="focus-btn-label">MODO IMERSÃO</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reader Header -->
+                <header class="story-header" id="story-header-container">
+                    <div class="story-meta-breadcrumbs">
+                        <span id="story-category-tag" class="meta-pill category-pill"></span>
+                        <span class="meta-divider">/</span>
+                        <span id="story-saga-tag" class="meta-pill saga-pill"></span>
+                        <span class="meta-divider">/</span>
+                        <span id="story-time-tag" class="meta-pill time-pill"></span>
+                    </div>
+
+                    <h1 id="story-title" class="story-display-title"></h1>
+
+                    <div id="story-tags-container" class="story-tags-row"></div>
+
+                    <!-- Optional Story Banner Image -->
+                    <div id="story-cover-wrapper" class="story-cover-frame hidden">
+                        <img id="story-cover-image" src="" alt="" class="story-cover-img">
+                        <div class="cover-overlay-scanline" aria-hidden="true"></div>
+                    </div>
+                </header>
+
+                <!-- Story Body (Markdown rendered) -->
+                <article id="story-body" class="markdown-content story-body-content"></article>
+
+                <!-- Connected Multiverse Records (relatedIds) -->
+                <div id="story-related-section" class="story-related-block hidden">
+                    <div class="block-hud-title">
+                        <span class="block-accent">∷</span>
+                        <span>REGISTROS CONECTADOS NO MULTIVERSO</span>
+                        <span class="block-accent">∷</span>
+                    </div>
+                    <p class="related-desc">Outras histórias, frequências sonoras e visões associadas a esta dimensão:</p>
+                    <div id="story-related-grid" class="cards-grid"></div>
+                </div>
+
+                <!-- Story Footer Controls -->
+                <div class="story-footer-nav">
+                    <button class="reader-btn reader-back-btn" type="button" onclick="closeStory()">
+                        <svg class="reader-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <span>RETORNAR AOS TEXTOS</span>
+                    </button>
+
+                    <button class="reader-btn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                        <svg class="reader-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                        <span>TOPO DO REGISTRO</span>
+                    </button>
+                </div>
+            </section>
+
         </main>
 
-        <footer>
-            <p>© 2025 Esquizofrenia Estelar - Os Arquivos do Multiverso - por Insomnia</p>
+        <!-- Search Overlay Modal -->
+        <div id="search-overlay" class="search-overlay hidden" role="dialog" aria-modal="true" aria-label="Pesquisar nos Arquivos">
+            <div class="search-overlay-backdrop" onclick="closeSearchOverlay()"></div>
+            <div class="search-overlay-dialog">
+                <div class="search-overlay-header">
+                    <div class="search-overlay-input-wrap">
+                        <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="search" id="overlay-search-input" class="search-overlay-input" placeholder="Buscar textos, áudios e vídeos..." autocomplete="off">
+                    </div>
+                    <button class="search-overlay-close-btn" type="button" onclick="closeSearchOverlay()" aria-label="Fechar pesquisa" title="Fechar (ESC)">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div id="search-overlay-results" class="search-overlay-results">
+                    <div class="search-empty-state">Digite um termo para pesquisar em todos os registros do multiverso...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- High-Resolution Image Lightbox Modal -->
+        <div id="image-lightbox" class="lightbox-modal hidden" role="dialog" aria-modal="true" aria-label="Visualizador de Imagem em Alta Resolução">
+            <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+            <div class="lightbox-dialog">
+                <button class="lightbox-close-btn" type="button" onclick="closeLightbox()" aria-label="Fechar visualizador de imagem" title="Fechar (ESC)">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="lightbox-image-container">
+                    <img id="lightbox-img" src="" alt="" class="lightbox-img">
+                </div>
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="portal-footer" role="contentinfo">
+            <p class="copyright-text">
+                &copy; 2025&ndash;2026 Esquizofrenia Estelar &mdash; Os Arquivos do Multiverso &mdash; por Insomnia.
+            </p>
         </footer>
+
     </div>
 
+    <!-- Showdown Markdown Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+
+    <!-- Cosmos Engine Canvas Background -->
+    <script src="cosmos.js"></script>
+
+    <!-- Main Portal Scripts -->
     <script src="scripts.js"></script>
 </body>
 </html>

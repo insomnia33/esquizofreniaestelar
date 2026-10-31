@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Esquizofrenia Estelar // Studio de Criação</title>
+  
+  <!-- Fontes Tipográficas Cósmicas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=JetBrains+Mono:wght@400;500;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body class="studio-body">
+
+  <!-- Fundo Cósmico Animado (CosmosEngine) -->
+  <canvas id="cosmos-canvas" aria-hidden="true"></canvas>
+
+  <!-- BARRA DE TRABALHO SUPERIOR (WORKSPACE BAR) -->
+  <header class="workspace-bar">
+    <div class="workspace-brand">
+      <div class="brand-glyph">ƎƎ</div>
+      <div class="brand-titles">
+        <span class="brand-name">ESQUIZOFRENIA ESTELAR</span>
+        <span class="brand-sub">STUDIO DE CRIAÇÃO DO MULTIVERSO // 2.0</span>
+      </div>
+    </div>
+
+    <div class="workspace-status">
+      <span id="connection-indicator" class="status-dot mode-local" title="Status de conexão"></span>
+      <span id="connection-status-text" class="status-label">MODO NAVEGADOR (CACHE LOCAL)</span>
+    </div>
+
+    <div class="workspace-actions">
+      <button id="btn-connect-dir" class="btn btn-cyber" type="button" title="Conectar pasta esquizofreniaestelar no disco rígido">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>CONECTAR PASTA</span>
+      </button>
+
+      <button id="btn-save-project" class="btn btn-cyber btn-primary" type="button" title="Salvar todas as alterações diretamente nos arquivos do projeto">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+          <polyline points="17 21 17 13 7 13 7 21"/>
+          <polyline points="7 3 7 8 15 8"/>
+        </svg>
+        <span>SALVAR NO PROJETO</span>
+      </button>
+
+      <button id="btn-export-menu" class="btn btn-cyber btn-ghost" type="button" title="Exportar arquivos e backups em formato JSON / MD">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>EXPORTAR</span>
+      </button>
+
+      <a href="index.html" target="_blank" rel="noopener" class="btn btn-cyber btn-ghost" title="Abrir portal público em nova aba">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        <span>VER PORTAL</span>
+      </a>
+
+      <button id="btn-toggle-cosmos" class="btn btn-cyber btn-icon-only" type="button" title="Pausar ou retomar animação cósmica">
+        <svg id="icon-cosmos-pause" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="6" y="4" width="4" height="16"/>
+          <rect x="14" y="4" width="4" height="16"/>
+        </svg>
+        <svg id="icon-cosmos-play" class="icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- NAVEGAÇÃO DE ESPAÇOS DE TRABALHO (TABS) -->
+  <nav class="studio-nav" aria-label="Espaços de Trabalho do Studio">
+    <button class="nav-tab active" data-tab="stories" type="button">
+      <span class="tab-index">[ 01 ]</span>
+      <span class="tab-label">CONTOS & EDITOR MARKDOWN</span>
+    </button>
+    <button class="nav-tab" data-tab="media" type="button">
+      <span class="tab-index">[ 02 ]</span>
+      <span class="tab-label">CENTRAL DE LINKS & MÍDIAS</span>
+    </button>
+    <button class="nav-tab" data-tab="voice" type="button">
+      <span class="tab-index">[ 03 ]</span>
+      <span class="tab-label">VOZ & ANOTAÇÕES DO MULTIVERSO</span>
+    </button>
+    <button class="nav-tab" data-tab="theme" type="button">
+      <span class="tab-index">[ 04 ]</span>
+      <span class="tab-label">LABORATÓRIO DE DESIGN & TEMA</span>
+    </button>
+  </nav>
+
+  <!-- RECIPIENTE PRINCIPAL DOS ESPAÇOS DE TRABALHO -->
+  <main class="studio-main">
+
+    <!-- ======================================================== -->
+    <!-- ABA 1: CONTOS & EDITOR MARKDOWN                          -->
+    <!-- ======================================================== -->
+    <section id="panel-stories" class="tab-panel active">
+      <div class="stories-workspace">
+
+        <!-- Barra Lateral: Lista de Registros -->
+        <aside class="records-sidebar">
+          <div class="sidebar-header">
+            <div class="sidebar-title-row">
+              <span class="sidebar-title">REGISTROS DO ACERVO</span>
+              <span id="records-counter" class="badge-count">0</span>
+            </div>
+
+            <div class="sidebar-actions-row">
+              <button id="btn-new-story" class="btn btn-cyber btn-full" type="button">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                <span>NOVO CONTO</span>
+              </button>
+            </div>
+
+            <!-- Campo de Busca -->
+            <div class="search-box">
+              <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input type="text" id="filter-search-input" placeholder="Buscar por título, tag ou saga..." autocomplete="off">
+            </div>
+
+            <!-- Filtros por Tipo -->
+            <div class="filter-chips" role="radiogroup" aria-label="Filtrar por tipo de registro">
+              <button class="chip active" data-filter="all" type="button">Todos</button>
+              <button class="chip" data-filter="text" type="button">Textos</button>
+              <button class="chip" data-filter="audio" type="button">Áudios</button>
+              <button class="chip" data-filter="video" type="button">Vídeos</button>
+              <button class="chip" data-filter="draft" type="button">Rascunhos</button>
+            </div>
+          </div>
+
+          <!-- Lista Rolável de Itens -->
+          <div id="records-list" class="records-list">
+            <!-- Injetado dinamicamente via studio.js -->
+          </div>
+        </aside>
+
+        <!-- Área Principal de Edição -->
+        <section class="editor-workspace">
+
+          <!-- Painel Retrátil de Metadados -->
+          <details id="meta-details" class="meta-card" open>
+            <summary class="meta-summary">
+              <div class="meta-summary-left">
+                <span class="meta-tag-glyph">◈</span>
+                <span class="meta-summary-title">METADADOS DO REGISTRO ATIVO</span>
+                <span id="active-item-badge" class="badge badge-emerald">PUBLICADO</span>
+              </div>
+              <span class="meta-toggle-hint">[ RECOLHER / EXPANDIR ]</span>
+            </summary>
+
+            <div class="meta-fields-grid">
+              <!-- Linha 1 -->
+              <div class="form-group col-span-6">
+                <label for="meta-title">Título do Conto / Registro</label>
+                <input type="text" id="meta-title" placeholder="Ex: Os Arquivistas da Quinta Dimensão">
+              </div>
+
+              <div class="form-group col-span-3">
+                <label for="meta-slug">Identificador Slug</label>
+                <input type="text" id="meta-slug" placeholder="os-arquivistas">
+              </div>
+
+              <div class="form-group col-span-3">
+                <label for="meta-status">Status de Publicação</label>
+                <select id="meta-status">
+                  <option value="published">Publicado no Portal</option>
+                  <option value="draft">Rascunho Oculto</option>
+                </select>
+              </div>
+
+              <!-- Linha 2 -->
+              <div class="form-group col-span-4">
+                <label for="meta-category">Categoria do Multiverso</label>
+                <div class="input-with-action">
+                  <select id="meta-category">
+                    <option value="Raças & Entidades">Raças & Entidades</option>
+                    <option value="Crônicas & Sagas">Crônicas & Sagas</option>
+                    <option value="Transmissões Sonoras">Transmissões Sonoras</option>
+                    <option value="Registros Visuais">Registros Visuais</option>
+                    <option value="Arquivos Técnicos">Arquivos Técnicos</option>
+                    <option value="_custom">+ Nova Categoria...</option>
+                  </select>
+                  <input type="text" id="meta-category-custom" class="hidden" placeholder="Nome da nova categoria">
+                </div>
+              </div>
+
+              <div class="form-group col-span-4">
+                <label for="meta-saga">Saga / Arco Narrativo</label>
+                <input type="text" id="meta-saga" placeholder="Ex: Cérebro de Matriosca">
+              </div>
+
+              <div class="form-group col-span-4">
+                <label for="meta-file">Arquivo Markdown (.md)</label>
+                <input type="text" id="meta-file" placeholder="texts/01_os_arquivistas.md">
+              </div>
+
+              <!-- Linha 3 -->
+              <div class="form-group col-span-6">
+                <label for="meta-tags">Palavras-chave / Tags (separadas por vírgula)</label>
+                <input type="text" id="meta-tags" placeholder="Maltuks, Quinta Dimensão, Matriosca">
+                <div id="meta-tags-preview" class="tags-chip-row"></div>
+              </div>
+
+              <div class="form-group col-span-6">
+                <label for="meta-cover">Imagem de Capa do Registro</label>
+                <div class="cover-selector-row">
+                  <select id="meta-cover">
+                    <option value="">(Sem imagem de capa)</option>
+                    <option value="images/maltuk1.png">images/maltuk1.png</option>
+                    <option value="images/maltuk2.jpg">images/maltuk2.jpg</option>
+                    <option value="images/conselho_solar_01.png">images/conselho_solar_01.png</option>
+                  </select>
+                  <button id="btn-upload-cover" class="btn btn-cyber btn-small" type="button" title="Carregar nova imagem para a pasta /images/">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                      <circle cx="8.5" cy="8.5" r="1.5"/>
+                      <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>+ IMAGEM</span>
+                  </button>
+                  <input type="file" id="input-cover-file" accept="image/*" class="hidden">
+                </div>
+                <div id="meta-cover-preview" class="cover-thumb-preview hidden"></div>
+              </div>
+
+              <!-- Linha 4 -->
+              <div class="form-group col-span-12">
+                <label for="meta-summary">Sinopse / Resumo Curto</label>
+                <textarea id="meta-summary" rows="2" placeholder="Breve introdução que aparecerá nos cartões do portal..."></textarea>
+              </div>
+
+              <!-- Linha 5: Conexões Multiverso -->
+              <div class="form-group col-span-12">
+                <label>Registros Conectados no Multiverso (relatedIds)</label>
+                <div id="meta-related-container" class="related-checkboxes-grid">
+                  <!-- Injetado dinamicamente via studio.js -->
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Barra de Ferramentas de Formatação e Assistentes -->
+          <div class="editor-toolbar">
+            <div class="toolbar-group">
+              <button class="tool-btn" data-tool="h1" type="button" title="Título Nível 1 (# )">H1</button>
+              <button class="tool-btn" data-tool="h2" type="button" title="Título Nível 2 (## )">H2</button>
+              <button class="tool-btn" data-tool="h3" type="button" title="Título Nível 3 (### )">H3</button>
+              <span class="tool-sep"></span>
+              <button class="tool-btn" data-tool="bold" type="button" title="Negrito (**texto**)">
+                <strong>B</strong>
+              </button>
+              <button class="tool-btn" data-tool="italic" type="button" title="Itálico (*texto*)">
+                <em>I</em>
+              </button>
+              <button class="tool-btn" data-tool="quote" type="button" title="Citação / Bloco de Lore (> )">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                  <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                </svg>
+              </button>
+              <button class="tool-btn" data-tool="list" type="button" title="Lista de Marcadores (* )">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="8" y1="6" x2="21" y2="6"/>
+                  <line x1="8" y1="12" x2="21" y2="12"/>
+                  <line x1="8" y1="18" x2="21" y2="18"/>
+                  <line x1="3" y1="6" x2="3.01" y2="6"/>
+                  <line x1="3" y1="12" x2="3.01" y2="12"/>
+                  <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+              </button>
+              <button class="tool-btn" data-tool="divider" type="button" title="Divisor Cósmico (---)">
+                <span class="glyph">∷∷</span>
+              </button>
+              <button class="tool-btn" data-tool="code" type="button" title="Bloco de Código Monospaçado">
+                <span class="glyph">&lt;&gt;</span>
+              </button>
+            </div>
+
+            <div class="toolbar-group toolbar-smart">
+              <button id="btn-open-link-modal" class="btn btn-cyber btn-small btn-accent" type="button" title="Inserir Link Interno, Externo ou Player YouTube/Spotify">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                <span>+ LINK / MÍDIA</span>
+              </button>
+
+              <button id="btn-open-image-modal" class="btn btn-cyber btn-small btn-accent" type="button" title="Inserir Imagem do Acervo com controle de largura e alinhamento">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span>+ IMAGEM</span>
+              </button>
+
+              <button id="btn-open-convert-modal" class="btn btn-cyber btn-small btn-ghost" type="button" title="Converter Texto Formatado ou HTML colado para Markdown">
+                <span class="glyph">[ // ]</span>
+                <span>CONVERTER HTML</span>
+              </button>
+
+              <button id="btn-dictate-in-editor" class="btn btn-cyber btn-small btn-voice" type="button" title="Ditar voz diretamente no ponto do cursor">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+                <span id="btn-dictate-text">DITAR NO CURSOR</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Divisão em Dois Painéis: Markdown e Prévia HTML -->
+          <div class="split-pane">
+            <!-- Painel Esquerdo: Textarea Markdown -->
+            <div class="pane-column pane-editor">
+              <div class="pane-header">
+                <span class="pane-title">FONTE MARKDOWN</span>
+                <div class="pane-header-actions">
+                  <button id="btn-copy-markdown" class="btn btn-tiny btn-ghost" type="button" title="Copiar Markdown para Área de Transferência">COPIAR</button>
+                  <button id="btn-clear-markdown" class="btn btn-tiny btn-ghost" type="button" title="Limpar Editor">LIMPAR</button>
+                </div>
+              </div>
+              <textarea id="markdown-input" spellcheck="false" placeholder="# Escreva sua história cósmica aqui...&#10;&#10;Use o menu acima para inserir conexões, imagens da pasta local, ou ditar diretamente com sua voz."></textarea>
+            </div>
+
+            <!-- Painel Direito: Prévia Renderizada -->
+            <div class="pane-column pane-preview">
+              <div class="pane-header">
+                <span class="pane-title">PRÉVIA DE LEITURA EM TEMPO REAL</span>
+                <span class="reading-indicator">ESTILO FINAL DO PORTAL</span>
+              </div>
+              <div id="markdown-preview" class="markdown-preview-content">
+                <!-- Renderizado via Showdown -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Rodapé do Editor: Métricas -->
+          <div class="editor-footer">
+            <div class="editor-metrics">
+              <span class="metric-item">Palavras: <strong id="stat-words">0</strong></span>
+              <span class="metric-sep">/</span>
+              <span class="metric-item">Caracteres: <strong id="stat-chars">0</strong></span>
+              <span class="metric-sep">/</span>
+              <span class="metric-item">Tempo de Leitura: <strong id="stat-time">~0 min</strong></span>
+            </div>
+            <div class="editor-meta-info">
+              <span id="stat-file-info" class="meta-path">Arquivo: texts/01_os_arquivistas.md</span>
+              <span id="stat-save-status" class="save-status-text">Sem alterações pendentes</span>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ABA 2: CENTRAL DE LINKS & MÍDIAS                         -->
+    <!-- ======================================================== -->
+    <section id="panel-media" class="tab-panel">
+      <div class="media-workspace">
+
+        <!-- Formulário Rápido de Adição -->
+        <div class="cyber-card media-add-card">
+          <div class="card-header">
+            <div class="card-title-row">
+              <span class="glyph">◈</span>
+              <h2 class="card-title">ADICIONAR NOVA TRANSMISSÃO (YOUTUBE / SPOTIFY / PODCAST)</h2>
+            </div>
+            <p class="card-subtitle">Cole a URL de um vídeo do YouTube ou episódio do Spotify. O Studio detecta o tipo automaticamente, gera a prévia imediata do player e organiza os dados no catálogo.</p>
+          </div>
+
+          <div class="media-form-grid">
+            <div class="form-group col-span-8">
+              <label for="media-url">URL da Mídia (YouTube ou Spotify)</label>
+              <input type="url" id="media-url" placeholder="https://youtu.be/... ou https://open.spotify.com/episode/...">
+            </div>
+
+            <div class="form-group col-span-4">
+              <label for="media-type">Tipo Detectado</label>
+              <select id="media-type">
+                <option value="video">Vídeo (YouTube / Arquivo Audiovisual)</option>
+                <option value="audio">Áudio (Spotify / Podcast / Frequência Sonora)</option>
+              </select>
+            </div>
+
+            <div class="form-group col-span-6">
+              <label for="media-title">Título da Transmissão</label>
+              <input type="text" id="media-title" placeholder="Ex: Podcast Estelar - Ecos da Quinta Dimensão">
+            </div>
+
+            <div class="form-group col-span-3">
+              <label for="media-category">Categoria</label>
+              <select id="media-category">
+                <option value="Transmissões Sonoras">Transmissões Sonoras</option>
+                <option value="Registros Visuais">Registros Visuais</option>
+                <option value="Arquivos Técnicos">Arquivos Técnicos</option>
+                <option value="Crônicas & Sagas">Crônicas & Sagas</option>
+              </select>
+            </div>
+
+            <div class="form-group col-span-3">
+              <label for="media-status">Status</label>
+              <select id="media-status">
+                <option value="published">Publicado</option>
+                <option value="draft">Rascunho</option>
+              </select>
+            </div>
+
+            <div class="form-group col-span-6">
+              <label for="media-saga">Saga / Arco</label>
+              <input type="text" id="media-saga" placeholder="Ex: Ecos da Quinta Dimensão">
+            </div>
+
+            <div class="form-group col-span-6">
+              <label for="media-tags">Tags (separadas por vírgula)</label>
+              <input type="text" id="media-tags" placeholder="Podcast, Frequência, Multiverso">
+            </div>
+
+            <div class="form-group col-span-12">
+              <label for="media-summary">Sinopse / Descrição da Transmissão</label>
+              <textarea id="media-summary" rows="2" placeholder="Descreva os fenômenos abordados nesta gravação..."></textarea>
+            </div>
+          </div>
+
+          <!-- Prévia Instantânea do Player -->
+          <div class="media-preview-container">
+            <span class="preview-label">PRÉVIA DO PLAYER RESPONSIVO:</span>
+            <div id="media-player-preview" class="player-box">
+              <p class="placeholder-text">Aguardando inserção de URL válida para carregar o player...</p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button id="btn-save-media" class="btn btn-cyber btn-primary" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              <span>ADICIONAR TRANSMISSÃO AO CATÁLOGO</span>
+            </button>
+            <button id="btn-clear-media" class="btn btn-cyber btn-ghost" type="button">LIMPAR FORMULÁRIO</button>
+          </div>
+        </div>
+
+        <!-- Grade de Transmissões Cadastradas -->
+        <div class="media-library-section">
+          <div class="section-title-row">
+            <span class="section-title">TRANSMISSÕES REGISTRADAS NO CATÁLOGO</span>
+            <span id="media-counter" class="badge-count">0</span>
+          </div>
+
+          <div id="media-grid" class="media-grid">
+            <!-- Injetado dinamicamente via studio.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ABA 3: VOZ & ANOTAÇÕES DO MULTIVERSO                     -->
+    <!-- ======================================================== -->
+    <section id="panel-voice" class="tab-panel">
+      <div class="voice-workspace">
+
+        <!-- Estação de Ditado por Voz -->
+        <div class="cyber-card voice-card">
+          <div class="card-header">
+            <div class="card-title-row">
+              <span class="glyph">◈</span>
+              <h2 class="card-title">ESTAÇÃO DE DITADO NATIVO & CAPTAÇÃO NEURAL</h2>
+              <span id="voice-status-badge" class="badge badge-amber">MICROFONE INATIVO</span>
+            </div>
+            <p class="card-subtitle">Ditado contínuo em português nativo através da Web Speech API. 100% local, ilimitado e sem dependência de chaves de API externas.</p>
+          </div>
+
+          <!-- Visualizador Gráfico de Frequência Sonora -->
+          <div class="visualizer-container">
+            <canvas id="voice-visualizer-canvas" class="visualizer-canvas" height="80"></canvas>
+            <div id="voice-fallback-waves" class="voice-wave-bars hidden">
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+            </div>
+          </div>
+
+          <!-- Controles de Gravação -->
+          <div class="voice-controls-bar">
+            <button id="btn-toggle-main-voice" class="btn btn-cyber btn-voice-large" type="button">
+              <svg class="icon icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <span id="voice-toggle-label">INICIAR CAPTAÇÃO DE VOZ</span>
+            </button>
+
+            <div class="voice-settings">
+              <div class="setting-item">
+                <label for="voice-language">Idioma da Fala</label>
+                <select id="voice-language">
+                  <option value="pt-BR" selected>Português (Brasil)</option>
+                  <option value="en-US">English (US)</option>
+                  <option value="es-ES">Español</option>
+                </select>
+              </div>
+
+              <div class="setting-item-check">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="voice-punctuation-toggle" checked>
+                  <span class="checkbox-box"></span>
+                  <span class="checkbox-text">Pontuação por Voz Automática ("vírgula", "ponto final", "novo parágrafo")</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caixa de Transcrição ao Vivo -->
+          <div class="transcript-box">
+            <div class="transcript-box-header">
+              <span class="transcript-title">TEXTO TRANSCRITO EM TEMPO REAL:</span>
+              <button id="btn-clear-transcript" class="btn btn-tiny btn-ghost" type="button">LIMPAR</button>
+            </div>
+            <textarea id="voice-transcript-output" rows="7" placeholder="Clique em 'INICIAR CAPTAÇÃO DE VOZ' e comece a falar seus contos, notas ou diálogos..."></textarea>
+            <div id="voice-interim-text" class="interim-text"></div>
+          </div>
+
+          <!-- Ações do Texto Transcrito -->
+          <div class="voice-actions-row">
+            <button id="btn-send-to-editor" class="btn btn-cyber btn-primary" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+              <span>INSERIR NO EDITOR DE CONTOS ATUAL</span>
+            </button>
+
+            <button id="btn-save-as-note" class="btn btn-cyber" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              </svg>
+              <span>SALVAR COMO ANOTAÇÃO DE LORE</span>
+            </button>
+
+            <button id="btn-create-story-from-voice" class="btn btn-cyber btn-accent" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              <span>CRIAR NOVO RASCUNHO DE CONTO</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mural de Anotações e Tópicos Futuros -->
+        <div class="notes-section">
+          <div class="section-title-row">
+            <div class="title-with-badge">
+              <span class="section-title">ANOTAÇÕES DO MULTIVERSO & TÓPICOS FUTUROS (catalog.notes)</span>
+              <span id="notes-counter" class="badge-count">0</span>
+            </div>
+            <button id="btn-new-note" class="btn btn-cyber btn-small" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              <span>NOVA ANOTAÇÃO</span>
+            </button>
+          </div>
+
+          <div id="notes-grid" class="notes-grid">
+            <!-- Injetado dinamicamente via studio.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- ABA 4: LABORATÓRIO DE DESIGN & TEMA                      -->
+    <!-- ======================================================== -->
+    <section id="panel-theme" class="tab-panel">
+      <div class="theme-workspace">
+
+        <!-- Presets Artísticos Instantâneos -->
+        <div class="cyber-card theme-presets-card">
+          <div class="card-header">
+            <div class="card-title-row">
+              <span class="glyph">◈</span>
+              <h2 class="card-title">PRESETS ARTÍSTICOS DO MULTIVERSO</h2>
+            </div>
+            <p class="card-subtitle">Selecione uma identidade cósmica completa para reconfigurar cores, matrizes e comportamento estelar com um único clique.</p>
+          </div>
+
+          <div class="preset-cards-grid">
+            <div class="preset-card" data-preset="matrioshka-amber">
+              <div class="preset-badge">PADRÃO OFICIAL</div>
+              <h3 class="preset-name">Matrioshka Amber</h3>
+              <p class="preset-desc">Ouro quente e âmbar estelar inspirado no núcleo de energia do Cérebro de Matriosca.</p>
+              <div class="preset-swatches">
+                <span class="swatch" style="background: #e6a817"></span>
+                <span class="swatch" style="background: #00f0ff"></span>
+                <span class="swatch" style="background: #050609"></span>
+              </div>
+            </div>
+
+            <div class="preset-card" data-preset="matrix-emerald">
+              <div class="preset-badge">TERMINAL BIO-CYBER</div>
+              <h3 class="preset-name">Matrix Emerald</h3>
+              <p class="preset-desc">Fluxo denso de glifos esmeralda e terminal cibernético dos zeladores do Arquivo.</p>
+              <div class="preset-swatches">
+                <span class="swatch" style="background: #00ff88"></span>
+                <span class="swatch" style="background: #38ef7d"></span>
+                <span class="swatch" style="background: #030806"></span>
+              </div>
+            </div>
+
+            <div class="preset-card" data-preset="cyber-nebula-cyan">
+              <div class="preset-badge">CRIOGÊNICO</div>
+              <h3 class="preset-name">Cyber Nebula Cyan</h3>
+              <p class="preset-desc">Resfriamento quântico e radiação Cerenkov dos condutores de dados ultra-densos.</p>
+              <div class="preset-swatches">
+                <span class="swatch" style="background: #00f0ff"></span>
+                <span class="swatch" style="background: #7000ff"></span>
+                <span class="swatch" style="background: #040914"></span>
+              </div>
+            </div>
+
+            <div class="preset-card" data-preset="crimson-singularity">
+              <div class="preset-badge">HORIZONTE DE EVENTOS</div>
+              <h3 class="preset-name">Crimson Singularity</h3>
+              <p class="preset-desc">Horizonte de eventos de buraco negro e alerta de dobra dimensional dos Thyrexianos.</p>
+              <div class="preset-swatches">
+                <span class="swatch" style="background: #ff2a5f"></span>
+                <span class="swatch" style="background: #f59e0b"></span>
+                <span class="swatch" style="background: #0c0406"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Configurações Manuais de Cores e Tipografia -->
+        <div class="theme-customizer-grid">
+
+          <!-- Coluna 1: Paleta de Cores -->
+          <div class="cyber-card">
+            <div class="card-header">
+              <h3 class="card-title">PALETA DE CORES (CSS VARS)</h3>
+            </div>
+            <div class="color-pickers-list">
+              <div class="color-picker-row">
+                <label for="color-bgPrimary">Fundo Primário (bgPrimary)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-bgPrimary" value="#050609">
+                  <span id="val-bgPrimary" class="hex-val">#050609</span>
+                </div>
+              </div>
+
+              <div class="color-picker-row">
+                <label for="color-bgSecondary">Fundo Secundário (bgSecondary)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-bgSecondary" value="#0b0e16">
+                  <span id="val-bgSecondary" class="hex-val">#0b0e16</span>
+                </div>
+              </div>
+
+              <div class="color-picker-row">
+                <label for="color-accentPrimary">Destaque Principal (accentPrimary)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-accentPrimary" value="#e6a817">
+                  <span id="val-accentPrimary" class="hex-val">#e6a817</span>
+                </div>
+              </div>
+
+              <div class="color-picker-row">
+                <label for="color-accentSecondary">Destaque Secundário (accentSecondary)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-accentSecondary" value="#00f0ff">
+                  <span id="val-accentSecondary" class="hex-val">#00f0ff</span>
+                </div>
+              </div>
+
+              <div class="color-picker-row">
+                <label for="color-matrixGlow">Brilho da Matrix (matrixGlow)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-matrixGlow" value="#00ff9d">
+                  <span id="val-matrixGlow" class="hex-val">#00ff9d</span>
+                </div>
+              </div>
+
+              <div class="color-picker-row">
+                <label for="color-textPrimary">Texto Principal (textPrimary)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-textPrimary" value="#e6edf5">
+                  <span id="val-textPrimary" class="hex-val">#e6edf5</span>
+                </div>
+              </div>
+
+              <div class="color-picker-row">
+                <label for="color-textSecondary">Texto Secundário (textSecondary)</label>
+                <div class="picker-input-wrap">
+                  <input type="color" id="color-textSecondary" value="#8b9bb4">
+                  <span id="val-textSecondary" class="hex-val">#8b9bb4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Tipografia e Leitura -->
+          <div class="cyber-card">
+            <div class="card-header">
+              <h3 class="card-title">TIPOGRAFIA & LEITURA</h3>
+            </div>
+            <div class="typography-settings-list">
+              <div class="form-group">
+                <label for="typo-display">Fonte de Títulos (Display)</label>
+                <select id="typo-display">
+                  <option value="'Orbitron', sans-serif">Orbitron (Padrão Cyberpunk)</option>
+                  <option value="'Cinzel', serif">Cinzel (Épico / Gravado)</option>
+                  <option value="'Rajdhani', sans-serif">Rajdhani (Militar / Técnico)</option>
+                  <option value="'Space Grotesk', sans-serif">Space Grotesk (Moderno)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="typo-body">Fonte do Corpo da Interface (Body)</label>
+                <select id="typo-body">
+                  <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+                  <option value="'Inter', sans-serif">Inter</option>
+                  <option value="system-ui, sans-serif">Sistema Padrão</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="typo-reading">Fonte dos Contos (Reading)</label>
+                <select id="typo-reading">
+                  <option value="'Merriweather', Georgia, serif">Merriweather (Serifada Imersiva)</option>
+                  <option value="'Space Grotesk', sans-serif">Space Grotesk (Sans-Serif)</option>
+                  <option value="Georgia, serif">Georgia Clássica</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="typo-mono">Fonte Monospaçada (Editor / Matrix)</label>
+                <select id="typo-mono">
+                  <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                  <option value="'Courier New', monospace">Courier New</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="typo-size">Tamanho Base da Fonte</label>
+                  <span id="val-baseSize">18px</span>
+                </div>
+                <input type="range" id="typo-size" min="14" max="24" step="1" value="18">
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="typo-height">Altura da Linha (Line Height)</label>
+                  <span id="val-lineHeight">1.75</span>
+                </div>
+                <input type="range" id="typo-height" min="1.4" max="2.2" step="0.05" value="1.75">
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 3: Animação do CosmosEngine -->
+          <div class="cyber-card">
+            <div class="card-header">
+              <h3 class="card-title">MOTOR CÓSMICO & MATRIX (cosmos.js)</h3>
+            </div>
+            <div class="cosmos-settings-list">
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="cosmos-stars">Densidade de Estrelas</label>
+                  <span id="val-starCount">150</span>
+                </div>
+                <input type="range" id="cosmos-stars" min="20" max="400" step="10" value="150">
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="cosmos-streams">Filamentos Matrix</label>
+                  <span id="val-streamCount">32</span>
+                </div>
+                <input type="range" id="cosmos-streams" min="0" max="80" step="2" value="32">
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="cosmos-speed">Velocidade da Dinâmica</label>
+                  <span id="val-speed">0.45</span>
+                </div>
+                <input type="range" id="cosmos-speed" min="0.1" max="2.0" step="0.05" value="0.45">
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="cosmos-nebula">Opacidade da Nebulosa</label>
+                  <span id="val-nebula">0.35</span>
+                </div>
+                <input type="range" id="cosmos-nebula" min="0.0" max="1.0" step="0.05" value="0.35">
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label for="cosmos-matrix">Opacidade da Matrix</label>
+                  <span id="val-matrix">0.18</span>
+                </div>
+                <input type="range" id="cosmos-matrix" min="0.0" max="0.8" step="0.02" value="0.18">
+              </div>
+
+              <div class="form-group">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="cosmos-pauseOnReading" checked>
+                  <span class="checkbox-box"></span>
+                  <span class="checkbox-text">Pausar animação automaticamente ao ler histórias</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Barra Inferior de Ação do Tema -->
+        <div class="theme-actions-bar">
+          <button id="btn-apply-theme" class="btn btn-cyber btn-primary btn-large" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            <span>APLICAR E SALVAR TEMA (theme.json)</span>
+          </button>
+          <button id="btn-reset-theme" class="btn btn-cyber btn-ghost" type="button">RESTAURAR PADRÃO MATRIOSHKA</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 1: INSERIR LINK / CONEXÃO / EMBED MULTIMÍDIA      -->
+  <!-- ======================================================== -->
+  <div id="modal-link" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-link-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-link-title" class="modal-title">INSERIR LINK OU CONEXÃO MULTIVERSAL</h3>
+        <button class="modal-close" data-close-modal="modal-link" type="button" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-subnav">
+          <button class="modal-tab active" data-subtab="internal" type="button">Conexão Interna</button>
+          <button class="modal-tab" data-subtab="external" type="button">Link Externo</button>
+          <button class="modal-tab" data-subtab="embed" type="button">Embed YouTube / Spotify</button>
+        </div>
+
+        <!-- Modo A: Conexão Interna -->
+        <div id="subtab-internal" class="subtab-content active">
+          <p class="modal-help">Selecione uma história, transmissão de áudio ou vídeo registrada para criar uma ligação hiperdimensional direta:</p>
+          <div class="form-group">
+            <label for="link-internal-select">Registro do Acervo</label>
+            <select id="link-internal-select">
+              <!-- Injetado dinamicamente -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="link-internal-text">Texto Âncora do Link</label>
+            <input type="text" id="link-internal-text" placeholder="Ex: Ler crônica dos Maltuks">
+          </div>
+        </div>
+
+        <!-- Modo B: Link Externo -->
+        <div id="subtab-external" class="subtab-content">
+          <div class="form-group">
+            <label for="link-external-url">URL de Destino</label>
+            <input type="url" id="link-external-url" placeholder="https://exemplo.com">
+          </div>
+          <div class="form-group">
+            <label for="link-external-text">Texto Visível do Link</label>
+            <input type="text" id="link-external-text" placeholder="Ex: Documento de Referência">
+          </div>
+        </div>
+
+        <!-- Modo C: Embed Multimídia -->
+        <div id="subtab-embed" class="subtab-content">
+          <p class="modal-help">Insira a URL de um vídeo do YouTube ou áudio do Spotify para incorporar o reprodutor responsivo dentro da história:</p>
+          <div class="form-group">
+            <label for="link-embed-url">URL do Vídeo / Áudio</label>
+            <input type="url" id="link-embed-url" placeholder="https://youtu.be/... ou https://open.spotify.com/episode/...">
+          </div>
+          <div id="link-embed-preview" class="embed-modal-preview"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btn-insert-link-confirm" class="btn btn-cyber btn-primary" type="button">INSERIR NO TEXTO</button>
+        <button class="btn btn-cyber btn-ghost" data-close-modal="modal-link" type="button">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 2: INSERIR IMAGEM DO ACERVO                        -->
+  <!-- ======================================================== -->
+  <div id="modal-image" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-image-title">
+    <div class="modal-dialog modal-large">
+      <div class="modal-header">
+        <h3 id="modal-image-title" class="modal-title">INSERIR IMAGEM DO ACERVO (/images/)</h3>
+        <button class="modal-close" data-close-modal="modal-image" type="button" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="image-modal-grid">
+          <!-- Coluna Esquerda: Galeria de Imagens -->
+          <div class="image-gallery-pane">
+            <div class="pane-title-row">
+              <span class="gallery-title">IMAGENS DISPONÍVEIS NA PASTA /images/</span>
+              <label for="gallery-file-upload" class="btn btn-tiny btn-accent">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                <span>+ CARREGAR IMAGEM</span>
+              </label>
+              <input type="file" id="gallery-file-upload" accept="image/*" class="hidden">
+            </div>
+
+            <div id="modal-image-grid" class="image-thumbnail-grid">
+              <!-- Injetado dinamicamente via studio.js -->
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Opções de Inserção -->
+          <div class="image-options-pane">
+            <div class="form-group">
+              <label for="img-selected-path">Caminho da Imagem</label>
+              <input type="text" id="img-selected-path" readonly value="images/maltuk1.png">
+            </div>
+
+            <div class="form-group">
+              <label for="img-alt-text">Texto Alternativo / Legenda (Alt)</label>
+              <input type="text" id="img-alt-text" placeholder="Ex: Maltuk e seu manto dimensional">
+            </div>
+
+            <div class="form-group">
+              <label for="img-width-select">Largura da Imagem</label>
+              <select id="img-width-select">
+                <option value="333">Padrão do Acervo (width="333")</option>
+                <option value="500">Média em Destaque (width="500")</option>
+                <option value="100%">Largura Total (100%)</option>
+                <option value="custom">Personalizado...</option>
+              </select>
+              <input type="text" id="img-width-custom" class="hidden" placeholder="Ex: 400 ou 75%">
+            </div>
+
+            <div class="form-group">
+              <label for="img-align-select">Alinhamento</label>
+              <select id="img-align-select">
+                <option value="center">Centralizado</option>
+                <option value="left">Alinhado à Esquerda</option>
+                <option value="right">Alinhado à Direita</option>
+              </select>
+            </div>
+
+            <div class="image-preview-box">
+              <span class="preview-label">PRÉVIA DA IMAGEM SELECIONADA:</span>
+              <div id="img-modal-preview" class="thumb-preview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btn-insert-image-confirm" class="btn btn-cyber btn-primary" type="button">INSERIR IMAGEM NO CONTO</button>
+        <button class="btn btn-cyber btn-ghost" data-close-modal="modal-image" type="button">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 3: CONVERTER TEXTO / HTML PARA MARKDOWN            -->
+  <!-- ======================================================== -->
+  <div id="modal-convert" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-convert-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-convert-title" class="modal-title">CONVERTER TEXTO FORMATADO / HTML PARA MARKDOWN</h3>
+        <button class="modal-close" data-close-modal="modal-convert" type="button" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-help">Cole texto rico ou tags HTML vindos do Obsidian, Google Docs, Word ou páginas web. O conversor higienizará o código gerando Markdown limpo.</p>
+        <div class="form-group">
+          <label for="convert-input">Entrada (HTML ou Texto com Formatação)</label>
+          <textarea id="convert-input" rows="8" placeholder="Cole aqui seu conteúdo formatado ou HTML bruto..."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btn-convert-confirm-cursor" class="btn btn-cyber btn-primary" type="button">INSERIR NO CURSOR</button>
+        <button id="btn-convert-confirm-replace" class="btn btn-cyber" type="button">SUBSTITUIR TODO O EDITOR</button>
+        <button class="btn btn-cyber btn-ghost" data-close-modal="modal-convert" type="button">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 4: EXPORTAR ARQUIVOS & BACKUPS                     -->
+  <!-- ======================================================== -->
+  <div id="modal-export" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-export-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-export-title" class="modal-title">EXPORTAR ARQUIVOS DO PROJETO (FALLBACK MANUAL)</h3>
+        <button class="modal-close" data-close-modal="modal-export" type="button" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-help">Se você estiver utilizando um navegador sem suporte à File System Access API ou desejar guardar cópias de segurança avulsas, baixe os arquivos diretamente:</p>
+        
+        <div class="export-options-list">
+          <div class="export-row">
+            <div>
+              <strong>catalog.json</strong>
+              <p>Catálogo mestre com índice de contos, mídias, categorias e anotações.</p>
+            </div>
+            <button id="btn-download-catalog" class="btn btn-small btn-cyber" type="button">BAIXAR</button>
+          </div>
+
+          <div class="export-row">
+            <div>
+              <strong>theme.json</strong>
+              <p>Configuração visual completa, paleta de cores e parâmetros do CosmosEngine.</p>
+            </div>
+            <button id="btn-download-theme" class="btn btn-small btn-cyber" type="button">BAIXAR</button>
+          </div>
+
+          <div class="export-row">
+            <div>
+              <strong id="export-current-md-name">Conto Ativo (.md)</strong>
+              <p>O arquivo Markdown do registro atualmente aberto no editor.</p>
+            </div>
+            <button id="btn-download-active-md" class="btn btn-small btn-cyber" type="button">BAIXAR</button>
+          </div>
+
+          <div class="export-row">
+            <div>
+              <strong>texts.json & media.json</strong>
+              <p>Arquivos legados de compatibilidade gerados automaticamente.</p>
+            </div>
+            <button id="btn-download-legacy" class="btn btn-small btn-cyber" type="button">BAIXAR</button>
+          </div>
+
+          <div class="export-row highlight">
+            <div>
+              <strong>Pacote Completo de Backup (.json)</strong>
+              <p>Todas as histórias, mídias, anotações e tema agrupados em arquivo único.</p>
+            </div>
+            <button id="btn-download-bundle" class="btn btn-small btn-cyber btn-primary" type="button">BAIXAR PACOTE</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-cyber btn-ghost" data-close-modal="modal-export" type="button">FECHAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SISTEMA DE NOTIFICAÇÕES (TOAST HUD) -->
+  <div id="toast-container" class="toast-hud" aria-live="polite"></div>
+
+  <!-- SCRIPTS EXTERNOS E DO STUDIO -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+  <script src="cosmos.js"></script>
+  <script src="studio.js"></script>
+</body>
+</html>
