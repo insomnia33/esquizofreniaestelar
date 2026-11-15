@@ -46,7 +46,7 @@
                     "Máquinas Sencientes"
                 ],
                 summary: "Apresentação do primeiro contato com um Maltuk e suas canções em vibrações inexplicáveis traduzidas pelas máquinas sencientes zeladoras do Arquivo.",
-                coverImage: "images/maltuk1.png",
+                coverImage: "images/maltuk1.webp",
                 file: "texts/01_os_arquivistas.md",
                 readingTime: 2,
                 createdAt: "2025-01-15",
@@ -70,7 +70,7 @@
                     "Prelúdio do Caos"
                 ],
                 summary: "Prelúdio do Caos: registros sobre a formação, ascensão e declínio do Conselho Solar da Nova Era e as tensões entre Maltuks e Thyrexianos mecanos.",
-                coverImage: "images/conselho_solar_01.png",
+                coverImage: "images/conselho_solar_01.webp",
                 file: "texts/02_metamorphis.md",
                 readingTime: 2,
                 createdAt: "2025-02-10",
@@ -190,8 +190,8 @@
     // Built-in Real Content for Markdown Text Files (guarantees immediate rendering on file://)
     var DEFAULT_TEXT_FILES = {
         "texts/intro.md": "# Bem-vindo aos Arquivos do Multiverso\n\nDiante de você, o futuro da humanidade desdobra-se — um cosmos onde o familiar dissolve-se no extraordinário. Imagine a luz de um sol artificial filtrando-se pelas frestas de uma megaestrutura, tão colossal que, à distância, confunde-se com uma constelação feita pela mão humana.  \n\nNo coração desse universo pulsante, ergue-se o o Computador no Fim do Universo, um Cérebro de Matriosca, obra-prima da engenhosidade da vida, uma catedral de neurônios sintéticos que abriga trilhões de mentes vivendo incontáveis cenários. Alimentadas pela energia de uma estrela branca, essas consciências habitam realidades virtuais — sonhos eternos moldados pela curiosidade do universo em conhecer a si mesmo.  \n\nA missão de vigiar esse equilíbrio delicado são dos Maltuks, arquivistas e sacerdotes enigmáticos, cujos segredos serão cantados adiante por eles mesmos, e suas máquinas sencientes zeladoras. Juntos, enfrentam catástrofes cósmicas enquanto selecionam as realidades dignas de compor O Arquivo.  \n\nCada história aqui preservada é um universo em si mesma. Cada linha que você lerá a seguir é uma fenda por onde escapa o infinito. Parabéns por chegar até aqui, pois além desse portal da quinta dimensão, estão os Arquivos do Multiverso.",
-        "texts/01_os_arquivistas.md": "# Os Arquivistas\n\n* Apresentação do primeiro contato com um Maltuk (O Arquivista)\n* Contar a história dos Maltuks e seu propósito\n* Os Maltuks cantam canções em vibrações inexplicáveis, somente presenciando tal proeza para compreender esse fenômeno. Aqui é uma tradução descritiva auxiliada pelas máquinas sencientes, o sistema que permite a interação entre nós seres vivos dessa dimensão, e os arautos do fim do mundo\n* \n\nMaltuk Arquivista\n<img src=\"images/maltuk1.png\" alt=\"Maltuk e seu manto\" width=\"333\"/>\n\nMaltuk Priestess\n<img src=\"images/maltuk2.jpg\" alt=\"Maltuk Priestess\" width=\"333\"/>",
-        "texts/02_metamorphis.md": "# A Saga Metamorphis\n\n## Prelúdio do Caos\n\n* Transcrever aqui as notas do papel sobre a história da formação, ascenção e declínio do Conselho Solar da Nova Era.\n\nEsboço inicial do banner:\n* Os Maltuks ao centro deveriam ser mais insetídeos\n* Os Thyrexianos mecanos da esquerda ao meio são mais reptlianos tecnologicos\n\n\n<img src=\"images/conselho_solar_01.png\" alt=\"Maltuk e seu manto\" width=\"333\"/>"
+        "texts/01_os_arquivistas.md": "# Os Arquivistas\n\n* Apresentação do primeiro contato com um Maltuk (O Arquivista)\n* Contar a história dos Maltuks e seu propósito\n* Os Maltuks cantam canções em vibrações inexplicáveis, somente presenciando tal proeza para compreender esse fenômeno. Aqui é uma tradução descritiva auxiliada pelas máquinas sencientes, o sistema que permite a interação entre nós seres vivos dessa dimensão, e os arautos do fim do mundo\n* \n\nMaltuk Arquivista\n<img src=\"images/maltuk1.webp\" alt=\"Maltuk e seu manto\" width=\"333\"/>\n\nMaltuk Priestess\n<img src=\"images/maltuk2.webp\" alt=\"Maltuk Priestess\" width=\"333\"/>",
+        "texts/02_metamorphis.md": "# A Saga Metamorphis\n\n## Prelúdio do Caos\n\n* Transcrever aqui as notas do papel sobre a história da formação, ascenção e declínio do Conselho Solar da Nova Era.\n\nEsboço inicial do banner:\n* Os Maltuks ao centro deveriam ser mais insetídeos\n* Os Thyrexianos mecanos da esquerda ao meio são mais reptlianos tecnologicos\n\n\n<img src=\"images/conselho_solar_01.webp\" alt=\"Maltuk e seu manto\" width=\"333\"/>"
     };
 
     // Built-in Default Theme
@@ -256,11 +256,11 @@
         activeSection: 'intro',
         activeStory: null,
         readerPrefs: {
-            fontSize: 18,
-            font: 'serif',
+            prefsVersion: 2,
+            fontSize: 20,
+            font: 'sans',
             width: 'default',
-            contrast: 'abyssal',
-            focus: false
+            contrast: 'abyssal'
         }
     };
 
@@ -330,9 +330,18 @@
         try {
             var parsed = new URL(url);
             var cleanPath = parsed.pathname.replace(/^\/+|\/+$/g, '');
+            // Strip locale segment (e.g. intl-pt, intl-en, etc.)
+            cleanPath = cleanPath.replace(/^intl-[a-z-]+(?:\/|$)/i, '');
+            // Strip duplicate embed segment if already present
+            cleanPath = cleanPath.replace(/^embed\//i, '');
             return 'https://open.spotify.com/embed/' + cleanPath + '?utm_source=generator&theme=0';
         } catch (e) {
-            return url;
+            var fallback = String(url).trim()
+                .replace(/^https?:\/\/(?:open\.)?spotify\.com\//i, '')
+                .replace(/^intl-[a-z-]+(?:\/|$)/i, '')
+                .replace(/^embed\//i, '')
+                .replace(/^\/+|\/+$/g, '');
+            return 'https://open.spotify.com/embed/' + fallback + '?utm_source=generator&theme=0';
         }
     }
 
@@ -485,6 +494,16 @@
             return !item.status || item.status === 'published';
         });
 
+        // Ensure modern webp image paths for Maltuk & Conselho Solar
+        state.catalog.items.forEach(function(item) {
+            if (item.coverImage) {
+                item.coverImage = item.coverImage
+                    .replace(/maltuk1\.(png|jpg)/i, 'maltuk1.webp')
+                    .replace(/maltuk2\.(png|jpg)/i, 'maltuk2.webp')
+                    .replace(/conselho_solar_01\.(png|jpg)/i, 'conselho_solar_01.webp');
+            }
+        });
+
         updateNavigationBadges();
         await renderAllSections();
         handleHashRoute();
@@ -523,6 +542,44 @@
         var md = await fetchMarkdownFile(state.catalog.introFile || 'texts/intro.md');
         if (md) {
             introContainer.innerHTML = converter.makeHtml(md);
+
+            // Inject discreet TTS control next to the intro title
+            var h1 = introContainer.querySelector('h1');
+            if (h1) {
+                var titleRow = document.createElement('div');
+                titleRow.className = 'intro-title-row';
+                h1.parentNode.insertBefore(titleRow, h1);
+                titleRow.appendChild(h1);
+
+                var ttsControls = document.createElement('div');
+                ttsControls.className = 'intro-tts-controls';
+                ttsControls.setAttribute('role', 'group');
+                ttsControls.setAttribute('aria-label', 'Narração por voz da introdução');
+                ttsControls.innerHTML =
+                    '<button id="btn-intro-tts-toggle" class="reader-icon-btn tts-btn" type="button" onclick="toggleIntroTTS()" aria-label="Ouvir apresentação (narração por voz)" title="Ouvir apresentação">' +
+                        '<svg id="intro-tts-icon-play" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+                            '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>' +
+                            '<path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>' +
+                            '<path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>' +
+                        '</svg>' +
+                        '<svg id="intro-tts-icon-pause" class="hidden" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+                            '<rect x="6" y="4" width="4" height="16"></rect>' +
+                            '<rect x="14" y="4" width="4" height="16"></rect>' +
+                        '</svg>' +
+                    '</button>' +
+                    '<button id="btn-intro-tts-stop" class="reader-icon-btn tts-stop-btn hidden" type="button" onclick="stopStoryTTS()" aria-label="Parar narração" title="Parar narração">' +
+                        '<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">' +
+                            '<rect x="5" y="5" width="14" height="14" rx="1"></rect>' +
+                        '</svg>' +
+                    '</button>' +
+                    '<select id="intro-tts-rate-select" class="reader-select tts-rate-select hidden" aria-label="Velocidade da narração" title="Velocidade da narração" onchange="setStoryTTSRate(this.value)">' +
+                        '<option value="0.85">0.85x</option>' +
+                        '<option value="1" selected>1.0x</option>' +
+                        '<option value="1.25">1.25x</option>' +
+                        '<option value="1.5">1.5x</option>' +
+                    '</select>';
+                titleRow.appendChild(ttsControls);
+            }
         } else {
             introContainer.innerHTML = '<p class="empty-message">Carregando apresentação dos Arquivos do Multiverso...</p>';
         }
@@ -569,13 +626,24 @@
         var isText = item.type === 'text';
         var isAudio = item.type === 'audio';
         var isVideo = item.type === 'video';
+        var targetParam = escapeHtml(item.slug || item.id);
 
         // Media Frame or Banner
         var mediaHtml = '';
         if (isText) {
             if (item.coverImage) {
+                var jsSrc = String(item.coverImage).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+                var jsTitle = String(item.title || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
                 mediaHtml = '<div class="card-cover-wrapper">' +
                     '<img src="' + escapeHtml(item.coverImage) + '" alt="' + escapeHtml(item.title) + '" class="card-cover-img" loading="lazy">' +
+                    '<button type="button" class="card-cover-zoom-btn" onclick="event.stopPropagation(); openLightbox(\'' + jsSrc + '\', \'' + jsTitle + '\');" aria-label="Ampliar imagem" title="Ampliar imagem">' +
+                        '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+                            '<circle cx="11" cy="11" r="7"></circle>' +
+                            '<line x1="21" y1="21" x2="16.65" y2="16.65"></line>' +
+                            '<line x1="11" y1="8" x2="11" y2="14"></line>' +
+                            '<line x1="8" y1="11" x2="14" y2="11"></line>' +
+                        '</svg>' +
+                    '</button>' +
                     '<div class="card-scanline-overlay" aria-hidden="true"></div>' +
                 '</div>';
             } else {
@@ -590,7 +658,7 @@
         } else if (isAudio) {
             var spotifyEmbed = getSpotifyEmbedUrl(item.url);
             mediaHtml = '<div class="media-embed-frame spotify-embed-container">' +
-                '<iframe src="' + escapeHtml(spotifyEmbed) + '" width="100%" height="152" allow="encrypted-media" loading="lazy"></iframe>' +
+                '<iframe src="' + escapeHtml(spotifyEmbed) + '" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>' +
             '</div>';
         } else if (isVideo) {
             var youtubeId = getYoutubeId(item.url);
@@ -612,42 +680,65 @@
             }
         }
 
-        // Meta Pills
+        // Meta Pills: Keep Category & Saga without # (reading time badge removed)
         var categoryPill = item.category ? '<span class="meta-pill category-pill">' + escapeHtml(item.category) + '</span>' : '';
         var sagaPill = item.saga ? '<span class="meta-pill saga-pill">' + escapeHtml(item.saga) + '</span>' : '';
-        var timePill = isText ? '<span class="meta-pill time-pill">~' + (item.readingTime || 2) + ' MIN LEITURA</span>' : '';
 
-        // Tag Pills
-        var tagsHtml = (item.tags || []).map(function(t) {
-            return '<span class="card-tag">#' + escapeHtml(t) + '</span>';
-        }).join('');
-
-        // Action button for text
-        var actionBtn = '';
+        // Clickable card attributes for text stories (whole card clickable)
+        var cardClickAttrs = '';
         if (isText) {
-            var targetParam = escapeHtml(item.slug || item.id);
-            actionBtn = '<div class="card-footer-action">' +
-                '<button class="card-access-btn" type="button" onclick="openStory(\'' + targetParam + '\')">' +
-                    '<span>ACESSAR REGISTRO [ // ]</span>' +
-                    '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>' +
-                '</button>' +
-            '</div>';
+            cardClickAttrs = ' role="button" tabindex="0" onclick="openStory(\'' + targetParam + '\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openStory(\'' + targetParam + '\');}" aria-label="Abrir registro: ' + escapeHtml(item.title) + '"';
         }
 
-        return '<article class="cyber-card" data-id="' + escapeHtml(item.id) + '">' +
+        return '<article class="cyber-card' + (isText ? ' cyber-card-clickable' : '') + '" data-id="' + escapeHtml(item.id) + '"' + cardClickAttrs + '>' +
             mediaHtml +
             '<div class="card-body">' +
                 '<div class="card-meta-row">' +
                     categoryPill +
                     sagaPill +
-                    timePill +
                 '</div>' +
                 '<h3 class="card-title">' + escapeHtml(item.title) + '</h3>' +
                 (item.summary ? '<p class="card-summary">' + escapeHtml(item.summary) + '</p>' : '') +
-                (tagsHtml ? '<div class="card-tags">' + tagsHtml + '</div>' : '') +
-                actionBtn +
             '</div>' +
         '</article>';
+    }
+
+    /* ------------------------------------------------------------------------
+       Carousel Navigation Helpers for Published Text Stories
+       ------------------------------------------------------------------------ */
+    function getTextStories() {
+        return state.catalog.items.filter(function(i) {
+            return i.type === 'text';
+        });
+    }
+
+    function prevStory() {
+        var textStories = getTextStories();
+        if (textStories.length <= 1 || !state.activeStory) return;
+        var currentIndex = textStories.findIndex(function(i) {
+            return i.id === state.activeStory.id || i.slug === state.activeStory.slug;
+        });
+        if (currentIndex === -1) return;
+        var targetIndex = (currentIndex - 1 + textStories.length) % textStories.length;
+        openStory(textStories[targetIndex].slug || textStories[targetIndex].id);
+    }
+
+    function nextStory() {
+        var textStories = getTextStories();
+        if (textStories.length <= 1 || !state.activeStory) return;
+        var currentIndex = textStories.findIndex(function(i) {
+            return i.id === state.activeStory.id || i.slug === state.activeStory.slug;
+        });
+        if (currentIndex === -1) return;
+        var targetIndex = (currentIndex + 1) % textStories.length;
+        openStory(textStories[targetIndex].slug || textStories[targetIndex].id);
+    }
+
+    function scrollStoryToTop() {
+        var dialog = document.getElementById('story-popup-dialog');
+        if (dialog) {
+            dialog.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 
     /* ------------------------------------------------------------------------
@@ -665,6 +756,9 @@
             return;
         }
 
+        // Stop any active narration before switching story
+        stopStoryTTS();
+
         state.activeStory = story;
 
         // CRITICAL REQUIREMENT: Automatically pause animated cosmos canvas during reading
@@ -672,41 +766,18 @@
             window.CosmosEngine.pause('reading');
         }
 
-        // Hide catalog sections
-        hideAllSections();
+        // Show Story Reader Popup Modal (do NOT hide underlying catalog section)
+        var readerModal = document.getElementById('story-reader');
+        if (readerModal) readerModal.classList.remove('hidden');
+        document.body.classList.add('story-modal-open');
 
-        // Show Story Reader
-        var readerSection = document.getElementById('story-reader');
-        if (readerSection) readerSection.classList.remove('hidden');
-
-        // Populate Header Info
-        var categoryEl = document.getElementById('story-category-tag');
-        var sagaEl = document.getElementById('story-saga-tag');
-        var timeEl = document.getElementById('story-time-tag');
-        var titleEl = document.getElementById('story-title');
-        var tagsContainer = document.getElementById('story-tags-container');
-        var coverWrapper = document.getElementById('story-cover-wrapper');
-        var coverImg = document.getElementById('story-cover-image');
-
-        if (categoryEl) categoryEl.textContent = story.category || 'Crônicas & Sagas';
-        if (sagaEl) sagaEl.textContent = story.saga || 'Arquivos do Multiverso';
-        if (timeEl) timeEl.textContent = '~' + (story.readingTime || 2) + ' MIN LEITURA';
-        if (titleEl) titleEl.textContent = story.title;
-
-        if (tagsContainer) {
-            tagsContainer.innerHTML = (story.tags || []).map(function(t) {
-                return '<span class="card-tag">#' + escapeHtml(t) + '</span>';
-            }).join('');
-        }
-
-        if (coverWrapper && coverImg) {
-            if (story.coverImage) {
-                coverImg.src = story.coverImage;
-                coverImg.alt = story.title;
-                coverWrapper.classList.remove('hidden');
-            } else {
-                coverWrapper.classList.add('hidden');
-            }
+        // Reset scroll position of popup dialog smoothly to top & trigger Matrix reveal
+        var dialog = document.getElementById('story-popup-dialog');
+        if (dialog) {
+            dialog.scrollTo({ top: 0, behavior: 'smooth' });
+            dialog.classList.remove('matrix-switching');
+            void dialog.offsetWidth;
+            dialog.classList.add('matrix-switching');
         }
 
         // Fetch and Render Markdown Content via Tri-Tier loader
@@ -716,11 +787,23 @@
 
             var mdContent = await fetchMarkdownFile(story.file);
             if (mdContent) {
+                // Safeguard: normalize maltuk1/maltuk2/conselho_solar_01 png/jpg to webp
+                mdContent = mdContent
+                    .replace(/images\/maltuk1\.(png|jpg)/gi, 'images/maltuk1.webp')
+                    .replace(/images\/maltuk2\.(png|jpg)/gi, 'images/maltuk2.webp')
+                    .replace(/images\/conselho_solar_01\.(png|jpg)/gi, 'images/conselho_solar_01.webp');
+
                 bodyContainer.innerHTML = converter.makeHtml(mdContent);
+
+                // Smooth Matrix reveal on rendered story content
+                bodyContainer.classList.remove('matrix-switching');
+                void bodyContainer.offsetWidth;
+                bodyContainer.classList.add('matrix-switching');
 
                 // Attach click listeners to all rendered images to trigger high-res lightbox
                 bodyContainer.querySelectorAll('img').forEach(function(img) {
-                    img.addEventListener('click', function() {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
                         openLightbox(img.src, img.alt || story.title);
                     });
                 });
@@ -751,9 +834,6 @@
             }
         }
 
-        // Smooth scroll to top of viewport
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
         // Update URL Hash for direct link sharing
         if (history.replaceState) {
             history.replaceState(null, null, '#story=' + (story.slug || story.id));
@@ -767,11 +847,13 @@
 
     function closeStory() {
         if (!state.activeStory) return;
+        stopStoryTTS();
         state.activeStory = null;
 
-        // Hide Reader
-        var readerSection = document.getElementById('story-reader');
-        if (readerSection) readerSection.classList.add('hidden');
+        // Hide Reader Modal
+        var readerModal = document.getElementById('story-reader');
+        if (readerModal) readerModal.classList.add('hidden');
+        document.body.classList.remove('story-modal-open');
 
         // CRITICAL REQUIREMENT: Automatically resume Cosmos animation on exit
         if (window.CosmosEngine) {
@@ -780,10 +862,15 @@
 
         // Reset progress bar
         var bar = document.getElementById('reading-progress-bar');
-        if (bar) bar.style.width = '0%';
+        if (bar) {
+            bar.style.width = '0%';
+            bar.setAttribute('aria-valuenow', 0);
+        }
 
-        // Restore previously active section (default 'textos')
-        navigateTo(state.activeSection || 'textos', false);
+        // Restore URL hash to active section
+        if (history.replaceState) {
+            history.replaceState(null, null, '#section=' + (state.activeSection || 'textos'));
+        }
     }
 
     /* ------------------------------------------------------------------------
@@ -818,20 +905,6 @@
         saveReaderPreferences();
     }
 
-    function toggleStoryFocusMode() {
-        state.readerPrefs.focus = !state.readerPrefs.focus;
-        document.body.classList.toggle('focus-mode-active', state.readerPrefs.focus);
-
-        var btn = document.getElementById('btn-reader-focus');
-        var label = document.getElementById('focus-btn-label');
-        if (btn) btn.classList.toggle('is-active', state.readerPrefs.focus);
-        if (label) {
-            label.textContent = state.readerPrefs.focus ? 'SAIR DA IMERSÃO' : 'MODO IMERSÃO';
-        }
-
-        saveReaderPreferences();
-    }
-
     function saveReaderPreferences() {
         try {
             localStorage.setItem('ee_reader_prefs', JSON.stringify(state.readerPrefs));
@@ -845,7 +918,14 @@
             var raw = localStorage.getItem('ee_reader_prefs');
             if (raw) {
                 var parsed = JSON.parse(raw);
-                Object.assign(state.readerPrefs, parsed);
+                if (parsed && typeof parsed === 'object' && parsed.prefsVersion === 2) {
+                    if (typeof parsed.fontSize === 'number') state.readerPrefs.fontSize = parsed.fontSize;
+                    if (typeof parsed.font === 'string') state.readerPrefs.font = parsed.font;
+                    if (typeof parsed.width === 'string') state.readerPrefs.width = parsed.width;
+                    if (typeof parsed.contrast === 'string') state.readerPrefs.contrast = parsed.contrast;
+                } else {
+                    saveReaderPreferences();
+                }
             }
         } catch (e) {
             // Fallback to defaults
@@ -857,24 +937,90 @@
         document.body.setAttribute('data-reading-width', state.readerPrefs.width);
         document.body.setAttribute('data-reading-theme', state.readerPrefs.contrast);
 
-        if (state.readerPrefs.focus) {
-            document.body.classList.add('focus-mode-active');
-        }
-
         // Sync Toolbar Form Elements
         var display = document.getElementById('font-size-display');
         var fontSelect = document.getElementById('reader-font-select');
         var widthSelect = document.getElementById('reader-width-select');
         var contrastSelect = document.getElementById('reader-contrast-select');
-        var focusBtn = document.getElementById('btn-reader-focus');
-        var focusLabel = document.getElementById('focus-btn-label');
 
         if (display) display.textContent = state.readerPrefs.fontSize + 'px';
         if (fontSelect) fontSelect.value = state.readerPrefs.font;
         if (widthSelect) widthSelect.value = state.readerPrefs.width;
         if (contrastSelect) contrastSelect.value = state.readerPrefs.contrast;
-        if (focusBtn) focusBtn.classList.toggle('is-active', state.readerPrefs.focus);
-        if (focusLabel) focusLabel.textContent = state.readerPrefs.focus ? 'SAIR DA IMERSÃO' : 'MODO IMERSÃO';
+    }
+
+    /* ------------------------------------------------------------------------
+       Story Link & Social Sharing Controls
+       ------------------------------------------------------------------------ */
+    function getStoryShareUrl() {
+        if (!state.activeStory) return window.location.href;
+        var base = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        return base + '#story=' + (state.activeStory.slug || state.activeStory.id);
+    }
+
+    function copyStoryLink() {
+        var url = getStoryShareUrl();
+        var btnEl = document.getElementById('btn-copy-link');
+        var iconDefault = document.getElementById('copy-link-icon-default');
+        var iconCheck = document.getElementById('copy-link-icon-check');
+
+        function onCopied() {
+            if (btnEl) btnEl.classList.add('is-copied');
+            if (iconDefault) iconDefault.classList.add('hidden');
+            if (iconCheck) iconCheck.classList.remove('hidden');
+            setTimeout(function() {
+                if (btnEl) btnEl.classList.remove('is-copied');
+                if (iconDefault) iconDefault.classList.remove('hidden');
+                if (iconCheck) iconCheck.classList.add('hidden');
+            }, 2000);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(onCopied).catch(function() {
+                fallbackCopyText(url);
+                onCopied();
+            });
+        } else {
+            fallbackCopyText(url);
+            onCopied();
+        }
+    }
+
+    function fallbackCopyText(text) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+        } catch (e) {
+            // Ignore
+        }
+        document.body.removeChild(textarea);
+    }
+
+    function shareStory(platform) {
+        if (!state.activeStory) return;
+        var url = getStoryShareUrl();
+        var title = state.activeStory.title || 'Esquizofrenia Estelar';
+        var shareText = title + ' — Os Arquivos do Multiverso';
+        var shareTarget = '';
+
+        if (platform === 'whatsapp') {
+            shareTarget = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText + ' ' + url);
+        } else if (platform === 'x' || platform === 'twitter') {
+            shareTarget = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(url);
+        } else if (platform === 'facebook') {
+            shareTarget = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+        } else if (platform === 'telegram') {
+            shareTarget = 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(shareText);
+        }
+
+        if (shareTarget) {
+            window.open(shareTarget, '_blank', 'noopener,noreferrer,width=600,height=480');
+        }
     }
 
     /* ------------------------------------------------------------------------
@@ -890,10 +1036,11 @@
             return;
         }
 
-        var docEl = document.documentElement;
-        var body = document.body;
-        var scrollTop = docEl.scrollTop || body.scrollTop;
-        var scrollHeight = (docEl.scrollHeight || body.scrollHeight) - docEl.clientHeight;
+        var dialog = document.getElementById('story-popup-dialog');
+        if (!dialog) return;
+
+        var scrollTop = dialog.scrollTop;
+        var scrollHeight = dialog.scrollHeight - dialog.clientHeight;
 
         var progress = scrollHeight > 0 ? Math.min(100, Math.max(0, Math.round((scrollTop / scrollHeight) * 100))) : 0;
         bar.style.width = progress + '%';
@@ -1006,17 +1153,19 @@
        Navigation & Section Routing
        ------------------------------------------------------------------------ */
     function hideAllSections() {
-        document.querySelectorAll('.catalog-section, .story-reader-view').forEach(function(el) {
+        document.querySelectorAll('.catalog-section').forEach(function(el) {
             el.classList.add('hidden');
+            el.classList.remove('matrix-section-enter');
         });
     }
 
     function navigateTo(sectionId, updateHash) {
-        // If story is currently open, close it cleanly
+        // If story modal is currently open, close it cleanly
         if (state.activeStory) {
-            state.activeStory = null;
-            var readerSection = document.getElementById('story-reader');
-            if (readerSection) readerSection.classList.add('hidden');
+            closeStory();
+        }
+        if (ttsState.source === 'intro' && sectionId !== 'intro') {
+            stopStoryTTS();
         }
 
         // CRITICAL REQUIREMENT: Always resume animated cosmos canvas when navigating sections
@@ -1034,6 +1183,37 @@
 
         targetSection.classList.remove('hidden');
         state.activeSection = sectionId;
+
+        // Matrix section transition animation
+        targetSection.classList.remove('matrix-section-enter');
+        void targetSection.offsetWidth;
+        targetSection.classList.add('matrix-section-enter');
+
+        // Matrix Header "Suck-In" compact warp collapse when clicking menus
+        var isCompact = (sectionId !== 'intro');
+        var mainHeader = document.querySelector('.main-header');
+        if (mainHeader) {
+            mainHeader.classList.toggle('header-compact', isCompact);
+        }
+        document.body.classList.toggle('header-compact', isCompact);
+
+        // Matrix glow pulse on the orbital emblem
+        var emblem = document.querySelector('.emblem-wrapper');
+        if (emblem) {
+            emblem.classList.remove('emblem-pulse');
+            void emblem.offsetWidth;
+            emblem.classList.add('emblem-pulse');
+        }
+
+        // Subtle Matrix entrance animation for cards in section
+        var cards = targetSection.querySelectorAll('.cyber-card');
+        if (cards && cards.length > 0) {
+            cards.forEach(function(card) {
+                card.classList.remove('matrix-entering');
+                void card.offsetWidth;
+                card.classList.add('matrix-entering');
+            });
+        }
 
         // Update active navigation tab (Only Textos, Áudios, Vídeos)
         document.querySelectorAll('.main-nav .nav-tab').forEach(function(tab) {
@@ -1056,7 +1236,12 @@
 
     function handleHashRoute() {
         var hash = window.location.hash.slice(1);
-        if (!hash) return;
+        if (!hash) {
+            if (state.activeSection !== 'intro') {
+                navigateTo('intro', false);
+            }
+            return;
+        }
 
         if (hash.indexOf('story=') === 0) {
             var slug = hash.replace('story=', '');
@@ -1072,10 +1257,9 @@
     /* ------------------------------------------------------------------------
        Global Event Listeners
        ------------------------------------------------------------------------ */
-    window.addEventListener('scroll', updateReadingProgress, { passive: true });
     window.addEventListener('hashchange', handleHashRoute);
 
-    // Keyboard Shortcuts (ESC closes modals/reader; / or Ctrl+K opens search)
+    // Keyboard Shortcuts (ESC closes modals/reader; ArrowLeft/Right steps carousel; / or Ctrl+K opens search)
     window.addEventListener('keydown', function(e) {
         var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
         var isEditing = (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable));
@@ -1093,8 +1277,30 @@
             }
             if (state.activeStory) {
                 closeStory();
+                return;
             }
             return;
+        }
+
+        // Story Reader Carousel Navigation via Arrow Keys
+        if (state.activeStory && !isEditing) {
+            var lb = document.getElementById('image-lightbox');
+            var lbOpen = lb && !lb.classList.contains('hidden');
+            var sm = document.getElementById('search-overlay');
+            var smOpen = sm && !sm.classList.contains('hidden');
+
+            if (!lbOpen && !smOpen) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevStory();
+                    return;
+                }
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextStory();
+                    return;
+                }
+            }
         }
 
         // Shortcut: / or Ctrl+K / Cmd+K to open search overlay
@@ -1115,11 +1321,201 @@
     }
 
     /* ------------------------------------------------------------------------
+       Text-to-Speech (Accessibility Narration via Web Speech API)
+       ------------------------------------------------------------------------ */
+    var ttsState = {
+        source: null, // 'story' | 'intro'
+        isSpeaking: false,
+        isPaused: false,
+        rate: 1.0,
+        chunks: [],
+        chunkIndex: 0
+    };
+
+    function getBestPortugueseVoice() {
+        if (!('speechSynthesis' in window)) return null;
+        var voices = window.speechSynthesis.getVoices() || [];
+        var ptBr = voices.find(function(v) { return /pt[-_]BR/i.test(v.lang); });
+        if (ptBr) return ptBr;
+        return voices.find(function(v) { return /^pt/i.test(v.lang); }) || null;
+    }
+
+    function extractReadableTextFromElement(elId) {
+        var el = document.getElementById(elId);
+        if (!el) return '';
+        var clone = el.cloneNode(true);
+        clone.querySelectorAll('.intro-tts-controls, select, button').forEach(function(node) {
+            node.remove();
+        });
+        return (clone.innerText || clone.textContent || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function splitTextIntoTTSChunks(text) {
+        if (!text) return [];
+        var sentences = text.match(/[^.!?]+[.!?]*\s*/g) || [text];
+        var chunks = [];
+        var buffer = '';
+
+        sentences.forEach(function(sentence) {
+            if ((buffer + sentence).length > 220 && buffer.length > 0) {
+                chunks.push(buffer.trim());
+                buffer = sentence;
+            } else {
+                buffer += sentence;
+            }
+        });
+        if (buffer.trim()) chunks.push(buffer.trim());
+        return chunks;
+    }
+
+    function updateSingleTTSUI(prefix, isTargetActive) {
+        var toggleBtn = document.getElementById(prefix ? prefix + '-tts-toggle' : 'btn-tts-toggle');
+        var stopBtn = document.getElementById(prefix ? prefix + '-tts-stop' : 'btn-tts-stop');
+        var rateSelect = document.getElementById(prefix ? prefix + '-tts-rate-select' : 'tts-rate-select');
+        var iconPlay = document.getElementById(prefix ? prefix + '-tts-icon-play' : 'tts-icon-play');
+        var iconPause = document.getElementById(prefix ? prefix + '-tts-icon-pause' : 'tts-icon-pause');
+
+        var playingNow = isTargetActive && ttsState.isSpeaking && !ttsState.isPaused;
+        var activeOrPaused = isTargetActive && (ttsState.isSpeaking || ttsState.isPaused);
+
+        if (toggleBtn) {
+            toggleBtn.classList.toggle('is-speaking', playingNow);
+            toggleBtn.setAttribute('aria-label', playingNow ? 'Pausar narração' : (activeOrPaused ? 'Retomar narração' : 'Ouvir texto (narração por voz)'));
+            toggleBtn.title = playingNow ? 'Pausar narração' : (activeOrPaused ? 'Retomar narração' : 'Ouvir texto (Text-to-Speech)');
+        }
+        if (iconPlay) iconPlay.classList.toggle('hidden', playingNow);
+        if (iconPause) iconPause.classList.toggle('hidden', !playingNow);
+        if (stopBtn) stopBtn.classList.toggle('hidden', !activeOrPaused);
+        if (rateSelect) {
+            rateSelect.classList.toggle('hidden', !activeOrPaused);
+            rateSelect.value = String(ttsState.rate);
+        }
+    }
+
+    function updateTTSUI() {
+        updateSingleTTSUI('', ttsState.source === 'story');
+        updateSingleTTSUI('btn-intro', ttsState.source === 'intro');
+        // Note: intro icons use 'intro-tts-icon-play', 'intro-tts-icon-pause', 'intro-tts-rate-select'
+        var iActive = ttsState.source === 'intro';
+        var iPlaying = iActive && ttsState.isSpeaking && !ttsState.isPaused;
+        var iVisible = iActive && (ttsState.isSpeaking || ttsState.isPaused);
+        var iPlayIcon = document.getElementById('intro-tts-icon-play');
+        var iPauseIcon = document.getElementById('intro-tts-icon-pause');
+        var iRate = document.getElementById('intro-tts-rate-select');
+        if (iPlayIcon) iPlayIcon.classList.toggle('hidden', iPlaying);
+        if (iPauseIcon) iPauseIcon.classList.toggle('hidden', !iPlaying);
+        if (iRate) {
+            iRate.classList.toggle('hidden', !iVisible);
+            iRate.value = String(ttsState.rate);
+        }
+    }
+
+    function speakNextTTSChunk() {
+        if (!('speechSynthesis' in window) || !ttsState.isSpeaking || ttsState.isPaused) return;
+        if (ttsState.chunkIndex >= ttsState.chunks.length) {
+            stopStoryTTS();
+            return;
+        }
+
+        var chunk = ttsState.chunks[ttsState.chunkIndex];
+        var utterance = new SpeechSynthesisUtterance(chunk);
+        utterance.lang = 'pt-BR';
+        utterance.rate = ttsState.rate;
+        var voice = getBestPortugueseVoice();
+        if (voice) utterance.voice = voice;
+
+        utterance.onend = function() {
+            if (!ttsState.isSpeaking || ttsState.isPaused) return;
+            ttsState.chunkIndex++;
+            speakNextTTSChunk();
+        };
+
+        utterance.onerror = function() {
+            stopStoryTTS();
+        };
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleTTSForSource(source, elementId) {
+        if (!('speechSynthesis' in window)) {
+            alert('Seu navegador não suporta leitura por voz (SpeechSynthesis).');
+            return;
+        }
+
+        if (ttsState.source === source && ttsState.isSpeaking && !ttsState.isPaused) {
+            ttsState.isPaused = true;
+            window.speechSynthesis.pause();
+            updateTTSUI();
+            return;
+        }
+
+        if (ttsState.source === source && ttsState.isSpeaking && ttsState.isPaused) {
+            ttsState.isPaused = false;
+            window.speechSynthesis.resume();
+            updateTTSUI();
+            return;
+        }
+
+        var text = extractReadableTextFromElement(elementId);
+        if (!text) return;
+
+        window.speechSynthesis.cancel();
+        ttsState.source = source;
+        ttsState.chunks = splitTextIntoTTSChunks(text);
+        ttsState.chunkIndex = 0;
+        ttsState.isSpeaking = true;
+        ttsState.isPaused = false;
+        updateTTSUI();
+        speakNextTTSChunk();
+    }
+
+    function toggleStoryTTS() {
+        toggleTTSForSource('story', 'story-body');
+    }
+
+    function toggleIntroTTS() {
+        toggleTTSForSource('intro', 'intro-markdown');
+    }
+
+    function stopStoryTTS() {
+        ttsState.source = null;
+        ttsState.isSpeaking = false;
+        ttsState.isPaused = false;
+        ttsState.chunks = [];
+        ttsState.chunkIndex = 0;
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
+        updateTTSUI();
+    }
+
+    function setStoryTTSRate(rateVal) {
+        var parsed = parseFloat(rateVal);
+        if (!isNaN(parsed) && parsed > 0) {
+            ttsState.rate = parsed;
+            if (ttsState.isSpeaking && !ttsState.isPaused) {
+                var savedIdx = ttsState.chunkIndex;
+                var savedChunks = ttsState.chunks.slice();
+                window.speechSynthesis.cancel();
+                ttsState.chunks = savedChunks;
+                ttsState.chunkIndex = savedIdx;
+                speakNextTTSChunk();
+            }
+        }
+    }
+
+    window.addEventListener('beforeunload', stopStoryTTS);
+
+    /* ------------------------------------------------------------------------
        Public Backward-Compatibility API
        ------------------------------------------------------------------------ */
     global.navigateTo = navigateTo;
     global.openStory = openStory;
     global.closeStory = closeStory;
+    global.prevStory = prevStory;
+    global.nextStory = nextStory;
+    global.scrollStoryToTop = scrollStoryToTop;
     global.openSearchOverlay = openSearchOverlay;
     global.closeSearchOverlay = closeSearchOverlay;
     global.onSearchResultClick = onSearchResultClick;
@@ -1127,7 +1523,12 @@
     global.setStoryFontFamily = setStoryFontFamily;
     global.setStoryColumnWidth = setStoryColumnWidth;
     global.setStoryContrastTheme = setStoryContrastTheme;
-    global.toggleStoryFocusMode = toggleStoryFocusMode;
+    global.copyStoryLink = copyStoryLink;
+    global.shareStory = shareStory;
+    global.toggleStoryTTS = toggleStoryTTS;
+    global.toggleIntroTTS = toggleIntroTTS;
+    global.stopStoryTTS = stopStoryTTS;
+    global.setStoryTTSRate = setStoryTTSRate;
     global.openLightbox = openLightbox;
     global.closeLightbox = closeLightbox;
 
@@ -1148,6 +1549,13 @@
     async function initApp() {
         loadReaderPreferences();
         initSearchOverlayListeners();
+
+        // Attach scroll listener to story popup dialog for progress tracking
+        var dialog = document.getElementById('story-popup-dialog');
+        if (dialog) {
+            dialog.addEventListener('scroll', updateReadingProgress, { passive: true });
+        }
+
         await loadTheme();
         await loadCatalog();
     }

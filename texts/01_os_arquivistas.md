@@ -6,7 +6,7 @@
 * 
 
 Maltuk Arquivista
-<img src="images/maltuk1.png" alt="Maltuk e seu manto" width="333"/>
+<img src="images/maltuk1.webp" alt="Maltuk e seu manto" width="333"/>
 
 Maltuk Priestess
-<img src="images/maltuk2.jpg" alt="Maltuk Priestess" width="333"/>
+<img src="images/maltuk2.webp" alt="Maltuk Priestess" width="333"/>

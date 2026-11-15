@@ -9,4 +9,4 @@ Esboço inicial do banner:
 * Os Thyrexianos mecanos da esquerda ao meio são mais reptlianos tecnologicos
 
 
-<img src="images/conselho_solar_01.png" alt="Maltuk e seu manto" width="333"/>
+<img src="images/conselho_solar_01.webp" alt="Maltuk e seu manto" width="333"/>

@@ -6,6 +6,15 @@
     <meta name="description" content="Esquizofrenia Estelar — Os Arquivos do Multiverso. Crônicas cósmicas, ficção científica cyberpunk e registros dimensionais do Cérebro de Matriosca.">
     <title>Esquizofrenia Estelar — Os Arquivos do Multiverso</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Esquizofrenia Estelar — Os Arquivos do Multiverso">
+    <meta property="og:description" content="Crônicas cósmicas, ficção científica cyberpunk e registros dimensionais do Cérebro de Matriosca.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/conselho_solar_01.webp">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +23,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body data-reading-theme="abyssal" data-reading-font="serif" data-reading-width="default">
+<body data-reading-theme="abyssal" data-reading-font="sans" data-reading-width="default">
 
     <!-- Top Reading Progress Bar (Active when reading stories) -->
     <div id="reading-progress-bar" class="reading-progress-bar" role="progressbar" aria-label="Progresso da Leitura" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -98,128 +107,168 @@
             </section>
 
 
-            <!-- Section 6: Immersive Story Reader (Hidden by default) -->
-            <section id="story-reader" class="story-reader-view hidden" aria-label="Leitor Imersivo de Histórias">
+            <!-- Section 6: Story Reader Modal Overlay -->
+            <div id="story-reader" class="story-modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Leitor de Histórias">
+                <div class="story-modal-backdrop" onclick="closeStory()"></div>
 
-                <!-- Sticky Accessible Reading Comfort Toolbar -->
-                <div id="reader-toolbar" class="reader-toolbar" role="toolbar" aria-label="Barra de Acessibilidade e Conforto de Leitura">
-                    <!-- Back Button -->
-                    <button id="btn-reader-back" class="reader-btn reader-back-btn" type="button" onclick="closeStory()" aria-label="Retornar à lista de textos">
-                        <svg class="reader-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                        <span>RETORNAR AOS TEXTOS</span>
-                    </button>
+                <!-- External Close (X) Button (Floating cleanly at top-right of the viewport) -->
+                <button id="btn-reader-close-ext" class="story-external-close-btn" type="button" onclick="closeStory()" aria-label="Fechar leitor" title="Fechar (ESC)">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
 
-                    <!-- Reading Controls Group -->
-                    <div class="reader-controls-cluster">
-                        <!-- Font Size Adjustment -->
-                        <div class="reader-tool-item" title="Ajuste do tamanho do texto">
-                            <button id="btn-font-dec" class="reader-icon-btn" type="button" aria-label="Diminuir tamanho da fonte" onclick="adjustStoryFontSize(-1)">
-                                <span class="btn-text-glyph">A-</span>
+                <!-- Subtle Side Carousel Arrows (Outside dialog) -->
+                <button id="btn-story-prev-side" class="story-side-arrow story-side-arrow-prev" type="button" onclick="prevStory()" aria-label="História anterior" title="História anterior (Seta Esquerda)">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <button id="btn-story-next-side" class="story-side-arrow story-side-arrow-next" type="button" onclick="nextStory()" aria-label="Próxima história" title="Próxima história (Seta Direita)">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+
+                <!-- Modal Stage (Flex-column wrapper) -->
+                <div class="story-modal-stage">
+
+                    <!-- Compact Adjacent Floating Toolbar positioned right above the reading box -->
+                    <div id="reader-toolbar" class="reader-toolbar compact-reader-toolbar" role="toolbar" aria-label="Barra de Conforto e Compartilhamento">
+                        <div class="reader-controls-cluster">
+                            <!-- Font Size Adjustment (Compact, no px display) -->
+                            <div class="reader-tool-item" title="Ajuste do tamanho do texto">
+                                <button id="btn-font-dec" class="reader-icon-btn" type="button" aria-label="Diminuir tamanho da fonte" onclick="adjustStoryFontSize(-1)">
+                                    <span class="btn-text-glyph">A-</span>
+                                </button>
+                                <button id="btn-font-inc" class="reader-icon-btn" type="button" aria-label="Aumentar tamanho da fonte" onclick="adjustStoryFontSize(1)">
+                                    <span class="btn-text-glyph">A+</span>
+                                </button>
+                            </div>
+
+                            <!-- Typography Selector -->
+                            <div class="reader-tool-item" title="Família tipográfica">
+                                <label for="reader-font-select" class="reader-label-tiny">FONTE:</label>
+                                <select id="reader-font-select" class="reader-select" aria-label="Família tipográfica de leitura" onchange="setStoryFontFamily(this.value)">
+                                    <option value="serif">Serif</option>
+                                    <option value="sans" selected>Sans</option>
+                                    <option value="mono">Mono</option>
+                                </select>
+                            </div>
+
+                            <!-- Column Width Selector (Compact, no ch display) -->
+                            <div class="reader-tool-item" title="Largura da coluna">
+                                <label for="reader-width-select" class="reader-label-tiny">COLUNA:</label>
+                                <select id="reader-width-select" class="reader-select" aria-label="Largura da coluna de texto" onchange="setStoryColumnWidth(this.value)">
+                                    <option value="narrow">Fino</option>
+                                    <option value="default" selected>Normal</option>
+                                    <option value="wide">Largo</option>
+                                </select>
+                            </div>
+
+                            <!-- Contrast Selector (Color/Contrast Icon instead of text label) -->
+                            <div class="reader-tool-item" title="Contraste de leitura">
+                                <label for="reader-contrast-select" class="reader-contrast-icon" aria-label="Contraste de leitura">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="9"></circle>
+                                        <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"></path>
+                                    </svg>
+                                </label>
+                                <select id="reader-contrast-select" class="reader-select" aria-label="Modo de contraste do leitor" onchange="setStoryContrastTheme(this.value)">
+                                    <option value="abyssal" selected>Abissal</option>
+                                    <option value="matrix">Matrix</option>
+                                    <option value="amber">Âmbar</option>
+                                    <option value="light">Luz</option>
+                                </select>
+                            </div>
+
+                            <!-- Text-to-Speech Accessibility Controls (Speed unlocked only when active) -->
+                            <div class="reader-tool-item reader-tts-group" role="group" aria-label="Narração por voz (Text-to-Speech)">
+                                <button id="btn-tts-toggle" class="reader-icon-btn tts-btn" type="button" onclick="toggleStoryTTS()" aria-label="Ouvir história (narração por voz)" title="Ouvir história (Text-to-Speech)">
+                                    <svg id="tts-icon-play" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                    </svg>
+                                    <svg id="tts-icon-pause" class="hidden" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <rect x="6" y="4" width="4" height="16"></rect>
+                                        <rect x="14" y="4" width="4" height="16"></rect>
+                                    </svg>
+                                </button>
+                                <button id="btn-tts-stop" class="reader-icon-btn tts-stop-btn hidden" type="button" onclick="stopStoryTTS()" aria-label="Parar narração" title="Parar narração">
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
+                                        <rect x="5" y="5" width="14" height="14" rx="1"></rect>
+                                    </svg>
+                                </button>
+                                <select id="tts-rate-select" class="reader-select tts-rate-select hidden" aria-label="Velocidade da narração" title="Velocidade da narração" onchange="setStoryTTSRate(this.value)">
+                                    <option value="0.85">0.85x</option>
+                                    <option value="1" selected>1.0x</option>
+                                    <option value="1.25">1.25x</option>
+                                    <option value="1.5">1.5x</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Share Controls Cluster -->
+                        <div class="reader-share-cluster" role="group" aria-label="Compartilhar história">
+                            <button id="btn-copy-link" class="reader-share-btn share-icon-only btn-copy-link" type="button" onclick="copyStoryLink()" aria-label="Copiar link direto" title="Copiar link">
+                                <svg id="copy-link-icon-default" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                </svg>
+                                <svg id="copy-link-icon-check" class="hidden" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
                             </button>
-                            <span id="font-size-display" class="reader-stat-val">18px</span>
-                            <button id="btn-font-inc" class="reader-icon-btn" type="button" aria-label="Aumentar tamanho da fonte" onclick="adjustStoryFontSize(1)">
-                                <span class="btn-text-glyph">A+</span>
+
+                            <button class="reader-share-btn share-icon-only" type="button" onclick="shareStory('whatsapp')" aria-label="Compartilhar no WhatsApp" title="WhatsApp">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                </svg>
+                            </button>
+
+                            <button class="reader-share-btn share-icon-only" type="button" onclick="shareStory('x')" aria-label="Compartilhar no X (Twitter)" title="X (Twitter)">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                </svg>
+                            </button>
+
+                            <button class="reader-share-btn share-icon-only" type="button" onclick="shareStory('facebook')" aria-label="Compartilhar no Facebook" title="Facebook">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </button>
+
+                            <button class="reader-share-btn share-icon-only" type="button" onclick="shareStory('telegram')" aria-label="Compartilhar no Telegram" title="Telegram">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
                             </button>
                         </div>
+                    </div>
 
-                        <!-- Typography Selector -->
-                        <div class="reader-tool-item" title="Família tipográfica de leitura">
-                            <label for="reader-font-select" class="reader-label-tiny">FONTE:</label>
-                            <select id="reader-font-select" class="reader-select" aria-label="Família tipográfica de leitura" onchange="setStoryFontFamily(this.value)">
-                                <option value="serif">Serifada (Literária)</option>
-                                <option value="sans">Sans (Técnica)</option>
-                                <option value="mono">Terminal (Mono)</option>
-                            </select>
+                    <!-- Story Popup Dialog (Contains ONLY the reading content) -->
+                    <div class="story-popup-dialog" id="story-popup-dialog" role="document">
+                        <!-- Story Body (Markdown rendered) -->
+                        <article id="story-body" class="markdown-content story-body-content"></article>
+
+                        <!-- Connected Multiverse Records (relatedIds) -->
+                        <div id="story-related-section" class="story-related-block hidden">
+                            <div class="block-hud-title">
+                                <span class="block-accent">∷</span>
+                                <span>REGISTROS CONECTADOS NO MULTIVERSO</span>
+                                <span class="block-accent">∷</span>
+                            </div>
+                            <p class="related-desc">Outras histórias, frequências sonoras e visões associadas a esta dimensão:</p>
+                            <div id="story-related-grid" class="cards-grid"></div>
                         </div>
-
-                        <!-- Line Width Selector -->
-                        <div class="reader-tool-item" title="Largura da coluna de leitura">
-                            <label for="reader-width-select" class="reader-label-tiny">COLUNA:</label>
-                            <select id="reader-width-select" class="reader-select" aria-label="Largura da coluna de texto" onchange="setStoryColumnWidth(this.value)">
-                                <option value="narrow">Estreita (60ch)</option>
-                                <option value="default" selected>Padrão (72ch)</option>
-                                <option value="wide">Ampla (90ch)</option>
-                            </select>
-                        </div>
-
-                        <!-- Reading Theme / Contrast Selector -->
-                        <div class="reader-tool-item" title="Tema de contraste do leitor">
-                            <label for="reader-contrast-select" class="reader-label-tiny">CONTRASTE:</label>
-                            <select id="reader-contrast-select" class="reader-select" aria-label="Modo de contraste do leitor" onchange="setStoryContrastTheme(this.value)">
-                                <option value="abyssal" selected>Abissal</option>
-                                <option value="matrix">Fósforo Matrix</option>
-                                <option value="amber">Âmbar Matriosca</option>
-                                <option value="light">Alto Contraste (Luz)</option>
-                            </select>
-                        </div>
-
-                        <!-- Fullscreen Focus Mode -->
-                        <button id="btn-reader-focus" class="reader-btn reader-focus-btn" type="button" aria-label="Alternar modo de imersão total" title="Ocultar cabeçalhos para leitura imersiva" onclick="toggleStoryFocusMode()">
-                            <svg class="reader-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <polyline points="9 21 3 21 3 15"></polyline>
-                                <line x1="21" y1="3" x2="14" y2="10"></line>
-                                <line x1="3" y1="21" x2="10" y2="14"></line>
-                            </svg>
-                            <span id="focus-btn-label">MODO IMERSÃO</span>
-                        </button>
                     </div>
+
                 </div>
-
-                <!-- Reader Header -->
-                <header class="story-header" id="story-header-container">
-                    <div class="story-meta-breadcrumbs">
-                        <span id="story-category-tag" class="meta-pill category-pill"></span>
-                        <span class="meta-divider">/</span>
-                        <span id="story-saga-tag" class="meta-pill saga-pill"></span>
-                        <span class="meta-divider">/</span>
-                        <span id="story-time-tag" class="meta-pill time-pill"></span>
-                    </div>
-
-                    <h1 id="story-title" class="story-display-title"></h1>
-
-                    <div id="story-tags-container" class="story-tags-row"></div>
-
-                    <!-- Optional Story Banner Image -->
-                    <div id="story-cover-wrapper" class="story-cover-frame hidden">
-                        <img id="story-cover-image" src="" alt="" class="story-cover-img">
-                        <div class="cover-overlay-scanline" aria-hidden="true"></div>
-                    </div>
-                </header>
-
-                <!-- Story Body (Markdown rendered) -->
-                <article id="story-body" class="markdown-content story-body-content"></article>
-
-                <!-- Connected Multiverse Records (relatedIds) -->
-                <div id="story-related-section" class="story-related-block hidden">
-                    <div class="block-hud-title">
-                        <span class="block-accent">∷</span>
-                        <span>REGISTROS CONECTADOS NO MULTIVERSO</span>
-                        <span class="block-accent">∷</span>
-                    </div>
-                    <p class="related-desc">Outras histórias, frequências sonoras e visões associadas a esta dimensão:</p>
-                    <div id="story-related-grid" class="cards-grid"></div>
-                </div>
-
-                <!-- Story Footer Controls -->
-                <div class="story-footer-nav">
-                    <button class="reader-btn reader-back-btn" type="button" onclick="closeStory()">
-                        <svg class="reader-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                        <span>RETORNAR AOS TEXTOS</span>
-                    </button>
-
-                    <button class="reader-btn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                        <svg class="reader-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="18 15 12 9 6 15"></polyline>
-                        </svg>
-                        <span>TOPO DO REGISTRO</span>
-                    </button>
-                </div>
-            </section>
+            </div>
 
         </main>
 

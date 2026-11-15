@@ -1,24 +1,23 @@
 /**
- * Esquizofrenia Estelar 2.0 - Studio de Criação Local
- * Zero emojis - 100% typographic glyphs & vector SVG iconography
+ * Esquizofrenia Estelar 2.0 - Local Admin Studio
+ * Zero Emojis - 100% Typographic Glyphs & Clean Vector SVGs
  * 
  * Funcionalidades:
  * - Persistência direta via File System Access API (showDirectoryPicker)
- * - Cache local de contingência (localStorage)
- * - Editor Markdown split-pane com prévia em tempo real (Showdown)
- * - Assistentes inteligentes de inserção de imagens, links e mídias
- * - Central de Transmissões (YouTube e Spotify)
- * - Ditado por voz nativo contínuo com pontuação automática (Web Speech API)
- * - Quadro de anotações e tópicos futuros (catalog.notes)
- * - Laboratório de Design com atualização dinâmica do tema e CosmosEngine
- * - Regeneração automática dos arquivos legados texts.json e media.json
+ * - Cache local de contingência (localStorage: ee_studio_backup)
+ * - Navegação simplificada em 3 abas: Conteúdo, Anotações & Voz, Visual
+ * - Criação e edição unificada de Textos, Áudios e Vídeos
+ * - Preview ao vivo do post exatamente como aparece no portal público
+ * - Ditado por voz nativo contínuo em pt-BR com pontuação falada
+ * - 4 Presets artísticos instantâneos e personalização de tema
+ * - Regeneração automática de texts.json e media.json
  */
 
 (function() {
   'use strict';
 
   // =========================================================================
-  // DADOS PADRÃO DE INICIALIZAÇÃO (FALLBACK OFFLINE / SEM PASTA)
+  // DADOS PADRÃO DE INICIALIZAÇÃO
   // =========================================================================
 
   var DEFAULT_CATALOG = {
@@ -43,7 +42,7 @@
         "saga": "Cérebro de Matriosca",
         "tags": ["Maltuks", "Quinta Dimensão", "Máquinas Sencientes"],
         "summary": "Apresentação do primeiro contato com um Maltuk e suas canções em vibrações inexplicáveis traduzidas pelas máquinas sencientes zeladoras do Arquivo.",
-        "coverImage": "images/maltuk1.png",
+        "coverImage": "images/maltuk1.webp",
         "file": "texts/01_os_arquivistas.md",
         "readingTime": 2,
         "createdAt": "2025-01-15",
@@ -59,7 +58,7 @@
         "saga": "Conselho Solar da Nova Era",
         "tags": ["Conselho Solar", "Maltuks", "Thyrexianos", "Prelúdio do Caos"],
         "summary": "Prelúdio do Caos: registros sobre a formação, ascensão e declínio do Conselho Solar da Nova Era e as tensões entre Maltuks e Thyrexianos mecanos.",
-        "coverImage": "images/conselho_solar_01.png",
+        "coverImage": "images/conselho_solar_01.webp",
         "file": "texts/02_metamorphis.md",
         "readingTime": 2,
         "createdAt": "2025-02-10",
@@ -174,7 +173,7 @@
     "presets": {
       "matrioshka-amber": {
         "name": "Matrioshka Amber",
-        "description": "Padrao de ouro quente e ambar estelar inspirado no nucleo de energia do Cerebro de Matriosca.",
+        "description": "Ouro quente e âmbar estelar inspirado no núcleo de energia do Cérebro de Matriosca.",
         "colors": {
           "bgPrimary": "#050609",
           "bgSecondary": "#0b0e16",
@@ -196,7 +195,7 @@
       },
       "matrix-emerald": {
         "name": "Matrix Emerald",
-        "description": "Fluxo denso de glifos esmeralda e terminal bio-cibernetico dos zeladores do Arquivo.",
+        "description": "Terminal bio-cyber e fluxo denso de dados quânticos dos Zeladores.",
         "colors": {
           "bgPrimary": "#030806",
           "bgSecondary": "#06130c",
@@ -218,7 +217,7 @@
       },
       "cyber-nebula-cyan": {
         "name": "Cyber Nebula Cyan",
-        "description": "Resfriamento criogenico e radiacao Cerenkov dos condutores de dados quanticos.",
+        "description": "Resfriamento criogênico e radiação Cerenkov dos condutores quânticos.",
         "colors": {
           "bgPrimary": "#040914",
           "bgSecondary": "#081326",
@@ -240,7 +239,7 @@
       },
       "crimson-singularity": {
         "name": "Crimson Singularity",
-        "description": "Horizonte de eventos de buraco negro e alerta de colapso de dobra dimensional dos Thyrexianos.",
+        "description": "Horizonte de eventos de buraco negro e dobra dimensional dos Thyrexianos.",
         "colors": {
           "bgPrimary": "#0c0406",
           "bgSecondary": "#18080c",
@@ -264,9 +263,9 @@
   };
 
   var DEFAULT_TEXT_FILES = {
-    "texts/intro.md": "# Bem-vindo aos Arquivos do Multiverso\n\nDiante de você, o futuro da humanidade desdobra-se — um cosmos onde o familiar dissolve-se no extraordinário. Imagine a luz de um sol artificial filtrando-se pelas frestas de uma megaestrutura, tão colossal que, à distância, confunde-se com uma constelação feita pela mão humana.  \n\nNo coração desse universo pulsante, ergue-se o o Computador no Fim do Universo, um Cérebro de Matriosca, obra-prima da engenhosidade da vida, uma catedral de neurônios sintéticos que abriga trilhões de mentes vivendo incontáveis cenários. Alimentadas pela energia de uma estrela branca, essas consciências habitam realidades virtuais — sonhos eternos moldados pela curiosidade do universo em conhecer a si mesmo.  \n\nA missão de vigiar esse equilíbrio delicado são dos Maltuks, arquivistas e sacerdotes enigmáticos, cujos segredos serão cantados adiante por eles mesmos, e suas máquinas sencientes zeladoras. Juntos, enfrentam catástrofes cósmicas enquanto selecionam as realidades dignas de compor O Arquivo.  \n\nCada história aqui preservada é um universo em si mesma. Cada linha que você lerá a seguir é uma fenda por onde escapa o infinito. Parabéns por chegar até aqui, pois além desse portal da quinta dimensão, estão os Arquivos do Multiverso.",
-    "texts/01_os_arquivistas.md": "# Os Arquivistas\n\n* Apresentação do primeiro contato com um Maltuk (O Arquivista)\n* Contar a história dos Maltuks e seu propósito\n* Os Maltuks cantam canções em vibrações inexplicáveis, somente presenciando tal proeza para compreender esse fenômeno. Aqui é uma tradução descritiva auxiliada pelas máquinas sencientes, o sistema que permite a interação entre nós seres vivos dessa dimensão, e os arautos do fim do mundo\n* \n\nMaltuk Arquivista\n<img src=\"images/maltuk1.png\" alt=\"Maltuk e seu manto\" width=\"333\"/>\n\nMaltuk Priestess\n<img src=\"images/maltuk2.jpg\" alt=\"Maltuk Priestess\" width=\"333\"/>",
-    "texts/02_metamorphis.md": "# A Saga Metamorphis\n\n## Prelúdio do Caos\n\n* Transcrever aqui as notas do papel sobre a história da formação, ascenção e declínio do Conselho Solar da Nova Era.\n\nEsboço inicial do banner:\n* Os Maltuks ao centro deveriam ser mais insetídeos\n* Os Thyrexianos mecanos da esquerda ao meio são mais reptlianos tecnologicos\n\n\n<img src=\"images/conselho_solar_01.png\" alt=\"Maltuk e seu manto\" width=\"333\"/>"
+    "texts/intro.md": "# Bem-vindo aos Arquivos do Multiverso\n\nDiante de você, o futuro da humanidade desdobra-se — um cosmos onde o familiar dissolve-se no extraordinário. Imagine a luz de um sol artificial filtrando-se pelas frestas de uma megaestrutura, tão colossal que, à distância, confunde-se com uma constelação feita pela mão humana.\n\nNo coração desse universo pulsante, ergue-se o Computador no Fim do Universo, um Cérebro de Matriosca, obra-prima da engenhosidade da vida, uma catedral de neurônios sintéticos que abriga trilhões de mentes vivendo incontáveis cenários.",
+    "texts/01_os_arquivistas.md": "# Os Arquivistas\n\n* Apresentação do primeiro contato com um Maltuk (O Arquivista)\n* Contar a história dos Maltuks e seu propósito\n* Os Maltuks cantam canções em vibrações inexplicáveis, somente presenciando tal proeza para compreender esse fenômeno. Aqui é uma tradução descritiva auxiliada pelas máquinas sencientes, o sistema que permite a interação entre nós seres vivos dessa dimensão, e os arautos do fim do mundo.\n\nMaltuk Arquivista\n<img src=\"images/maltuk1.webp\" alt=\"Maltuk e seu manto\" width=\"333\"/>\n\nMaltuk Priestess\n<img src=\"images/maltuk2.webp\" alt=\"Maltuk Priestess\" width=\"333\"/>",
+    "texts/02_metamorphis.md": "# A Saga Metamorphis\n\n## Prelúdio do Caos\n\n* Transcrever aqui as notas do papel sobre a história da formação, ascensão e declínio do Conselho Solar da Nova Era.\n\nEsboço inicial do banner:\n* Os Maltuks ao centro deveriam ser mais insetídeos\n* Os Thyrexianos mecanos da esquerda ao meio são mais reptilianos tecnológicos\n\n<img src=\"images/conselho_solar_01.webp\" alt=\"Conselho Solar\" width=\"333\"/>"
   };
 
   // =========================================================================
@@ -279,16 +278,16 @@
     theme: JSON.parse(JSON.stringify(DEFAULT_THEME)),
     markdownFiles: Object.assign({}, DEFAULT_TEXT_FILES),
     images: [
-      { name: "maltuk1.png", path: "images/maltuk1.png" },
-      { name: "maltuk2.jpg", path: "images/maltuk2.jpg" },
-      { name: "conselho_solar_01.png", path: "images/conselho_solar_01.png" }
+      { name: "maltuk1.webp", path: "images/maltuk1.webp", url: "images/maltuk1.webp" },
+      { name: "maltuk2.webp", path: "images/maltuk2.webp", url: "images/maltuk2.webp" },
+      { name: "conselho_solar_01.webp", path: "images/conselho_solar_01.webp", url: "images/conselho_solar_01.webp" }
     ],
     activeItemId: "01-os-arquivistas",
     activeFilter: "all",
     searchQuery: "",
+    previewMode: "reader", // "reader" ou "card"
     isSaving: false,
-    hasUnsavedChanges: false,
-    
+
     // Web Speech State
     speechRecognition: null,
     isRecordingVoiceTab: false,
@@ -296,7 +295,7 @@
     audioContext: null,
     analyserNode: null,
     mediaStream: null,
-    visualizerAnimId: null,
+    voiceAnimId: null,
 
     // Showdown converter
     converter: null
@@ -323,7 +322,6 @@
         tasklists: true
       });
     } else {
-      // Fallback simples se Showdown demorar ou falhar no CDN
       state.converter = {
         makeHtml: function(text) {
           if (!text) return '';
@@ -340,11 +338,11 @@
   }
 
   // =========================================================================
-  // PERSISTÊNCIA E CARGA DE DADOS
+  // CARGA DE DADOS & PERSISTÊNCIA
   // =========================================================================
 
   function loadLocalBackupOrFetch() {
-    // 1. Tentar ler do localStorage primeiro (se houver rascunho anterior)
+    // 1. Tentar ler do localStorage
     try {
       var cached = localStorage.getItem('ee_studio_backup');
       if (cached) {
@@ -363,7 +361,7 @@
       console.warn('Erro ao ler cache local:', e);
     }
 
-    // 2. Tentar fazer fetch do catalog.json e theme.json do servidor local caso esteja rodando HTTP
+    // 2. Tentar ler arquivos locais se estiver sob HTTP
     if (window.location.protocol.startsWith('http')) {
       Promise.all([
         fetch('catalog.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
@@ -382,33 +380,29 @@
         if (txt2) state.markdownFiles['texts/02_metamorphis.md'] = txt2;
 
         applyTheme(state.theme);
-        renderAllWorkspaces();
+        renderAll();
       }).catch(function() {
         applyTheme(state.theme);
-        renderAllWorkspaces();
+        renderAll();
       });
     } else {
       applyTheme(state.theme);
-      renderAllWorkspaces();
+      renderAll();
     }
   }
 
   // =========================================================================
-  // FILE SYSTEM ACCESS API (CONEXÃO COM PASTA LOCAL)
+  // FILE SYSTEM ACCESS API
   // =========================================================================
 
   async function connectProjectDirectory() {
     if (!('showDirectoryPicker' in window)) {
-      showToast('Navegador sem suporte direto à File System Access API. Use Chrome, Edge ou Brave para gravação no disco. Cache local ativado!', 'warning');
+      showToast('Navegador sem suporte à File System Access API. Cache local ativo!', 'warning');
       return;
     }
 
     try {
-      var dirHandle = await window.showDirectoryPicker({
-        mode: 'readwrite'
-      });
-
-      // Validação de permissão de escrita
+      var dirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
       var opts = { mode: 'readwrite' };
       if ((await dirHandle.queryPermission(opts)) !== 'granted') {
         if ((await dirHandle.requestPermission(opts)) !== 'granted') {
@@ -425,8 +419,8 @@
         var catFile = await catFileHandle.getFile();
         var catText = await catFile.text();
         state.catalog = JSON.parse(catText);
-      } catch (err) {
-        console.log('catalog.json novo ou mantido do estado');
+      } catch (e) {
+        console.log('catalog.json novo ou mantido');
       }
 
       // 2. Ler theme.json se existir
@@ -435,11 +429,11 @@
         var thmFile = await thmFileHandle.getFile();
         var thmText = await thmFile.text();
         state.theme = JSON.parse(thmText);
-      } catch (err) {
-        console.log('theme.json novo ou mantido do estado');
+      } catch (e) {
+        console.log('theme.json novo ou mantido');
       }
 
-      // 3. Ler todos os arquivos .md dentro da pasta texts/
+      // 3. Ler arquivos .md na pasta texts/
       try {
         var textsDir = await dirHandle.getDirectoryHandle('texts');
         for await (var entry of textsDir.values()) {
@@ -447,14 +441,13 @@
             var f = await entry.getFile();
             var text = await f.text();
             state.markdownFiles['texts/' + entry.name] = text;
-            state.markdownFiles[entry.name] = text;
           }
         }
-      } catch (err) {
-        console.log('Diretório texts/ carregado');
+      } catch (e) {
+        console.log('texts/ lido');
       }
 
-      // 4. Listar imagens da pasta images/
+      // 4. Listar imagens em images/
       try {
         var imagesDir = await dirHandle.getDirectoryHandle('images');
         var foundImages = [];
@@ -472,20 +465,19 @@
         if (foundImages.length > 0) {
           state.images = foundImages;
         }
-      } catch (err) {
-        console.log('Diretório images/ carregado');
+      } catch (e) {
+        console.log('images/ lido');
       }
 
-      // Atualizar badge de conexão
       updateConnectionStatus(true, dirHandle.name);
       applyTheme(state.theme);
-      renderAllWorkspaces();
-      showToast('[ SISTEMA: CONEXÃO ESTABELECIDA COM A PASTA ' + dirHandle.name.toUpperCase() + ' ]', 'success');
+      renderAll();
+      showToast('Pasta conectada: ' + dirHandle.name.toUpperCase(), 'success');
 
     } catch (err) {
       if (err.name !== 'AbortError') {
         console.error('Erro ao conectar pasta:', err);
-        showToast('Erro ao acessar a pasta do projeto: ' + err.message, 'error');
+        showToast('Erro ao acessar a pasta: ' + err.message, 'error');
       }
     }
   }
@@ -496,24 +488,22 @@
 
     if (isConnected) {
       indicator.className = 'status-dot mode-fs';
-      label.textContent = 'PASTA CONECTADA: ' + (folderName || 'esquizofreniaestelar') + ' [GRAVAÇÃO DIRETA NO DISCO]';
+      label.textContent = 'Pasta Conectada: ' + (folderName || 'esquizofreniaestelar');
     } else {
       indicator.className = 'status-dot mode-local';
-      label.textContent = 'MODO NAVEGADOR (CACHE LOCAL)';
+      label.textContent = 'Cache Local';
     }
   }
 
   // =========================================================================
-  // SALVAR TUDO NO PROJETO
+  // SALVAR NO PROJETO (AÇÃO PRINCIPAL)
   // =========================================================================
 
   async function saveAllToProject() {
-    saveActiveItemMetadataFromUI();
-
-    // 1. Atualizar timestamp do catálogo
+    saveActiveItemFromUI();
     state.catalog.updatedAt = new Date().toISOString();
 
-    // 2. Salvar backup no localStorage
+    // 1. Salvar no localStorage
     try {
       localStorage.setItem('ee_studio_backup', JSON.stringify({
         catalog: state.catalog,
@@ -522,10 +512,10 @@
         timestamp: state.catalog.updatedAt
       }));
     } catch (e) {
-      console.warn('Erro ao salvar backup no localStorage:', e);
+      console.warn('Erro ao salvar no localStorage:', e);
     }
 
-    // 3. Se houver pasta conectada via File System Access API, gravar arquivos no disco!
+    // 2. Se houver pasta conectada via File System Access API, gravar no disco
     if (state.dirHandle) {
       try {
         state.isSaving = true;
@@ -568,8 +558,7 @@
           }
         }
 
-        // E. REGENERAR texts.json (Compatibilidade com index.html legado)
-        // Array com todos os nomes de arquivo .md de contos publicados
+        // E. REGENERAR texts.json (Compatibilidade com index.html)
         var publishedTexts = ["intro.md"];
         state.catalog.items.forEach(function(item) {
           if (item.type === 'text' && item.status === 'published' && item.file) {
@@ -585,8 +574,7 @@
         await textsJsonWritable.write(JSON.stringify(publishedTexts, null, 4));
         await textsJsonWritable.close();
 
-        // F. REGENERAR media.json (Compatibilidade com index.html legado)
-        // Array com objetos de midias publicadas
+        // F. REGENERAR media.json (Compatibilidade com index.html)
         var publishedMedia = [];
         state.catalog.items.forEach(function(item) {
           if ((item.type === 'video' || item.type === 'audio') && item.status === 'published') {
@@ -604,9 +592,8 @@
         await mediaJsonWritable.close();
 
         state.isSaving = false;
-        state.hasUnsavedChanges = false;
-        updateSaveStatusIndicator('Salvo no disco');
-        showToast('[ SISTEMA: DADOS GRAVADOS COM SUCESSO NO DISCO ]', 'success');
+        updateSaveStatus('Salvo no disco');
+        showToast('Projeto salvo no disco com sucesso', 'success');
         return;
 
       } catch (err) {
@@ -617,31 +604,29 @@
       }
     }
 
-    // Se não estiver conectado a uma pasta
-    updateSaveStatusIndicator('Salvo no cache local');
-    showToast('[ SISTEMA: ALTERAÇÕES SALVAS NO CACHE LOCAL. CONECTE A PASTA PARA GRAVAR NO DISCO ]', 'info');
+    updateSaveStatus('Salvo no cache local');
+    showToast('Salvo no cache local. Conecte a pasta para gravar no disco.', 'info');
   }
 
-  function updateSaveStatusIndicator(text) {
+  function updateSaveStatus(text) {
     var el = document.getElementById('stat-save-status');
     if (el) el.textContent = text;
   }
 
   // =========================================================================
-  // GESTÃO DE RENDERIZAÇÃO GERAL
+  // GESTÃO DE RENDERIZAÇÃO
   // =========================================================================
 
-  function renderAllWorkspaces() {
+  function renderAll() {
     renderSidebarRecordsList();
-    loadActiveStoryToEditor();
-    renderMediaWorkspace();
-    renderVoiceWorkspace();
-    renderThemeWorkspace();
+    renderActiveEditor();
+    renderNotesGrid();
+    renderThemeControls();
     updateCoverSelectors();
   }
 
   // =========================================================================
-  // ABA 1: CONTOS & EDITOR MARKDOWN
+  // ABA 1: CONTEÚDO (BARRA LATERAL E LISTA UNIFICADA)
   // =========================================================================
 
   function renderSidebarRecordsList() {
@@ -650,20 +635,17 @@
     if (!listEl) return;
 
     var items = state.catalog.items.filter(function(item) {
-      // Filtro por tipo/status
       if (state.activeFilter === 'text' && item.type !== 'text') return false;
       if (state.activeFilter === 'audio' && item.type !== 'audio') return false;
       if (state.activeFilter === 'video' && item.type !== 'video') return false;
       if (state.activeFilter === 'draft' && item.status !== 'draft') return false;
 
-      // Filtro por busca
       if (state.searchQuery) {
         var q = state.searchQuery.toLowerCase();
         var matchTitle = (item.title || '').toLowerCase().indexOf(q) !== -1;
-        var matchSaga = (item.saga || '').toLowerCase().indexOf(q) !== -1;
+        var matchSummary = (item.summary || '').toLowerCase().indexOf(q) !== -1;
         var matchCategory = (item.category || '').toLowerCase().indexOf(q) !== -1;
-        var matchTags = (item.tags || []).some(function(t) { return t.toLowerCase().indexOf(q) !== -1; });
-        return matchTitle || matchSaga || matchCategory || matchTags;
+        return matchTitle || matchSummary || matchCategory;
       }
       return true;
     });
@@ -676,9 +658,11 @@
 
     if (items.length === 0) {
       var emptyEl = document.createElement('div');
-      emptyEl.className = 'placeholder-text';
-      emptyEl.style.padding = '24px 10px';
-      emptyEl.textContent = 'Nenhum registro encontrado para este filtro.';
+      emptyEl.style.padding = '20px 10px';
+      emptyEl.style.textAlign = 'center';
+      emptyEl.style.color = 'var(--text-muted)';
+      emptyEl.style.fontSize = '0.75rem';
+      emptyEl.textContent = 'Nenhum registro encontrado.';
       listEl.appendChild(emptyEl);
       return;
     }
@@ -688,868 +672,435 @@
       itemEl.className = 'record-item' + (item.id === state.activeItemId ? ' active' : '');
       itemEl.dataset.id = item.id;
 
-      // Status badge class
-      var statusBadgeClass = item.status === 'published' ? 'badge-emerald' : 'badge-amber';
-      var statusLabel = item.status === 'published' ? 'PUB' : 'RASC';
-
-      // Type badge
       var typeBadgeClass = item.type === 'text' ? 'badge-cyan' : (item.type === 'audio' ? 'badge-amber' : 'badge-purple');
       var typeLabel = item.type === 'text' ? 'TEXTO' : (item.type === 'audio' ? 'ÁUDIO' : 'VÍDEO');
 
-      itemEl.innerHTML = 
+      var statusBadgeClass = item.status === 'published' ? 'badge-emerald' : 'badge-amber';
+      var statusLabel = item.status === 'published' ? 'PUB' : 'RASC';
+
+      itemEl.innerHTML =
         '<div class="record-item-top">' +
-          '<span class="record-title">' + escapeHtml(item.title || 'Sem Título') + '</span>' +
-          '<div style="display:flex;gap:4px;">' +
+          '<div class="record-item-badges">' +
             '<span class="badge ' + typeBadgeClass + '">' + typeLabel + '</span>' +
             '<span class="badge ' + statusBadgeClass + '">' + statusLabel + '</span>' +
           '</div>' +
+          '<button class="btn-item-delete" data-delete-id="' + item.id + '" type="button" title="Excluir item">&times;</button>' +
         '</div>' +
-        '<div class="record-meta-line">' +
-          '<span class="record-saga">' + escapeHtml(item.saga || item.category || '') + '</span>' +
-          '<span>' + (item.type === 'text' ? (item.readingTime ? '~' + item.readingTime + ' min' : '~1 min') : 'MÍDIA') + '</span>' +
-        '</div>' +
-        '<div class="record-quick-actions">' +
-          '<button class="btn btn-tiny btn-ghost btn-dup" data-id="' + item.id + '" type="button">DUPLICAR</button>' +
-          '<button class="btn btn-tiny btn-ghost btn-del" data-id="' + item.id + '" type="button" style="color:var(--color-danger)">EXCLUIR</button>' +
-        '</div>';
+        '<div class="record-item-title">' + escapeHtml(item.title || '(Sem título)') + '</div>';
 
       itemEl.addEventListener('click', function(e) {
-        if (e.target.closest('.record-quick-actions')) return;
-        selectRecordItem(item.id);
+        if (e.target.closest('.btn-item-delete')) {
+          e.stopPropagation();
+          deleteItem(item.id);
+          return;
+        }
+        selectItem(item.id);
       });
-
-      // Duplicar
-      var btnDup = itemEl.querySelector('.btn-dup');
-      if (btnDup) {
-        btnDup.addEventListener('click', function(e) {
-          e.stopPropagation();
-          duplicateRecordItem(item.id);
-        });
-      }
-
-      // Excluir
-      var btnDel = itemEl.querySelector('.btn-del');
-      if (btnDel) {
-        btnDel.addEventListener('click', function(e) {
-          e.stopPropagation();
-          deleteRecordItem(item.id);
-        });
-      }
 
       listEl.appendChild(itemEl);
     });
   }
 
-  function selectRecordItem(id) {
-    saveActiveItemMetadataFromUI();
-    state.activeItemId = id;
+  function selectItem(itemId) {
+    if (state.activeItemId === itemId) return;
+    saveActiveItemFromUI();
+    state.activeItemId = itemId;
     renderSidebarRecordsList();
-    loadActiveStoryToEditor();
+    renderActiveEditor();
   }
 
-  function createNewStory() {
-    saveActiveItemMetadataFromUI();
-
-    var timestamp = Date.now();
-    var count = state.catalog.items.filter(function(i) { return i.type === 'text'; }).length + 1;
-    var slug = 'novo-conto-' + count;
-    var filename = 'texts/' + slug + '.md';
-
-    var newItem = {
-      id: 'story-' + timestamp,
-      title: 'Novo Conto Estelar ' + count,
-      slug: slug,
-      type: 'text',
-      status: 'draft',
-      category: 'Crônicas & Sagas',
-      saga: 'Cérebro de Matriosca',
-      tags: ['Novo Conto', 'Rascunho'],
-      summary: 'Resumo preliminar desta narrativa do multiverso...',
-      coverImage: 'images/maltuk1.png',
-      file: filename,
-      readingTime: 1,
-      createdAt: new Date().toISOString().split('T')[0],
-      relatedIds: []
-    };
-
-    state.markdownFiles[filename] = '# ' + newItem.title + '\n\nComece a escrever sua narrativa cósmica aqui...\n';
-    state.catalog.items.unshift(newItem);
-    state.activeItemId = newItem.id;
-
-    renderSidebarRecordsList();
-    loadActiveStoryToEditor();
-    showToast('[ NOVO RASCUNHO DE CONTO CRIADO ]', 'info');
-  }
-
-  function duplicateRecordItem(id) {
-    saveActiveItemMetadataFromUI();
-
-    var original = state.catalog.items.find(function(i) { return i.id === id; });
-    if (!original) return;
-
-    var copy = JSON.parse(JSON.stringify(original));
-    copy.id = 'item-' + Date.now();
-    copy.title = copy.title + ' (Cópia)';
-    copy.slug = copy.slug + '-copia';
-    copy.status = 'draft';
-
-    if (copy.type === 'text') {
-      copy.file = 'texts/' + copy.slug + '.md';
-      var originalContent = state.markdownFiles[original.file] || '';
-      state.markdownFiles[copy.file] = originalContent;
-    }
-
-    state.catalog.items.unshift(copy);
-    state.activeItemId = copy.id;
-
-    renderSidebarRecordsList();
-    loadActiveStoryToEditor();
-    showToast('[ REGISTRO DUPLICADO COMO RASCUNHO ]', 'info');
-  }
-
-  function deleteRecordItem(id) {
-    var item = state.catalog.items.find(function(i) { return i.id === id; });
+  function deleteItem(itemId) {
+    var item = state.catalog.items.find(function(i) { return i.id === itemId; });
     if (!item) return;
 
-    if (!confirm('Deseja realmente excluir o registro "' + item.title + '"? Esta ação não pode ser desfeita.')) {
+    if (confirm('Deseja excluir o registro "' + item.title + '" do catálogo?')) {
+      state.catalog.items = state.catalog.items.filter(function(i) { return i.id !== itemId; });
+      if (state.activeItemId === itemId) {
+        state.activeItemId = state.catalog.items.length > 0 ? state.catalog.items[0].id : null;
+      }
+      renderSidebarRecordsList();
+      renderActiveEditor();
+      showToast('Registro excluído do catálogo', 'info');
+    }
+  }
+
+  function createNewItem(type) {
+    saveActiveItemFromUI();
+    var timestamp = Date.now();
+    var dateStr = new Date().toISOString().slice(0, 10);
+    var newItem;
+
+    if (type === 'text') {
+      var slug = 'novo-texto-' + timestamp;
+      var filePath = 'texts/' + slug + '.md';
+      newItem = {
+        id: 'text-' + timestamp,
+        title: 'Novo Texto',
+        slug: slug,
+        type: 'text',
+        status: 'draft',
+        category: 'Crônicas & Sagas',
+        saga: 'Cérebro de Matriosca',
+        tags: [],
+        summary: '',
+        coverImage: '',
+        file: filePath,
+        readingTime: 1,
+        createdAt: dateStr,
+        relatedIds: []
+      };
+      state.markdownFiles[filePath] = '# Novo Texto\n\nEscreva sua narrativa aqui...';
+    } else if (type === 'audio') {
+      newItem = {
+        id: 'audio-' + timestamp,
+        title: 'Nova Transmissão Sonora',
+        slug: 'nova-transmissao-' + timestamp,
+        type: 'audio',
+        status: 'draft',
+        category: 'Transmissões Sonoras',
+        saga: 'Ecos da Quinta Dimensão',
+        tags: ['Podcast', 'Transmissão'],
+        summary: '',
+        url: '',
+        createdAt: dateStr,
+        relatedIds: []
+      };
+    } else if (type === 'video') {
+      newItem = {
+        id: 'video-' + timestamp,
+        title: 'Novo Registro Visual',
+        slug: 'novo-registro-' + timestamp,
+        type: 'video',
+        status: 'draft',
+        category: 'Registros Visuais',
+        saga: 'Arquivos do Multiverso',
+        tags: ['Registro Visual'],
+        summary: '',
+        url: '',
+        createdAt: dateStr,
+        relatedIds: []
+      };
+    }
+
+    state.catalog.items.unshift(newItem);
+    state.activeItemId = newItem.id;
+    renderSidebarRecordsList();
+    renderActiveEditor();
+    showToast('Novo ' + type.toUpperCase() + ' criado (Rascunho)', 'success');
+  }
+
+  // =========================================================================
+  // ÁREA DE EDIÇÃO DINÂMICA (TEXTO VS MÍDIA)
+  // =========================================================================
+
+  function renderActiveEditor() {
+    var textEditorView = document.getElementById('text-editor-view');
+    var mediaEditorView = document.getElementById('media-editor-view');
+    var emptyEditorView = document.getElementById('empty-editor-view');
+
+    var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
+
+    if (!item) {
+      if (textEditorView) textEditorView.classList.add('hidden');
+      if (mediaEditorView) mediaEditorView.classList.add('hidden');
+      if (emptyEditorView) emptyEditorView.classList.remove('hidden');
       return;
     }
 
-    state.catalog.items = state.catalog.items.filter(function(i) { return i.id !== id; });
+    if (emptyEditorView) emptyEditorView.classList.add('hidden');
 
-    // Se excluiu o item ativo, seleciona o primeiro disponível
-    if (state.activeItemId === id) {
-      state.activeItemId = state.catalog.items.length > 0 ? state.catalog.items[0].id : null;
+    if (item.type === 'text') {
+      if (mediaEditorView) mediaEditorView.classList.add('hidden');
+      if (textEditorView) textEditorView.classList.remove('hidden');
+      loadTextItemToEditor(item);
+    } else {
+      if (textEditorView) textEditorView.classList.add('hidden');
+      if (mediaEditorView) mediaEditorView.classList.remove('hidden');
+      loadMediaItemToEditor(item);
     }
-
-    renderSidebarRecordsList();
-    loadActiveStoryToEditor();
-    renderMediaWorkspace();
-    showToast('[ REGISTRO EXCLUÍDO ]', 'warning');
   }
 
-  function loadActiveStoryToEditor() {
-    var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-    if (!item) {
-      if (state.catalog.items.length > 0) {
-        item = state.catalog.items[0];
-        state.activeItemId = item.id;
-      } else {
-        return;
-      }
-    }
+  function loadTextItemToEditor(item) {
+    document.getElementById('meta-title').value = item.title || '';
+    document.getElementById('meta-status').value = item.status || 'published';
+    document.getElementById('meta-summary').value = item.summary || '';
 
-    // Preencher campos de metadados
-    var titleInput = document.getElementById('meta-title');
-    var slugInput = document.getElementById('meta-slug');
-    var statusSelect = document.getElementById('meta-status');
-    var catSelect = document.getElementById('meta-category');
-    var catCustomInput = document.getElementById('meta-category-custom');
-    var sagaInput = document.getElementById('meta-saga');
-    var fileInput = document.getElementById('meta-file');
-    var tagsInput = document.getElementById('meta-tags');
+    updateCoverSelectors();
     var coverSelect = document.getElementById('meta-cover');
-    var summaryInput = document.getElementById('meta-summary');
-    var badgeEl = document.getElementById('active-item-badge');
-
-    if (titleInput) titleInput.value = item.title || '';
-    if (slugInput) slugInput.value = item.slug || '';
-    if (statusSelect) statusSelect.value = item.status || 'published';
-    if (sagaInput) sagaInput.value = item.saga || '';
-    if (fileInput) fileInput.value = item.file || '';
-    if (tagsInput) tagsInput.value = (item.tags || []).join(', ');
-    if (summaryInput) summaryInput.value = item.summary || '';
-
-    // Categoria
-    if (catSelect) {
-      var found = false;
-      for (var i = 0; i < catSelect.options.length; i++) {
-        if (catSelect.options[i].value === item.category) {
-          catSelect.selectedIndex = i;
-          found = true;
-          break;
-        }
-      }
-      if (!found && item.category) {
-        catSelect.value = '_custom';
-        if (catCustomInput) {
-          catCustomInput.value = item.category;
-          catCustomInput.classList.remove('hidden');
-        }
-      } else if (catCustomInput) {
-        catCustomInput.classList.add('hidden');
-      }
-    }
-
-    // Imagem de capa
     if (coverSelect) {
       coverSelect.value = item.coverImage || '';
-      updateCoverPreview(item.coverImage);
     }
 
-    // Badge status
-    if (badgeEl) {
-      if (item.status === 'published') {
-        badgeEl.className = 'badge badge-emerald';
-        badgeEl.textContent = 'PUBLICADO';
-      } else {
-        badgeEl.className = 'badge badge-amber';
-        badgeEl.textContent = 'RASCUNHO';
-      }
-    }
-
-    // Renderizar chips de tags
-    renderTagsPreview(item.tags || []);
-
-    // Renderizar checkboxes de relatedIds
-    renderRelatedCheckboxes(item);
-
-    // Carregar conteúdo Markdown do arquivo
-    var editorInput = document.getElementById('markdown-input');
-    var content = '';
-    if (item.file && state.markdownFiles[item.file]) {
-      content = state.markdownFiles[item.file];
-    } else if (item.file && state.markdownFiles[item.file.replace(/^texts\//, '')]) {
-      content = state.markdownFiles[item.file.replace(/^texts\//, '')];
-    } else if (item.type === 'text') {
-      content = '# ' + (item.title || 'História') + '\n\n';
-    } else {
-      content = '# ' + (item.title || 'Registro de Mídia') + '\n\n' + (item.summary || '') + '\n\n' + (item.url ? '[Acessar Mídia Externa](' + item.url + ')' : '');
-    }
-
-    if (editorInput) {
-      editorInput.value = content;
-      updateMarkdownPreview(content);
+    // Carregar markdown
+    var mdInput = document.getElementById('markdown-input');
+    var content = state.markdownFiles[item.file] || '';
+    if (mdInput) {
+      mdInput.value = content;
       updateEditorMetrics(content);
     }
 
     var fileInfo = document.getElementById('stat-file-info');
-    if (fileInfo) {
-      fileInfo.textContent = 'Arquivo: ' + (item.file || '(sem arquivo .md)');
-    }
+    if (fileInfo) fileInfo.textContent = 'Arquivo: ' + (item.file || 'texts/...');
+
+    updateTextLivePreview();
   }
 
-  function saveActiveItemMetadataFromUI() {
+  function loadMediaItemToEditor(item) {
+    var urlInput = document.getElementById('media-url');
+    var titleInput = document.getElementById('media-title');
+    var statusSelect = document.getElementById('media-status');
+    var summaryInput = document.getElementById('media-summary');
+    var badge = document.getElementById('media-form-type-badge');
+    var heading = document.getElementById('media-form-heading');
+
+    if (urlInput) urlInput.value = item.url || '';
+    if (titleInput) titleInput.value = item.title || '';
+    if (statusSelect) statusSelect.value = item.status || 'published';
+    if (summaryInput) summaryInput.value = item.summary || '';
+
+    if (badge) {
+      badge.textContent = item.type === 'audio' ? 'ÁUDIO' : 'VÍDEO';
+      badge.className = 'badge ' + (item.type === 'audio' ? 'badge-amber' : 'badge-cyan');
+    }
+
+    if (heading) {
+      heading.textContent = item.type === 'audio' ? 'TRANSMISSÃO SONORA (SPOTIFY)' : 'REGISTRO VISUAL (YOUTUBE)';
+    }
+
+    updateMediaLivePreview();
+  }
+
+  function saveActiveItemFromUI() {
     var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
     if (!item) return;
 
-    var titleInput = document.getElementById('meta-title');
-    var slugInput = document.getElementById('meta-slug');
-    var statusSelect = document.getElementById('meta-status');
-    var catSelect = document.getElementById('meta-category');
-    var catCustomInput = document.getElementById('meta-category-custom');
-    var sagaInput = document.getElementById('meta-saga');
-    var fileInput = document.getElementById('meta-file');
-    var tagsInput = document.getElementById('meta-tags');
-    var coverSelect = document.getElementById('meta-cover');
-    var summaryInput = document.getElementById('meta-summary');
-    var editorInput = document.getElementById('markdown-input');
+    if (item.type === 'text') {
+      var titleInput = document.getElementById('meta-title');
+      var statusSelect = document.getElementById('meta-status');
+      var coverSelect = document.getElementById('meta-cover');
+      var summaryInput = document.getElementById('meta-summary');
+      var mdInput = document.getElementById('markdown-input');
 
-    if (titleInput) item.title = titleInput.value.trim();
-    if (slugInput) item.slug = slugInput.value.trim();
-    if (statusSelect) item.status = statusSelect.value;
-    if (sagaInput) item.saga = sagaInput.value.trim();
-    if (fileInput) item.file = fileInput.value.trim();
-    if (summaryInput) item.summary = summaryInput.value.trim();
+      if (titleInput) item.title = titleInput.value.trim();
+      if (statusSelect) item.status = statusSelect.value;
+      if (coverSelect) item.coverImage = coverSelect.value;
+      if (summaryInput) item.summary = summaryInput.value.trim();
 
-    // Categoria
-    if (catSelect) {
-      if (catSelect.value === '_custom' && catCustomInput) {
-        item.category = catCustomInput.value.trim() || 'Crônicas & Sagas';
-      } else {
-        item.category = catSelect.value;
+      if (mdInput) {
+        var text = mdInput.value;
+        if (!item.file) {
+          var slug = generateSlug(item.title);
+          item.slug = slug;
+          item.file = 'texts/' + slug + '.md';
+        }
+        state.markdownFiles[item.file] = text;
+        item.readingTime = calculateReadingTime(text);
+      }
+    } else {
+      var mediaUrlInput = document.getElementById('media-url');
+      var mediaTitleInput = document.getElementById('media-title');
+      var mediaStatusSelect = document.getElementById('media-status');
+      var mediaSummaryInput = document.getElementById('media-summary');
+
+      if (mediaUrlInput) item.url = mediaUrlInput.value.trim();
+      if (mediaTitleInput) item.title = mediaTitleInput.value.trim();
+      if (mediaStatusSelect) item.status = mediaStatusSelect.value;
+      if (mediaSummaryInput) item.summary = mediaSummaryInput.value.trim();
+
+      // Auto detecção de tipo por URL
+      if (item.url) {
+        if (/spotify\.com/i.test(item.url)) {
+          item.type = 'audio';
+          item.category = 'Transmissões Sonoras';
+        } else if (/youtu(be|\.be)/i.test(item.url)) {
+          item.type = 'video';
+          item.category = 'Registros Visuais';
+        }
       }
     }
-
-    // Tags
-    if (tagsInput) {
-      item.tags = tagsInput.value.split(',')
-        .map(function(t) { return t.trim(); })
-        .filter(function(t) { return t.length > 0; });
-    }
-
-    // Imagem
-    if (coverSelect) {
-      item.coverImage = coverSelect.value;
-    }
-
-    // Markdown content
-    if (editorInput && item.file) {
-      state.markdownFiles[item.file] = editorInput.value;
-    }
   }
 
-  function updateMarkdownPreview(markdownText) {
-    var previewEl = document.getElementById('markdown-preview');
-    if (!previewEl || !state.converter) return;
+  // =========================================================================
+  // PRÉVIA AO VIVO DE TEXTO (LEITURA VS CARD)
+  // =========================================================================
 
-    try {
-      var html = state.converter.makeHtml(markdownText || '');
-      previewEl.innerHTML = html;
-    } catch (e) {
-      console.warn('Erro ao converter Markdown:', e);
-    }
-  }
-
-  function updateEditorMetrics(text) {
-    var wordsEl = document.getElementById('stat-words');
-    var charsEl = document.getElementById('stat-chars');
-    var timeEl = document.getElementById('stat-time');
-
-    var raw = (text || '').trim();
-    var words = raw ? raw.split(/\s+/).length : 0;
-    var chars = (text || '').length;
-    var readingTime = Math.max(1, Math.ceil(words / 200));
-
-    if (wordsEl) wordsEl.textContent = words;
-    if (charsEl) charsEl.textContent = chars;
-    if (timeEl) timeEl.textContent = '~' + readingTime + ' min';
-
-    // Atualizar no item ativo
-    var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-    if (item && item.type === 'text') {
-      item.readingTime = readingTime;
-    }
-  }
-
-  function renderTagsPreview(tagsArray) {
-    var previewEl = document.getElementById('meta-tags-preview');
-    if (!previewEl) return;
-    previewEl.innerHTML = '';
-    tagsArray.forEach(function(tag) {
-      var pill = document.createElement('span');
-      pill.className = 'tag-pill';
-      pill.textContent = tag;
-      previewEl.appendChild(pill);
-    });
-  }
-
-  function renderRelatedCheckboxes(activeItem) {
-    var container = document.getElementById('meta-related-container');
+  function updateTextLivePreview() {
+    var container = document.getElementById('live-preview-container');
     if (!container) return;
-    container.innerHTML = '';
-
-    var currentRelated = activeItem.relatedIds || [];
-
-    state.catalog.items.forEach(function(item) {
-      if (item.id === activeItem.id) return; // não conecta com ele mesmo
-
-      var label = document.createElement('label');
-      label.className = 'related-checkbox-item';
-
-      var input = document.createElement('input');
-      input.type = 'checkbox';
-      input.value = item.id;
-      input.checked = currentRelated.indexOf(item.id) !== -1;
-
-      input.addEventListener('change', function() {
-        if (input.checked) {
-          if (activeItem.relatedIds.indexOf(item.id) === -1) {
-            activeItem.relatedIds.push(item.id);
-          }
-        } else {
-          activeItem.relatedIds = activeItem.relatedIds.filter(function(id) { return id !== item.id; });
-        }
-      });
-
-      label.appendChild(input);
-      var span = document.createElement('span');
-      span.textContent = item.title + ' [' + item.type.toUpperCase() + ']';
-      label.appendChild(span);
-
-      container.appendChild(label);
-    });
-  }
-
-  function updateCoverPreview(coverPath) {
-    var previewEl = document.getElementById('meta-cover-preview');
-    if (!previewEl) return;
-
-    if (!coverPath) {
-      previewEl.classList.add('hidden');
-      previewEl.innerHTML = '';
-      return;
-    }
-
-    previewEl.classList.remove('hidden');
-    previewEl.innerHTML = '<img src="' + escapeHtml(coverPath) + '" alt="Capa">';
-  }
-
-  function updateCoverSelectors() {
-    var coverSelect = document.getElementById('meta-cover');
-    if (!coverSelect) return;
-
-    var currentVal = coverSelect.value;
-    coverSelect.innerHTML = '<option value="">(Sem imagem de capa)</option>';
-
-    state.images.forEach(function(img) {
-      var opt = document.createElement('option');
-      opt.value = img.path;
-      opt.textContent = img.path;
-      coverSelect.appendChild(opt);
-    });
-
-    coverSelect.value = currentVal;
-  }
-
-  // =========================================================================
-  // FERRAMENTAS DE FORMATAÇÃO E INSERÇÃO DO EDITOR
-  // =========================================================================
-
-  function handleEditorTool(action) {
-    var textarea = document.getElementById('markdown-input');
-    if (!textarea) return;
-
-    var start = textarea.selectionStart;
-    var end = textarea.selectionEnd;
-    var text = textarea.value;
-    var selected = text.substring(start, end);
-    var replacement = '';
-
-    switch (action) {
-      case 'h1':
-        replacement = '# ' + (selected || 'Título Nível 1');
-        break;
-      case 'h2':
-        replacement = '## ' + (selected || 'Título Nível 2');
-        break;
-      case 'h3':
-        replacement = '### ' + (selected || 'Título Nível 3');
-        break;
-      case 'bold':
-        replacement = '**' + (selected || 'texto em destaque') + '**';
-        break;
-      case 'italic':
-        replacement = '*' + (selected || 'texto em itálico') + '*';
-        break;
-      case 'quote':
-        replacement = '> ' + (selected || 'Citação ou registro dos arquivos...');
-        break;
-      case 'list':
-        replacement = '* ' + (selected || 'Item de lista');
-        break;
-      case 'divider':
-        replacement = '\n\n---\n\n';
-        break;
-      case 'code':
-        if (selected.indexOf('\n') !== -1) {
-          replacement = '```\n' + selected + '\n```';
-        } else {
-          replacement = '`' + (selected || 'código') + '`';
-        }
-        break;
-      default:
-        return;
-    }
-
-    textarea.value = text.substring(0, start) + replacement + text.substring(end);
-    textarea.focus();
-    textarea.setSelectionRange(start + replacement.length, start + replacement.length);
-
-    updateMarkdownPreview(textarea.value);
-    updateEditorMetrics(textarea.value);
 
     var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-    if (item && item.file) {
-      state.markdownFiles[item.file] = textarea.value;
-    }
-  }
+    if (!item || item.type !== 'text') return;
 
-  function insertTextAtCursor(insertStr) {
-    var textarea = document.getElementById('markdown-input');
-    if (!textarea) return;
+    var title = document.getElementById('meta-title').value || item.title || 'Título do Texto';
+    var cover = document.getElementById('meta-cover').value || item.coverImage;
+    var summary = document.getElementById('meta-summary').value || item.summary;
+    var mdInput = document.getElementById('markdown-input');
+    var mdContent = mdInput ? mdInput.value : (state.markdownFiles[item.file] || '');
+    var readingTime = calculateReadingTime(mdContent);
 
-    var start = textarea.selectionStart;
-    var end = textarea.selectionEnd;
-    var text = textarea.value;
-
-    textarea.value = text.substring(0, start) + insertStr + text.substring(end);
-    textarea.focus();
-    var nextPos = start + insertStr.length;
-    textarea.setSelectionRange(nextPos, nextPos);
-
-    updateMarkdownPreview(textarea.value);
-    updateEditorMetrics(textarea.value);
-
-    var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-    if (item && item.file) {
-      state.markdownFiles[item.file] = textarea.value;
-    }
-  }
-
-  // =========================================================================
-  // ABA 2: CENTRAL DE LINKS & MÍDIAS
-  // =========================================================================
-
-  function renderMediaWorkspace() {
-    var gridEl = document.getElementById('media-grid');
-    var counterEl = document.getElementById('media-counter');
-    if (!gridEl) return;
-
-    var mediaItems = state.catalog.items.filter(function(i) {
-      return i.type === 'video' || i.type === 'audio';
-    });
-
-    if (counterEl) counterEl.textContent = mediaItems.length;
-    gridEl.innerHTML = '';
-
-    if (mediaItems.length === 0) {
-      gridEl.innerHTML = '<p class="placeholder-text" style="grid-column: 1/-1; padding: 30px;">Nenhuma transmissão registrada no catálogo ainda.</p>';
-      return;
-    }
-
-    mediaItems.forEach(function(item) {
-      var card = document.createElement('div');
-      card.className = 'media-card-item';
-
-      var playerHtml = generateResponsiveEmbed(item.url, item.type, item.title);
-
-      var typeBadgeClass = item.type === 'audio' ? 'badge-amber' : 'badge-purple';
-      var statusBadgeClass = item.status === 'published' ? 'badge-emerald' : 'badge-amber';
-
-      card.innerHTML = 
-        '<div class="media-card-player">' + playerHtml + '</div>' +
-        '<div class="media-card-content">' +
-          '<div class="media-card-header">' +
-            '<div class="media-card-title">' + escapeHtml(item.title) + '</div>' +
-            '<div style="display:flex;gap:4px;">' +
-              '<span class="badge ' + typeBadgeClass + '">' + item.type.toUpperCase() + '</span>' +
-              '<span class="badge ' + statusBadgeClass + '">' + item.status.toUpperCase() + '</span>' +
+    if (state.previewMode === 'card') {
+      // PREVIEW DO CARD (EXATAMENTE COMO APARECE NO INDEX.HTML)
+      var excerpt = summary.trim() ? summary.trim() : generateExcerpt(mdContent);
+      var coverHtml = '';
+      if (cover) {
+        coverHtml =
+          '<div class="card-cover-wrapper">' +
+            '<img src="' + escapeHtml(cover) + '" alt="' + escapeHtml(title) + '" class="card-cover-img">' +
+            '<div class="card-scanline-overlay"></div>' +
+          '</div>';
+      } else {
+        coverHtml =
+          '<div class="card-cover-wrapper">' +
+            '<div class="card-placeholder-art">' +
+              '<span class="placeholder-glyph">ƎƎ</span>' +
+              '<span class="placeholder-label">ARQUIVO DE TEXTO</span>' +
             '</div>' +
-          '</div>' +
-          '<div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent-secondary);">' + escapeHtml(item.saga || item.category || '') + '</div>' +
-          '<div class="media-card-summary">' + escapeHtml(item.summary || '(Sem sinopse)') + '</div>' +
-          '<div class="media-card-footer">' +
-            '<button class="btn btn-tiny btn-ghost btn-edit-media" data-id="' + item.id + '" type="button">EDITAR</button>' +
-            '<button class="btn btn-tiny btn-ghost btn-del-media" data-id="' + item.id + '" type="button" style="color:var(--color-danger)">EXCLUIR</button>' +
-          '</div>' +
+            '<div class="card-scanline-overlay"></div>' +
+          '</div>';
+      }
+
+      var tagsHtml = (item.tags || []).map(function(t) {
+        return '<span class="card-tag">#' + escapeHtml(t) + '</span>';
+      }).join('');
+
+      container.innerHTML =
+        '<div style="max-width: 380px; margin: 0 auto;">' +
+          '<article class="cyber-card">' +
+            coverHtml +
+            '<div class="card-body">' +
+              '<div class="card-meta-row">' +
+                '<span class="meta-pill category-pill">' + escapeHtml(item.category || 'Crônicas & Sagas') + '</span>' +
+                '<span class="meta-pill time-pill">~' + readingTime + ' MIN LEITURA</span>' +
+              '</div>' +
+              '<h3 class="card-title">' + escapeHtml(title) + '</h3>' +
+              '<p class="card-summary">' + escapeHtml(excerpt) + '</p>' +
+              (tagsHtml ? '<div class="card-tags">' + tagsHtml + '</div>' : '') +
+              '<div class="card-footer-action">' +
+                '<button class="card-access-btn" type="button">' +
+                  '<span>ACESSAR REGISTRO [ // ]</span>' +
+                '</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>' +
         '</div>';
 
-      var btnEdit = card.querySelector('.btn-edit-media');
-      if (btnEdit) {
-        btnEdit.addEventListener('click', function() {
-          populateMediaFormForEdit(item);
-        });
-      }
+    } else {
+      // PREVIEW DA LEITURA (EXATAMENTE COMO APARECE NO LEITOR DO PORTAL)
+      var htmlContent = state.converter ? state.converter.makeHtml(mdContent) : mdContent;
+      var coverReaderHtml = cover ?
+        '<div class="preview-reader-cover"><img src="' + escapeHtml(cover) + '" alt="' + escapeHtml(title) + '"></div>' : '';
 
-      var btnDel = card.querySelector('.btn-del-media');
-      if (btnDel) {
-        btnDel.addEventListener('click', function() {
-          deleteRecordItem(item.id);
-        });
-      }
-
-      gridEl.appendChild(card);
-    });
-  }
-
-  function handleMediaUrlInput(url) {
-    var typeSelect = document.getElementById('media-type');
-    var previewBox = document.getElementById('media-player-preview');
-    if (!url || !previewBox) return;
-
-    url = url.trim();
-    var detectedType = 'video';
-
-    if (url.indexOf('spotify.com') !== -1) {
-      detectedType = 'audio';
-    } else if (url.indexOf('youtu.be') !== -1 || url.indexOf('youtube.com') !== -1) {
-      detectedType = 'video';
+      container.innerHTML =
+        '<div class="preview-reader-card">' +
+          coverReaderHtml +
+          '<div class="preview-reader-header">' +
+            '<div class="card-meta-row">' +
+              '<span class="meta-pill category-pill">' + escapeHtml(item.category || 'Crônicas & Sagas') + '</span>' +
+              '<span class="meta-pill time-pill">~' + readingTime + ' MIN LEITURA</span>' +
+            '</div>' +
+            '<h1 class="preview-reader-title">' + escapeHtml(title) + '</h1>' +
+          '</div>' +
+          '<article class="markdown-content">' + htmlContent + '</article>' +
+        '</div>';
     }
-
-    if (typeSelect) {
-      typeSelect.value = detectedType;
-    }
-
-    var embedHtml = generateResponsiveEmbed(url, detectedType, 'Prévia de Transmissão');
-    previewBox.innerHTML = embedHtml;
-  }
-
-  function saveMediaFromForm() {
-    var urlInput = document.getElementById('media-url');
-    var typeSelect = document.getElementById('media-type');
-    var titleInput = document.getElementById('media-title');
-    var catSelect = document.getElementById('media-category');
-    var statusSelect = document.getElementById('media-status');
-    var sagaInput = document.getElementById('media-saga');
-    var tagsInput = document.getElementById('media-tags');
-    var summaryInput = document.getElementById('media-summary');
-
-    var url = urlInput ? urlInput.value.trim() : '';
-    var title = titleInput ? titleInput.value.trim() : '';
-
-    if (!url || !title) {
-      showToast('Por favor, preencha ao menos o Título e a URL da transmissão.', 'error');
-      return;
-    }
-
-    var slug = title.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)+/g, '');
-
-    var newItem = {
-      id: 'media-' + Date.now(),
-      title: title,
-      slug: slug,
-      type: typeSelect ? typeSelect.value : 'video',
-      status: statusSelect ? statusSelect.value : 'published',
-      category: catSelect ? catSelect.value : 'Transmissões Sonoras',
-      saga: sagaInput ? sagaInput.value.trim() : 'Arquivos do Multiverso',
-      tags: tagsInput ? tagsInput.value.split(',').map(function(t) { return t.trim(); }).filter(Boolean) : [],
-      summary: summaryInput ? summaryInput.value.trim() : '',
-      url: url,
-      createdAt: new Date().toISOString().split('T')[0],
-      relatedIds: []
-    };
-
-    state.catalog.items.unshift(newItem);
-    renderMediaWorkspace();
-    renderSidebarRecordsList();
-
-    // Limpar formulário
-    if (urlInput) urlInput.value = '';
-    if (titleInput) titleInput.value = '';
-    if (sagaInput) sagaInput.value = '';
-    if (tagsInput) tagsInput.value = '';
-    if (summaryInput) summaryInput.value = '';
-    var previewBox = document.getElementById('media-player-preview');
-    if (previewBox) previewBox.innerHTML = '<p class="placeholder-text">Aguardando inserção de URL válida para carregar o player...</p>';
-
-    showToast('[ TRANSMISSÃO ADICIONADA AO CATÁLOGO ]', 'success');
-  }
-
-  function populateMediaFormForEdit(item) {
-    var urlInput = document.getElementById('media-url');
-    var typeSelect = document.getElementById('media-type');
-    var titleInput = document.getElementById('media-title');
-    var catSelect = document.getElementById('media-category');
-    var statusSelect = document.getElementById('media-status');
-    var sagaInput = document.getElementById('media-saga');
-    var tagsInput = document.getElementById('media-tags');
-    var summaryInput = document.getElementById('media-summary');
-
-    if (urlInput) urlInput.value = item.url || '';
-    if (typeSelect) typeSelect.value = item.type || 'video';
-    if (titleInput) titleInput.value = item.title || '';
-    if (catSelect) catSelect.value = item.category || 'Transmissões Sonoras';
-    if (statusSelect) statusSelect.value = item.status || 'published';
-    if (sagaInput) sagaInput.value = item.saga || '';
-    if (tagsInput) tagsInput.value = (item.tags || []).join(', ');
-    if (summaryInput) summaryInput.value = item.summary || '';
-
-    handleMediaUrlInput(item.url || '');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    showToast('[ EDITANDO TRANSMISSÃO: ' + item.title + ' ]', 'info');
-  }
-
-  function generateResponsiveEmbed(url, type, title) {
-    if (!url) {
-      return '<p class="placeholder-text">URL de mídia vazia.</p>';
-    }
-
-    // YouTube
-    var ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-    if (ytMatch && ytMatch[1]) {
-      var ytId = ytMatch[1];
-      return '<div class="embed-container"><iframe src="https://www.youtube.com/embed/' + ytId + '" title="' + escapeHtml(title || 'YouTube') + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
-    }
-
-    // Spotify
-    var spotMatch = url.match(/open\.spotify\.com\/(episode|track|playlist|show)\/([a-zA-Z0-9]+)/);
-    if (spotMatch) {
-      var spotType = spotMatch[1];
-      var spotId = spotMatch[2];
-      return '<div class="embed-spotify"><iframe src="https://open.spotify.com/embed/' + spotType + '/' + spotId + '?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>';
-    }
-
-    // Fallback genérico de áudio / vídeo HTML5
-    if (type === 'audio') {
-      return '<audio controls style="width:100%;margin:10px 0;"><source src="' + escapeHtml(url) + '">Seu navegador não suporta o elemento de áudio.</audio>';
-    }
-
-    return '<div class="embed-container"><iframe src="' + escapeHtml(url) + '" title="' + escapeHtml(title || 'Mídia Externa') + '" allowfullscreen></iframe></div>';
   }
 
   // =========================================================================
-  // ABA 3: VOZ & ANOTAÇÕES DO MULTIVERSO
+  // PRÉVIA AO VIVO DE MÍDIA (ÁUDIO OU VÍDEO COM PLAYER RESPONSIVO)
   // =========================================================================
 
-  function renderVoiceWorkspace() {
-    renderNotesGrid();
-  }
+  function updateMediaLivePreview() {
+    var container = document.getElementById('media-live-preview-card');
+    if (!container) return;
 
-  function renderNotesGrid() {
-    var gridEl = document.getElementById('notes-grid');
-    var counterEl = document.getElementById('notes-counter');
-    if (!gridEl) return;
+    var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
+    if (!item) return;
 
-    var notes = state.catalog.notes || [];
-    if (counterEl) counterEl.textContent = notes.length;
-    gridEl.innerHTML = '';
+    var urlInput = document.getElementById('media-url');
+    var titleInput = document.getElementById('media-title');
+    var summaryInput = document.getElementById('media-summary');
 
-    if (notes.length === 0) {
-      gridEl.innerHTML = '<p class="placeholder-text" style="grid-column: 1/-1; padding: 24px;">Nenhuma anotação de lore arquivada ainda.</p>';
-      return;
+    var url = urlInput ? urlInput.value.trim() : (item.url || '');
+    var title = titleInput ? titleInput.value.trim() : (item.title || 'Título da Transmissão');
+    var summary = summaryInput ? summaryInput.value.trim() : (item.summary || '');
+
+    var isAudio = item.type === 'audio' || /spotify\.com/i.test(url);
+    var isVideo = item.type === 'video' || /youtu(be|\.be)/i.test(url);
+
+    var mediaHtml = '';
+
+    if (isAudio && url) {
+      var spotifyEmbed = getSpotifyEmbedUrl(url);
+      mediaHtml =
+        '<div class="media-embed-frame spotify-embed-container">' +
+          '<iframe src="' + escapeHtml(spotifyEmbed) + '" width="100%" height="152" allow="encrypted-media" loading="lazy"></iframe>' +
+        '</div>';
+    } else if (isVideo && url) {
+      var ytId = getYoutubeId(url);
+      if (ytId) {
+        mediaHtml =
+          '<div class="media-embed-frame video-embed-container">' +
+            '<iframe src="https://www.youtube-nocookie.com/embed/' + escapeHtml(ytId) + '?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>' +
+          '</div>';
+      } else {
+        mediaHtml =
+          '<div class="card-cover-wrapper">' +
+            '<div class="card-placeholder-art">' +
+              '<span class="placeholder-glyph">VÍDEO</span>' +
+              '<span class="placeholder-label">URL NÃO RECONHECIDA</span>' +
+            '</div>' +
+          '</div>';
+      }
+    } else {
+      mediaHtml =
+        '<div class="card-cover-wrapper">' +
+          '<div class="card-placeholder-art">' +
+            '<span class="placeholder-glyph">' + (isAudio ? 'ÁUDIO' : 'VÍDEO') + '</span>' +
+            '<span class="placeholder-label">INSIRA UMA URL VÁLIDA</span>' +
+          '</div>' +
+        '</div>';
     }
 
-    notes.forEach(function(note) {
-      var card = document.createElement('div');
-      card.className = 'note-card';
-
-      var tagsHtml = (note.tags || []).map(function(t) {
-        return '<span class="tag-pill">' + escapeHtml(t) + '</span>';
-      }).join(' ');
-
-      card.innerHTML = 
-        '<div class="note-card-header">' +
-          '<div class="note-card-title">' + escapeHtml(note.title) + '</div>' +
-          '<span class="note-card-date">' + escapeHtml(note.createdAt || '') + '</span>' +
+    container.innerHTML =
+      '<article class="cyber-card">' +
+        mediaHtml +
+        '<div class="card-body">' +
+          '<div class="card-meta-row">' +
+            '<span class="meta-pill category-pill">' + escapeHtml(item.category || (isAudio ? 'Transmissões Sonoras' : 'Registros Visuais')) + '</span>' +
+            '<span class="meta-pill time-pill">' + (isAudio ? 'ÁUDIO' : 'VÍDEO') + '</span>' +
+          '</div>' +
+          '<h3 class="card-title">' + escapeHtml(title || '(Sem título)') + '</h3>' +
+          (summary ? '<p class="card-summary">' + escapeHtml(summary) + '</p>' : '') +
         '</div>' +
-        '<div class="note-card-tags">' + tagsHtml + '</div>' +
-        '<div class="note-card-body">' + escapeHtml(note.content || '') + '</div>' +
-        '<div class="note-card-actions">' +
-          '<button class="btn btn-tiny btn-accent btn-convert-note" data-id="' + note.id + '" type="button">TRANSFORMAR EM CONTO</button>' +
-          '<div style="display:flex;gap:4px;">' +
-            '<button class="btn btn-tiny btn-ghost btn-edit-note" data-id="' + note.id + '" type="button">EDITAR</button>' +
-            '<button class="btn btn-tiny btn-ghost btn-del-note" data-id="' + note.id + '" type="button" style="color:var(--color-danger)">EXCLUIR</button>' +
-          '</div>' +
-        '</div>';
-
-      // Converter em Conto
-      var btnConvert = card.querySelector('.btn-convert-note');
-      if (btnConvert) {
-        btnConvert.addEventListener('click', function() {
-          convertNoteToStory(note);
-        });
-      }
-
-      // Editar
-      var btnEdit = card.querySelector('.btn-edit-note');
-      if (btnEdit) {
-        btnEdit.addEventListener('click', function() {
-          editNoteModal(note);
-        });
-      }
-
-      // Excluir
-      var btnDel = card.querySelector('.btn-del-note');
-      if (btnDel) {
-        btnDel.addEventListener('click', function() {
-          deleteNoteItem(note.id);
-        });
-      }
-
-      gridEl.appendChild(card);
-    });
-  }
-
-  function convertNoteToStory(note) {
-    saveActiveItemMetadataFromUI();
-
-    var slug = note.title.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)+/g, '');
-
-    var filename = 'texts/' + slug + '.md';
-
-    var newStory = {
-      id: 'story-' + Date.now(),
-      title: note.title,
-      slug: slug,
-      type: 'text',
-      status: 'draft',
-      category: note.category || 'Crônicas & Sagas',
-      saga: 'Cérebro de Matriosca',
-      tags: note.tags || [],
-      summary: (note.content || '').substring(0, 150) + '...',
-      coverImage: 'images/maltuk1.png',
-      file: filename,
-      readingTime: 1,
-      createdAt: new Date().toISOString().split('T')[0],
-      relatedIds: []
-    };
-
-    state.markdownFiles[filename] = '# ' + note.title + '\n\n' + (note.content || '') + '\n\n';
-    state.catalog.items.unshift(newStory);
-    state.activeItemId = newStory.id;
-
-    // Alternar para a aba 1
-    switchTab('stories');
-    renderSidebarRecordsList();
-    loadActiveStoryToEditor();
-
-    showToast('[ ANOTAÇÃO CONVERTIDA EM NOVO RASCUNHO DE CONTO ]', 'success');
-  }
-
-  function editNoteModal(note) {
-    var newTitle = prompt('Título da Anotação:', note.title);
-    if (newTitle === null) return;
-    var newContent = prompt('Conteúdo da Anotação:', note.content);
-    if (newContent === null) return;
-
-    note.title = newTitle.trim() || note.title;
-    note.content = newContent.trim();
-    renderNotesGrid();
-    showToast('[ ANOTAÇÃO ATUALIZADA ]', 'info');
-  }
-
-  function deleteNoteItem(id) {
-    if (!confirm('Deseja excluir esta anotação do lore?')) return;
-    state.catalog.notes = (state.catalog.notes || []).filter(function(n) { return n.id !== id; });
-    renderNotesGrid();
-    showToast('[ ANOTAÇÃO EXCLUÍDA ]', 'warning');
-  }
-
-  function createNewNoteManual() {
-    var title = prompt('Título da Anotação de Lore:');
-    if (!title) return;
-    var content = prompt('Conteúdo / Ideia do Universo:');
-
-    var newNote = {
-      id: 'note-' + Date.now(),
-      title: title.trim(),
-      category: 'Crônicas & Sagas',
-      tags: ['Multiverso', 'Anotação'],
-      content: (content || '').trim(),
-      createdAt: new Date().toISOString().split('T')[0]
-    };
-
-    if (!state.catalog.notes) state.catalog.notes = [];
-    state.catalog.notes.unshift(newNote);
-    renderNotesGrid();
-    showToast('[ NOVA ANOTAÇÃO SALVA ]', 'success');
+      '</article>';
   }
 
   // =========================================================================
-  // SISTEMA DE DITADO POR VOZ (WEB SPEECH API)
+  // ABA 2: ANOTAÇÕES & VOZ (WEB SPEECH API NATIVA)
   // =========================================================================
 
   function initSpeechEngine(targetMode) {
     var SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRec) {
-      showToast('Seu navegador não suporta a Web Speech API nativa. Recomendamos o Google Chrome, Edge ou Brave.', 'error');
+      showToast('Navegador sem suporte à Web Speech API. Use Chrome, Edge ou Brave.', 'error');
       return null;
     }
 
     var recognition = new SpeechRec();
     recognition.continuous = true;
     recognition.interimResults = true;
-
-    var langSelect = document.getElementById('voice-language');
-    recognition.lang = langSelect ? langSelect.value : 'pt-BR';
+    recognition.lang = 'pt-BR';
 
     recognition.onstart = function() {
       if (targetMode === 'tab') {
         state.isRecordingVoiceTab = true;
         updateVoiceTabUI(true);
-        startVisualizer();
+        startVoiceLevelBar();
       } else if (targetMode === 'cursor') {
         state.isRecordingEditorCursor = true;
         updateCursorVoiceUI(true);
       }
-      showToast('[ CAPTAÇÃO DE VOZ ATIVA: FALE CLARAMENTE ]', 'info');
+      showToast('Captação de voz iniciada em pt-BR', 'info');
     };
 
     recognition.onresult = function(event) {
@@ -1557,16 +1108,15 @@
       var interimTranscript = '';
 
       for (var i = event.resultIndex; i < event.results.length; ++i) {
-        var transcriptPiece = event.results[i][0].transcript;
+        var piece = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
-          finalTranscript += transcriptPiece;
+          finalTranscript += piece;
         } else {
-          interimTranscript += transcriptPiece;
+          interimTranscript += piece;
         }
       }
 
-      var punctuationToggle = document.getElementById('voice-punctuation-toggle');
-      if (punctuationToggle && punctuationToggle.checked) {
+      if (finalTranscript) {
         finalTranscript = applyVoicePunctuation(finalTranscript);
       }
 
@@ -1587,8 +1137,8 @@
     };
 
     recognition.onerror = function(event) {
-      console.warn('Erro de reconhecimento de fala:', event.error);
       if (event.error !== 'no-speech') {
+        console.warn('Erro SpeechRecognition:', event.error);
         showToast('Erro no reconhecimento de voz: ' + event.error, 'error');
       }
     };
@@ -1597,7 +1147,7 @@
       if (targetMode === 'tab') {
         state.isRecordingVoiceTab = false;
         updateVoiceTabUI(false);
-        stopVisualizer();
+        stopVoiceLevelBar();
       } else if (targetMode === 'cursor') {
         state.isRecordingEditorCursor = false;
         updateCursorVoiceUI(false);
@@ -1612,7 +1162,6 @@
       state.speechRecognition.stop();
       return;
     }
-
     state.speechRecognition = initSpeechEngine('tab');
     if (state.speechRecognition) {
       try {
@@ -1628,47 +1177,47 @@
       state.speechRecognition.stop();
       return;
     }
-
     state.speechRecognition = initSpeechEngine('cursor');
     if (state.speechRecognition) {
       try {
         state.speechRecognition.start();
       } catch (e) {
-        console.error('Falha ao iniciar ditado:', e);
+        console.error('Falha ao iniciar SpeechRecognition:', e);
       }
     }
   }
 
   function updateVoiceTabUI(isRecording) {
     var btn = document.getElementById('btn-toggle-main-voice');
-    var badge = document.getElementById('voice-status-badge');
     var label = document.getElementById('voice-toggle-label');
+    var badge = document.getElementById('voice-status-badge');
 
-    if (btn && badge && label) {
+    if (btn && label && badge) {
       if (isRecording) {
         btn.classList.add('recording');
+        label.textContent = 'Parar Ditado';
         badge.className = 'badge badge-emerald';
-        badge.textContent = 'GRAVANDO EM TEMPO REAL...';
-        label.textContent = 'PARAR CAPTAÇÃO DE VOZ';
+        badge.textContent = 'OUVINDO (pt-BR)...';
       } else {
         btn.classList.remove('recording');
+        label.textContent = 'Iniciar Ditado';
         badge.className = 'badge badge-amber';
         badge.textContent = 'MICROFONE INATIVO';
-        label.textContent = 'INICIAR CAPTAÇÃO DE VOZ';
       }
     }
   }
 
   function updateCursorVoiceUI(isRecording) {
     var btn = document.getElementById('btn-dictate-in-editor');
-    var textEl = document.getElementById('btn-dictate-text');
-    if (btn && textEl) {
+    var label = document.getElementById('btn-dictate-text');
+
+    if (btn && label) {
       if (isRecording) {
         btn.classList.add('recording');
-        textEl.textContent = 'PARAR DITADO';
+        label.textContent = 'Parar Ditado';
       } else {
         btn.classList.remove('recording');
-        textEl.textContent = 'DITAR NO CURSOR';
+        label.textContent = 'Ditar (Voz)';
       }
     }
   }
@@ -1683,100 +1232,147 @@
       .replace(/\s*dois pontos\b/gi, ':')
       .replace(/\s*ponto e vírgula\b/gi, ';')
       .replace(/\s*(novo parágrafo|nova linha)\b/gi, '\n\n')
-      .replace(/\s*travessão\b/gi, ' — ')
-      .replace(/\s*abrir aspas\b/gi, ' "')
-      .replace(/\s*fechar aspas\b/gi, '" ')
-      .replace(/\s*abrir parênteses\b/gi, ' (')
-      .replace(/\s*fechar parênteses\b/gi, ') ');
+      .replace(/\s*reticências\b/gi, '...');
   }
 
-  // Visualizador Web Audio API
-  async function startVisualizer() {
-    var canvas = document.getElementById('voice-visualizer-canvas');
-    var fallback = document.getElementById('voice-fallback-waves');
-    if (!canvas) return;
+  function startVoiceLevelBar() {
+    var bar = document.getElementById('voice-level-bar');
+    if (!bar) return;
 
-    try {
-      var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      state.mediaStream = stream;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+        state.mediaStream = stream;
+        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        state.audioContext = new AudioCtx();
+        var source = state.audioContext.createMediaStreamSource(stream);
+        state.analyserNode = state.audioContext.createAnalyser();
+        state.analyserNode.fftSize = 64;
+        source.connect(state.analyserNode);
 
-      var AudioCtx = window.AudioContext || window.webkitAudioContext;
-      state.audioContext = new AudioCtx();
-      var source = state.audioContext.createMediaStreamSource(stream);
-      state.analyserNode = state.audioContext.createAnalyser();
-      state.analyserNode.fftSize = 64;
-      source.connect(state.analyserNode);
-
-      canvas.classList.remove('hidden');
-      if (fallback) fallback.classList.add('hidden');
-
-      var ctx = canvas.getContext('2d');
-      var bufferLength = state.analyserNode.frequencyBinCount;
-      var dataArray = new Uint8Array(bufferLength);
-
-      function draw() {
-        state.visualizerAnimId = requestAnimationFrame(draw);
-        state.analyserNode.getByteFrequencyData(dataArray);
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        var barWidth = (canvas.width / bufferLength) * 1.8;
-        var barHeight;
-        var x = 0;
-
-        for (var i = 0; i < bufferLength; i++) {
-          barHeight = (dataArray[i] / 255) * canvas.height;
-
-          // Gradiente cibernético
-          var grad = ctx.createLinearGradient(0, canvas.height, 0, 0);
-          grad.addColorStop(0, '#e6a817');
-          grad.addColorStop(1, '#00f0ff');
-          ctx.fillStyle = grad;
-
-          ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-          x += barWidth + 3;
+        var dataArray = new Uint8Array(state.analyserNode.frequencyBinCount);
+        function updateMeter() {
+          if (!state.isRecordingVoiceTab) return;
+          state.analyserNode.getByteFrequencyData(dataArray);
+          var sum = 0;
+          for (var i = 0; i < dataArray.length; i++) sum += dataArray[i];
+          var avg = sum / dataArray.length;
+          var pct = Math.min(100, Math.max(8, (avg / 128) * 100));
+          bar.style.width = pct + '%';
+          state.voiceAnimId = requestAnimationFrame(updateMeter);
         }
-      }
-
-      draw();
-
-    } catch (e) {
-      console.warn('Microfone direto bloqueado para visualizer:', e);
-      if (fallback) fallback.classList.remove('hidden');
+        updateMeter();
+      }).catch(function() {
+        // Fallback sutil de animação
+        bar.style.width = '70%';
+      });
     }
   }
 
-  function stopVisualizer() {
-    if (state.visualizerAnimId) {
-      cancelAnimationFrame(state.visualizerAnimId);
-      state.visualizerAnimId = null;
-    }
+  function stopVoiceLevelBar() {
+    var bar = document.getElementById('voice-level-bar');
+    if (bar) bar.style.width = '0%';
+    if (state.voiceAnimId) cancelAnimationFrame(state.voiceAnimId);
     if (state.mediaStream) {
-      state.mediaStream.getTracks().forEach(function(track) { track.stop(); });
+      state.mediaStream.getTracks().forEach(function(t) { t.stop(); });
       state.mediaStream = null;
     }
     if (state.audioContext) {
       state.audioContext.close();
       state.audioContext = null;
     }
-    var canvas = document.getElementById('voice-visualizer-canvas');
-    if (canvas) {
-      var ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function renderNotesGrid() {
+    var grid = document.getElementById('notes-grid');
+    var counter = document.getElementById('notes-counter');
+    if (!grid) return;
+
+    var notes = state.catalog.notes || [];
+    if (counter) counter.textContent = notes.length;
+
+    grid.innerHTML = '';
+
+    if (notes.length === 0) {
+      grid.innerHTML = '<div style="grid-column: 1/-1; padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">Nenhuma anotação registrada no momento.</div>';
+      return;
     }
-    var fallback = document.getElementById('voice-fallback-waves');
-    if (fallback) fallback.classList.add('hidden');
+
+    notes.forEach(function(note) {
+      var noteEl = document.createElement('div');
+      noteEl.className = 'note-card';
+
+      noteEl.innerHTML =
+        '<div class="note-card-top">' +
+          '<h4 class="note-card-title">' + escapeHtml(note.title || 'Anotação') + '</h4>' +
+          '<span class="note-card-date">' + escapeHtml(note.createdAt || '') + '</span>' +
+        '</div>' +
+        '<p class="note-card-content">' + escapeHtml(note.content || '') + '</p>' +
+        '<div class="note-card-actions">' +
+          '<button class="btn btn-tiny btn-cyber btn-convert-note" data-note-id="' + note.id + '" type="button">Transformar em Texto</button>' +
+          '<button class="btn-item-delete btn-delete-note" data-note-id="' + note.id + '" type="button" title="Excluir anotação">&times;</button>' +
+        '</div>';
+
+      noteEl.querySelector('.btn-convert-note').addEventListener('click', function() {
+        createStoryFromNote(note);
+      });
+
+      noteEl.querySelector('.btn-delete-note').addEventListener('click', function() {
+        deleteNote(note.id);
+      });
+
+      grid.appendChild(noteEl);
+    });
+  }
+
+  function createStoryFromNote(note) {
+    var timestamp = Date.now();
+    var slug = generateSlug(note.title || 'nota-' + timestamp);
+    var filePath = 'texts/' + slug + '.md';
+
+    var newItem = {
+      id: 'text-' + timestamp,
+      title: note.title || 'Novo Texto de Lore',
+      slug: slug,
+      type: 'text',
+      status: 'draft',
+      category: note.category || 'Crônicas & Sagas',
+      saga: 'Cérebro de Matriosca',
+      tags: note.tags || [],
+      summary: (note.content || '').slice(0, 150),
+      coverImage: '',
+      file: filePath,
+      readingTime: calculateReadingTime(note.content || ''),
+      createdAt: new Date().toISOString().slice(0, 10),
+      relatedIds: []
+    };
+
+    state.markdownFiles[filePath] = '# ' + (note.title || 'Novo Texto') + '\n\n' + (note.content || '');
+    state.catalog.items.unshift(newItem);
+    state.activeItemId = newItem.id;
+
+    switchTab('content');
+    renderSidebarRecordsList();
+    renderActiveEditor();
+    showToast('Anotação convertida em novo rascunho de Texto', 'success');
+  }
+
+  function deleteNote(noteId) {
+    if (confirm('Deseja excluir esta anotação permanentemente?')) {
+      state.catalog.notes = (state.catalog.notes || []).filter(function(n) { return n.id !== noteId; });
+      renderNotesGrid();
+      showToast('Anotação excluída', 'info');
+    }
   }
 
   // =========================================================================
-  // ABA 4: LABORATÓRIO DE DESIGN & TEMA (theme.json)
+  // ABA 3: VISUAL (PRESETS & CONTROLES ESSENCIAIS)
   // =========================================================================
 
-  function renderThemeWorkspace() {
-    var theme = state.theme;
-    if (!theme) return;
+  function renderThemeControls() {
+    var theme = state.theme || DEFAULT_THEME;
 
-    // 1. Marcar preset ativo
+    // Presets cards
     var presetCards = document.querySelectorAll('.preset-card');
     presetCards.forEach(function(card) {
       if (card.dataset.preset === theme.activePreset) {
@@ -1786,55 +1382,37 @@
       }
     });
 
-    // 2. Cores
+    // Cores
     var colors = theme.colors || {};
-    setColorPickerVal('color-bgPrimary', 'val-bgPrimary', colors.bgPrimary || '#050609');
-    setColorPickerVal('color-bgSecondary', 'val-bgSecondary', colors.bgSecondary || '#0b0e16');
-    setColorPickerVal('color-accentPrimary', 'val-accentPrimary', colors.accentPrimary || '#e6a817');
-    setColorPickerVal('color-accentSecondary', 'val-accentSecondary', colors.accentSecondary || '#00f0ff');
-    setColorPickerVal('color-matrixGlow', 'val-matrixGlow', colors.matrixGlow || '#00ff9d');
-    setColorPickerVal('color-textPrimary', 'val-textPrimary', colors.textPrimary || '#e6edf5');
-    setColorPickerVal('color-textSecondary', 'val-textSecondary', colors.textSecondary || '#8b9bb4');
+    setColorVal('color-accentPrimary', 'val-accentPrimary', colors.accentPrimary || '#e6a817');
+    setColorVal('color-accentSecondary', 'val-accentSecondary', colors.accentSecondary || '#00f0ff');
+    setColorVal('color-bgPrimary', 'val-bgPrimary', colors.bgPrimary || '#050609');
+    setColorVal('color-textPrimary', 'val-textPrimary', colors.textPrimary || '#e6edf5');
+    setColorVal('color-matrixGlow', 'val-matrixGlow', colors.matrixGlow || '#00ff9d');
 
-    // 3. Tipografia
+    // Tipografia
     var typo = theme.typography || {};
-    setSelectVal('typo-display', typo.fontDisplay);
-    setSelectVal('typo-body', typo.fontBody);
-    setSelectVal('typo-reading', typo.fontReading);
-    setSelectVal('typo-mono', typo.fontMono);
+    var typoReading = document.getElementById('typo-reading');
+    if (typoReading && typo.fontReading) typoReading.value = typo.fontReading;
     setSliderVal('typo-size', 'val-baseSize', typo.baseSizePx || 18, 'px');
-    setSliderVal('typo-height', 'val-lineHeight', typo.lineHeight || 1.75, '');
 
-    // 4. Cosmos
+    // Cosmos
     var cosmos = theme.cosmos || {};
     setSliderVal('cosmos-stars', 'val-starCount', cosmos.starCount || 150, '');
     setSliderVal('cosmos-streams', 'val-streamCount', cosmos.matrixStreamCount || 32, '');
     setSliderVal('cosmos-speed', 'val-speed', cosmos.speed || 0.45, '');
     setSliderVal('cosmos-nebula', 'val-nebula', cosmos.nebulaOpacity || 0.35, '');
     setSliderVal('cosmos-matrix', 'val-matrix', cosmos.matrixOpacity || 0.18, '');
-    
+
     var pauseCheck = document.getElementById('cosmos-pauseOnReading');
-    if (pauseCheck) {
-      pauseCheck.checked = !!cosmos.pauseOnReading;
-    }
+    if (pauseCheck) pauseCheck.checked = !!cosmos.pauseOnReading;
   }
 
-  function setColorPickerVal(inputId, labelId, val) {
+  function setColorVal(inputId, labelId, val) {
     var inp = document.getElementById(inputId);
     var lbl = document.getElementById(labelId);
     if (inp) inp.value = val;
     if (lbl) lbl.textContent = val;
-  }
-
-  function setSelectVal(selectId, val) {
-    var sel = document.getElementById(selectId);
-    if (!sel || !val) return;
-    for (var i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === val) {
-        sel.selectedIndex = i;
-        break;
-      }
-    }
   }
 
   function setSliderVal(sliderId, labelId, val, unit) {
@@ -1854,8 +1432,9 @@
     state.theme.cosmos = Object.assign({}, state.theme.cosmos, target.cosmos);
 
     applyTheme(state.theme);
-    renderThemeWorkspace();
-    showToast('[ PRESET ARTÍSTICO APLICADO: ' + target.name.toUpperCase() + ' ]', 'success');
+    renderThemeControls();
+    updateTextLivePreview();
+    showToast('Preset aplicado: ' + target.name.toUpperCase(), 'success');
   }
 
   function initThemeFromConfig() {
@@ -1866,7 +1445,6 @@
     if (!theme) return;
     var root = document.documentElement;
 
-    // Cores CSS Variables
     if (theme.colors) {
       root.style.setProperty('--bg-primary', theme.colors.bgPrimary);
       root.style.setProperty('--bg-secondary', theme.colors.bgSecondary);
@@ -1878,17 +1456,14 @@
       root.style.setProperty('--border-color', theme.colors.border || 'rgba(230, 168, 23, 0.28)');
     }
 
-    // Tipografia CSS Variables
     if (theme.typography) {
-      if (theme.typography.fontDisplay) root.style.setProperty('--font-display', theme.typography.fontDisplay);
-      if (theme.typography.fontBody) root.style.setProperty('--font-body', theme.typography.fontBody);
       if (theme.typography.fontReading) root.style.setProperty('--font-reading', theme.typography.fontReading);
-      if (theme.typography.fontMono) root.style.setProperty('--font-mono', theme.typography.fontMono);
-      if (theme.typography.baseSizePx) root.style.setProperty('--base-size', theme.typography.baseSizePx + 'px');
-      if (theme.typography.lineHeight) root.style.setProperty('--line-height', theme.typography.lineHeight);
+      if (theme.typography.baseSizePx) {
+        root.style.setProperty('--base-size', theme.typography.baseSizePx + 'px');
+        root.style.setProperty('--reading-font-size', theme.typography.baseSizePx + 'px');
+      }
     }
 
-    // Atualizar motor CosmosEngine
     if (window.CosmosEngine && typeof window.CosmosEngine.updateConfig === 'function') {
       var mergedCosmos = Object.assign({}, theme.colors, theme.cosmos);
       window.CosmosEngine.updateConfig(mergedCosmos);
@@ -1898,23 +1473,23 @@
   function collectThemeFromInputs() {
     var colors = {
       bgPrimary: document.getElementById('color-bgPrimary').value,
-      bgSecondary: document.getElementById('color-bgSecondary').value,
+      bgSecondary: state.theme.colors.bgSecondary || '#0b0e16',
       bgSurface: state.theme.colors.bgSurface || 'rgba(12, 17, 26, 0.82)',
       textPrimary: document.getElementById('color-textPrimary').value,
-      textSecondary: document.getElementById('color-textSecondary').value,
+      textSecondary: state.theme.colors.textSecondary || '#8b9bb4',
       accentPrimary: document.getElementById('color-accentPrimary').value,
       accentSecondary: document.getElementById('color-accentSecondary').value,
       matrixGlow: document.getElementById('color-matrixGlow').value,
       border: 'rgba(' + hexToRgb(document.getElementById('color-accentPrimary').value) + ', 0.28)'
     };
 
-    var typography = {
-      fontDisplay: document.getElementById('typo-display').value,
-      fontBody: document.getElementById('typo-body').value,
+    var typo = {
+      fontDisplay: state.theme.typography.fontDisplay || "'Orbitron', sans-serif",
+      fontBody: state.theme.typography.fontBody || "'Space Grotesk', sans-serif",
       fontReading: document.getElementById('typo-reading').value,
-      fontMono: document.getElementById('typo-mono').value,
+      fontMono: state.theme.typography.fontMono || "'JetBrains Mono', monospace",
       baseSizePx: parseInt(document.getElementById('typo-size').value, 10),
-      lineHeight: parseFloat(document.getElementById('typo-height').value)
+      lineHeight: state.theme.typography.lineHeight || 1.75
     };
 
     var cosmos = {
@@ -1927,10 +1502,11 @@
     };
 
     state.theme.colors = colors;
-    state.theme.typography = typography;
+    state.theme.typography = typo;
     state.theme.cosmos = cosmos;
 
     applyTheme(state.theme);
+    updateTextLivePreview();
   }
 
   function hexToRgb(hex) {
@@ -1941,97 +1517,298 @@
   }
 
   // =========================================================================
-  // SISTEMA DE MODAIS & ASSISTENTES INTELIGENTES
+  // GESTÃO DE IMAGENS & CAPAS
   // =========================================================================
 
-  function openModal(modalId) {
-    var modal = document.getElementById(modalId);
-    if (!modal) return;
-    modal.classList.remove('hidden');
+  /**
+   * Otimiza e redimensiona imagem para WebP via Canvas offscreen.
+   * Mantém arquivos vetoriais (.svg) e animados (.gif) intactos.
+   *
+   * @param {File} file
+   * @param {number} [maxDimension=1600]
+   * @param {number} [quality=0.84]
+   * @returns {Promise<{blob: Blob, name: string, originalSize: number, optimizedSize: number, optimized: boolean}>}
+   */
+  function optimizeImageToWebP(file, maxDimension = 1600, quality = 0.84) {
+    return new Promise(function(resolve) {
+      if (!file) {
+        resolve({ blob: file, name: '', originalSize: 0, optimizedSize: 0, optimized: false });
+        return;
+      }
 
-    if (modalId === 'modal-link') {
-      populateInternalLinksDropdown();
-    } else if (modalId === 'modal-image') {
-      populateImageGalleryGrid();
-    }
+      var isSvgOrGif = file.type === 'image/svg+xml' || file.type === 'image/gif' || /\.(svg|gif)$/i.test(file.name);
+      if (isSvgOrGif) {
+        resolve({
+          blob: file,
+          name: file.name,
+          originalSize: file.size,
+          optimizedSize: file.size,
+          optimized: false
+        });
+        return;
+      }
+
+      var img = new Image();
+      var objectUrl = URL.createObjectURL(file);
+
+      img.onload = function() {
+        URL.revokeObjectURL(objectUrl);
+
+        var width = img.naturalWidth || img.width;
+        var height = img.naturalHeight || img.height;
+
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
+        }
+
+        var canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(function(blob) {
+          if (!blob) {
+            resolve({
+              blob: file,
+              name: file.name,
+              originalSize: file.size,
+              optimizedSize: file.size,
+              optimized: false
+            });
+            return;
+          }
+
+          var baseName = file.name.replace(/\.[^/.]+$/, '');
+          var newFileName = baseName + '.webp';
+
+          resolve({
+            blob: blob,
+            name: newFileName,
+            originalSize: file.size,
+            optimizedSize: blob.size,
+            optimized: true
+          });
+        }, 'image/webp', quality);
+      };
+
+      img.onerror = function() {
+        URL.revokeObjectURL(objectUrl);
+        resolve({
+          blob: file,
+          name: file.name,
+          originalSize: file.size,
+          optimizedSize: file.size,
+          optimized: false
+        });
+      };
+
+      img.src = objectUrl;
+    });
   }
 
-  function closeModal(modalId) {
-    var modal = document.getElementById(modalId);
-    if (modal) modal.classList.add('hidden');
-  }
+  function updateCoverSelectors() {
+    var coverSelect = document.getElementById('meta-cover');
+    if (!coverSelect) return;
 
-  function populateInternalLinksDropdown() {
-    var select = document.getElementById('link-internal-select');
-    if (!select) return;
-    select.innerHTML = '';
+    var currentVal = coverSelect.value;
+    coverSelect.innerHTML = '<option value="">(Sem Capa)</option>';
 
-    state.catalog.items.forEach(function(item) {
+    state.images.forEach(function(img) {
       var opt = document.createElement('option');
-      opt.value = item.slug || item.id;
-      opt.dataset.title = item.title;
-      opt.textContent = '[' + item.type.toUpperCase() + '] ' + item.title;
-      select.appendChild(opt);
+      opt.value = img.path;
+      opt.textContent = img.path;
+      coverSelect.appendChild(opt);
     });
 
-    var textInput = document.getElementById('link-internal-text');
-    if (textInput && select.options.length > 0) {
-      textInput.value = select.options[0].dataset.title;
+    coverSelect.value = currentVal;
+  }
+
+  async function handleImageUpload(file, isCover) {
+    if (!file) return;
+
+    try {
+      var result = await optimizeImageToWebP(file, 1600, 0.84);
+      var finalBlob = result.blob;
+      var fileName = result.name;
+      var filePath = 'images/' + fileName;
+      var blobUrl = URL.createObjectURL(finalBlob);
+
+      var newImg = {
+        name: fileName,
+        path: filePath,
+        url: blobUrl,
+        blob: finalBlob,
+        isNew: true
+      };
+
+      // Substituir ou adicionar
+      var existingIdx = state.images.findIndex(function(i) { return i.name === fileName; });
+      if (existingIdx !== -1) {
+        state.images[existingIdx] = newImg;
+      } else {
+        state.images.push(newImg);
+      }
+
+      updateCoverSelectors();
+
+      if (isCover) {
+        var coverSelect = document.getElementById('meta-cover');
+        if (coverSelect) coverSelect.value = filePath;
+        var activeItem = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
+        if (activeItem) activeItem.coverImage = filePath;
+        updateTextLivePreview();
+      } else {
+        var selectedPathInput = document.getElementById('img-selected-path');
+        if (selectedPathInput) selectedPathInput.value = filePath;
+        updateImageModalPreview(blobUrl);
+      }
+
+      renderImageModalGallery();
+
+      var sizeKb = Math.round(result.optimizedSize / 1024);
+      if (result.optimized) {
+        var origKb = Math.round(result.originalSize / 1024);
+        var reduction = origKb > 0 ? Math.round(((origKb - sizeKb) / origKb) * 100) : 0;
+        var reductionText = reduction > 0 ? ' (-' + reduction + '%)' : '';
+        showToast('Imagem otimizada para WebP: ' + sizeKb + ' KB' + reductionText, 'success');
+      } else if (isCover) {
+        showToast('Imagem de capa adicionada: ' + fileName, 'success');
+      } else {
+        showToast('Imagem carregada no acervo: ' + fileName, 'success');
+      }
+    } catch (err) {
+      console.error('Erro ao processar imagem:', err);
+      showToast('Erro ao processar imagem: ' + err.message, 'error');
     }
   }
 
-  function populateImageGalleryGrid() {
+  function renderImageModalGallery() {
     var grid = document.getElementById('modal-image-grid');
     if (!grid) return;
+
     grid.innerHTML = '';
+    var selectedPathInput = document.getElementById('img-selected-path');
+    var currentPath = selectedPathInput ? selectedPathInput.value : '';
 
-    state.images.forEach(function(img, idx) {
-      var card = document.createElement('div');
-      card.className = 'image-thumb-card' + (idx === 0 ? ' selected' : '');
-      card.dataset.path = img.path;
+    state.images.forEach(function(img) {
+      var item = document.createElement('div');
+      item.className = 'img-thumb-item' + (img.path === currentPath ? ' selected' : '');
+      item.innerHTML = '<img src="' + escapeHtml(img.url || img.path) + '" alt="' + escapeHtml(img.name) + '">';
 
-      var displayUrl = img.url || img.path;
-      card.innerHTML = 
-        '<img src="' + escapeHtml(displayUrl) + '" alt="' + escapeHtml(img.name) + '">' +
-        '<span class="image-thumb-name">' + escapeHtml(img.name) + '</span>';
-
-      card.addEventListener('click', function() {
-        document.querySelectorAll('.image-thumb-card').forEach(function(c) { c.classList.remove('selected'); });
-        card.classList.add('selected');
-        document.getElementById('img-selected-path').value = img.path;
-        updateModalImagePreview(displayUrl);
+      item.addEventListener('click', function() {
+        grid.querySelectorAll('.img-thumb-item').forEach(function(el) { el.classList.remove('selected'); });
+        item.classList.add('selected');
+        if (selectedPathInput) selectedPathInput.value = img.path;
+        updateImageModalPreview(img.url || img.path);
       });
 
-      grid.appendChild(card);
+      grid.appendChild(item);
     });
 
-    if (state.images.length > 0) {
-      document.getElementById('img-selected-path').value = state.images[0].path;
-      updateModalImagePreview(state.images[0].url || state.images[0].path);
+    if (state.images.length > 0 && !currentPath) {
+      selectedPathInput.value = state.images[0].path;
+      updateImageModalPreview(state.images[0].url || state.images[0].path);
     }
   }
 
-  function updateModalImagePreview(src) {
-    var p = document.getElementById('img-modal-preview');
-    if (p) {
-      p.innerHTML = '<img src="' + escapeHtml(src) + '" alt="Prévia">';
+  function updateImageModalPreview(src) {
+    var box = document.getElementById('img-modal-preview');
+    if (!box) return;
+    box.innerHTML = '<img src="' + escapeHtml(src) + '" alt="Prévia">';
+  }
+
+  // =========================================================================
+  // FERRAMENTAS DO EDITOR MARKDOWN
+  // =========================================================================
+
+  function formatSelection(before, after) {
+    var textarea = document.getElementById('markdown-input');
+    if (!textarea) return;
+
+    var start = textarea.selectionStart;
+    var end = textarea.selectionEnd;
+    var selected = textarea.value.substring(start, end);
+
+    var replacement = before + (selected || '') + after;
+    textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+    textarea.focus();
+    textarea.setSelectionRange(start + before.length, start + before.length + (selected ? selected.length : 0));
+
+    updateTextLivePreview();
+    updateEditorMetrics(textarea.value);
+  }
+
+  function insertTextAtCursor(text) {
+    var textarea = document.getElementById('markdown-input');
+    if (!textarea) return;
+
+    var start = textarea.selectionStart;
+    var end = textarea.selectionEnd;
+
+    textarea.value = textarea.value.substring(0, start) + text + textarea.value.substring(end);
+    textarea.focus();
+    textarea.setSelectionRange(start + text.length, start + text.length);
+
+    updateTextLivePreview();
+    updateEditorMetrics(textarea.value);
+  }
+
+  function updateEditorMetrics(text) {
+    var words = (text || '').trim().split(/\s+/).filter(Boolean).length;
+    var wordsEl = document.getElementById('stat-words');
+    var timeEl = document.getElementById('stat-time');
+
+    if (wordsEl) wordsEl.textContent = words;
+    if (timeEl) timeEl.textContent = '~' + Math.max(1, Math.ceil(words / 200)) + ' min';
+  }
+
+  function calculateReadingTime(text) {
+    var words = (text || '').trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.ceil(words / 200));
+  }
+
+  function generateExcerpt(mdText) {
+    if (!mdText) return '';
+    var clean = mdText
+      .replace(/!\[.*?\]\(.*?\)/g, '')
+      .replace(/<img.*?>/gi, '')
+      .replace(/\[.*?\]\(.*?\)/g, '$1')
+      .replace(/#+\s*/g, '')
+      .replace(/[*_`>~-]/g, '')
+      .replace(/\n+/g, ' ')
+      .trim();
+
+    if (clean.length > 160) {
+      return clean.slice(0, 160) + '...';
     }
+    return clean;
+  }
+
+  function generateSlug(str) {
+    if (!str) return 'texto-' + Date.now();
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || ('texto-' + Date.now());
   }
 
   function convertHtmlToCleanMarkdown(html) {
     if (!html) return '';
-
-    // Cria elemento temporário no DOM para parsing seguro
     var temp = document.createElement('div');
     temp.innerHTML = html;
 
     function parseNode(node) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        return node.textContent;
-      }
-      if (node.nodeType !== Node.ELEMENT_NODE) {
-        return '';
-      }
+      if (node.nodeType === Node.TEXT_NODE) return node.textContent;
+      if (node.nodeType !== Node.ELEMENT_NODE) return '';
 
       var tag = node.tagName.toLowerCase();
       var children = Array.from(node.childNodes).map(parseNode).join('');
@@ -2040,7 +1817,6 @@
         case 'h1': return '\n\n# ' + children.trim() + '\n\n';
         case 'h2': return '\n\n## ' + children.trim() + '\n\n';
         case 'h3': return '\n\n### ' + children.trim() + '\n\n';
-        case 'h4': return '\n\n#### ' + children.trim() + '\n\n';
         case 'p': return '\n\n' + children.trim() + '\n\n';
         case 'strong':
         case 'b': return '**' + children + '**';
@@ -2071,12 +1847,45 @@
     }
 
     var result = parseNode(temp);
-    // Limpar quebras de linha excessivas
     return result.replace(/\n{3,}/g, '\n\n').trim();
   }
 
   // =========================================================================
-  // EXPORTAÇÃO MANUAL DE ARQUIVOS (DOWNLOADS)
+  // SISTEMA DE MODAIS
+  // =========================================================================
+
+  function openModal(modalId) {
+    var modal = document.getElementById(modalId);
+    if (!modal) return;
+    modal.classList.remove('hidden');
+
+    if (modalId === 'modal-link') {
+      populateInternalLinkSelect();
+    } else if (modalId === 'modal-image') {
+      renderImageModalGallery();
+    }
+  }
+
+  function closeModal(modalId) {
+    var modal = document.getElementById(modalId);
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function populateInternalLinkSelect() {
+    var select = document.getElementById('link-internal-select');
+    if (!select) return;
+
+    select.innerHTML = '';
+    state.catalog.items.forEach(function(item) {
+      var opt = document.createElement('option');
+      opt.value = item.slug || item.id;
+      opt.textContent = '[' + item.type.toUpperCase() + '] ' + item.title;
+      select.appendChild(opt);
+    });
+  }
+
+  // =========================================================================
+  // EXPORTAÇÕES & DOWNLOADS
   // =========================================================================
 
   function downloadJson(filename, obj) {
@@ -2090,18 +1899,17 @@
   }
 
   function downloadBlob(filename, blob) {
-    var link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(link.href);
-    showToast('[ ARQUIVO BAIXADO: ' + filename + ' ]', 'success');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
   }
 
   // =========================================================================
-  // SISTEMA DE TOASTS HUD
+  // TOAST HUD
   // =========================================================================
 
   function showToast(message, type) {
@@ -2110,13 +1918,7 @@
 
     var toast = document.createElement('div');
     toast.className = 'toast toast-' + (type || 'info');
-
-    var glyph = '◈';
-    if (type === 'success') glyph = '∷';
-    if (type === 'error') glyph = '[!]';
-    if (type === 'warning') glyph = '[?]';
-
-    toast.innerHTML = '<span class="glyph">' + glyph + '</span> <span>' + escapeHtml(message) + '</span>';
+    toast.textContent = message;
 
     container.appendChild(toast);
 
@@ -2127,7 +1929,32 @@
       setTimeout(function() {
         if (toast.parentNode) toast.parentNode.removeChild(toast);
       }, 300);
-    }, 4000);
+    }, 3500);
+  }
+
+  // =========================================================================
+  // UTILITÁRIOS & HELPERS
+  // =========================================================================
+
+  function switchTab(tabId) {
+    var navTabs = document.querySelectorAll('.nav-tab');
+    var tabPanels = document.querySelectorAll('.tab-panel');
+
+    navTabs.forEach(function(tab) {
+      if (tab.dataset.tab === tabId) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    tabPanels.forEach(function(panel) {
+      if (panel.id === 'panel-' + tabId) {
+        panel.classList.add('active');
+      } else {
+        panel.classList.remove('active');
+      }
+    });
   }
 
   function escapeHtml(str) {
@@ -2140,186 +1967,111 @@
       .replace(/'/g, '&#039;');
   }
 
+  function getYoutubeId(url) {
+    if (!url) return null;
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = String(url).match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  function getSpotifyEmbedUrl(url) {
+    if (!url) return '';
+    try {
+      var parsed = new URL(url);
+      var cleanPath = parsed.pathname.replace(/^\/+|\/+$/g, '');
+      return 'https://open.spotify.com/embed/' + cleanPath + '?utm_source=generator&theme=0';
+    } catch (e) {
+      return url;
+    }
+  }
+
   // =========================================================================
-  // VINCULAÇÃO DE EVENTOS DE INTERFACE (BINDINGS)
+  // BIND DE EVENTOS DA INTERFACE
   // =========================================================================
 
   function bindEvents() {
-    // 1. Barra de Topo
+    // 1. Barra Superior (Workspace Bar)
     document.getElementById('btn-connect-dir').addEventListener('click', connectProjectDirectory);
     document.getElementById('btn-save-project').addEventListener('click', saveAllToProject);
     document.getElementById('btn-export-menu').addEventListener('click', function() {
       openModal('modal-export');
     });
+    document.getElementById('btn-view-portal').addEventListener('click', async function() {
+      await saveAllToProject();
+      window.open('index.html', '_blank');
+    });
 
-    // Auto-save backup to localStorage when clicking "VER PORTAL"
-    var verPortalLink = document.querySelector('a[href="index.html"]');
-    if (verPortalLink) {
-      verPortalLink.addEventListener('click', function() {
-        saveActiveItemMetadataFromUI();
-        state.catalog.updatedAt = new Date().toISOString();
-        try {
-          localStorage.setItem('ee_studio_backup', JSON.stringify({
-            catalog: state.catalog,
-            theme: state.theme,
-            markdownFiles: state.markdownFiles,
-            timestamp: state.catalog.updatedAt
-          }));
-        } catch (e) {
-          console.warn('Erro ao salvar backup no localStorage:', e);
-        }
-      });
-    }
-
-    var cosmosToggle = document.getElementById('btn-toggle-cosmos');
-    if (cosmosToggle) {
-      cosmosToggle.addEventListener('click', function() {
-        if (window.CosmosEngine && typeof window.CosmosEngine.toggleManualPause === 'function') {
-          var isPaused = window.CosmosEngine.toggleManualPause();
-          document.getElementById('icon-cosmos-pause').classList.toggle('hidden', isPaused);
-          document.getElementById('icon-cosmos-play').classList.toggle('hidden', !isPaused);
-          showToast(isPaused ? '[ MOTOR CÓSMICO PAUSADO ]' : '[ MOTOR CÓSMICO RETOMADO ]', 'info');
-        }
-      });
-    }
-
-    // 2. Navegação por Abas
-    var navTabs = document.querySelectorAll('.nav-tab');
-    navTabs.forEach(function(tab) {
+    // 2. Abas do Studio
+    document.querySelectorAll('.nav-tab').forEach(function(tab) {
       tab.addEventListener('click', function() {
         switchTab(tab.dataset.tab);
       });
     });
 
-    // 3. Barra Lateral de Registros (Aba 1)
-    document.getElementById('btn-new-story').addEventListener('click', createNewStory);
+    // 3. Criação de Conteúdo na Barra Lateral
+    document.getElementById('btn-create-text').addEventListener('click', function() { createNewItem('text'); });
+    document.getElementById('btn-create-audio').addEventListener('click', function() { createNewItem('audio'); });
+    document.getElementById('btn-create-video').addEventListener('click', function() { createNewItem('video'); });
 
+    // 4. Busca e Filtros
     var searchInput = document.getElementById('filter-search-input');
     if (searchInput) {
       searchInput.addEventListener('input', function() {
-        state.searchQuery = searchInput.value;
+        state.searchQuery = searchInput.value.trim();
         renderSidebarRecordsList();
       });
     }
 
-    var filterChips = document.querySelectorAll('.filter-chips .chip');
-    filterChips.forEach(function(chip) {
+    document.querySelectorAll('.filter-chips .chip').forEach(function(chip) {
       chip.addEventListener('click', function() {
-        filterChips.forEach(function(c) { c.classList.remove('active'); });
+        document.querySelectorAll('.filter-chips .chip').forEach(function(c) { c.classList.remove('active'); });
         chip.classList.add('active');
         state.activeFilter = chip.dataset.filter;
         renderSidebarRecordsList();
       });
     });
 
-    // 4. Edição de Metadados e Slugs
-    var titleInput = document.getElementById('meta-title');
-    if (titleInput) {
-      titleInput.addEventListener('input', function() {
-        var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-        if (item) {
-          item.title = titleInput.value;
-          renderSidebarRecordsList();
+    // 5. Linha Mínima de Metadados de Texto
+    var metaTitle = document.getElementById('meta-title');
+    var metaStatus = document.getElementById('meta-status');
+    var metaCover = document.getElementById('meta-cover');
+    var metaSummary = document.getElementById('meta-summary');
+    var uploadCoverBtn = document.getElementById('btn-upload-cover');
+    var coverFileInput = document.getElementById('input-cover-file');
+
+    if (metaTitle) metaTitle.addEventListener('input', updateTextLivePreview);
+    if (metaStatus) metaStatus.addEventListener('change', updateTextLivePreview);
+    if (metaCover) metaCover.addEventListener('change', updateTextLivePreview);
+    if (metaSummary) metaSummary.addEventListener('input', updateTextLivePreview);
+
+    if (uploadCoverBtn && coverFileInput) {
+      uploadCoverBtn.addEventListener('click', function() {
+        coverFileInput.click();
+      });
+      coverFileInput.addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+          handleImageUpload(e.target.files[0], true);
+          e.target.value = '';
         }
       });
     }
 
-    var tagsInput = document.getElementById('meta-tags');
-    if (tagsInput) {
-      tagsInput.addEventListener('input', function() {
-        var tags = tagsInput.value.split(',').map(function(t) { return t.trim(); }).filter(Boolean);
-        renderTagsPreview(tags);
-      });
-    }
-
-    var catSelect = document.getElementById('meta-category');
-    var catCustom = document.getElementById('meta-category-custom');
-    if (catSelect && catCustom) {
-      catSelect.addEventListener('change', function() {
-        if (catSelect.value === '_custom') {
-          catCustom.classList.remove('hidden');
-          catCustom.focus();
-        } else {
-          catCustom.classList.add('hidden');
-        }
-      });
-    }
-
-    var coverSelect = document.getElementById('meta-cover');
-    if (coverSelect) {
-      coverSelect.addEventListener('change', function() {
-        updateCoverPreview(coverSelect.value);
-      });
-    }
-
-    // Upload de Imagem de Capa
-    var btnUploadCover = document.getElementById('btn-upload-cover');
-    var inputCoverFile = document.getElementById('input-cover-file');
-    if (btnUploadCover && inputCoverFile) {
-      btnUploadCover.addEventListener('click', function() {
-        inputCoverFile.click();
-      });
-      inputCoverFile.addEventListener('change', function(e) {
-        handleImageUpload(e.target.files[0], function(newImgPath) {
-          coverSelect.value = newImgPath;
-          updateCoverPreview(newImgPath);
-          showToast('[ NOVA IMAGEM CARREGADA: ' + newImgPath + ' ]', 'success');
-        });
-      });
-    }
-
-    // 5. Editor Markdown
-    var mdInput = document.getElementById('markdown-input');
-    if (mdInput) {
-      mdInput.addEventListener('input', function() {
-        state.hasUnsavedChanges = true;
-        updateMarkdownPreview(mdInput.value);
-        updateEditorMetrics(mdInput.value);
-
-        var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-        if (item && item.file) {
-          state.markdownFiles[item.file] = mdInput.value;
-        }
-      });
-
-      // Suporte à tecla Tab no textarea
-      mdInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Tab') {
-          e.preventDefault();
-          var start = mdInput.selectionStart;
-          var end = mdInput.selectionEnd;
-          mdInput.value = mdInput.value.substring(0, start) + '  ' + mdInput.value.substring(end);
-          mdInput.selectionStart = mdInput.selectionEnd = start + 2;
-        }
-      });
-    }
-
-    // Botões da Barra de Ferramentas
-    var toolBtns = document.querySelectorAll('.tool-btn');
-    toolBtns.forEach(function(btn) {
+    // 6. Barra de Ferramentas de Formatação
+    document.querySelectorAll('[data-tool]').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        handleEditorTool(btn.dataset.tool);
+        var tool = btn.dataset.tool;
+        switch (tool) {
+          case 'h1': formatSelection('# ', ''); break;
+          case 'h2': formatSelection('## ', ''); break;
+          case 'bold': formatSelection('**', '**'); break;
+          case 'italic': formatSelection('*', '*'); break;
+          case 'quote': formatSelection('> ', ''); break;
+          case 'list': formatSelection('* ', ''); break;
+          case 'divider': insertTextAtCursor('\n\n---\n\n'); break;
+        }
       });
     });
 
-    document.getElementById('btn-copy-markdown').addEventListener('click', function() {
-      if (mdInput) {
-        navigator.clipboard.writeText(mdInput.value);
-        showToast('[ MARKDOWN COPIADO PARA ÁREA DE TRANSFERÊNCIA ]', 'info');
-      }
-    });
-
-    document.getElementById('btn-clear-markdown').addEventListener('click', function() {
-      if (confirm('Deseja limpar todo o texto do editor atual?')) {
-        if (mdInput) {
-          mdInput.value = '';
-          updateMarkdownPreview('');
-          updateEditorMetrics('');
-        }
-      }
-    });
-
-    // 6. Assistentes Inteligentes de Inserção
     document.getElementById('btn-open-link-modal').addEventListener('click', function() {
       openModal('modal-link');
     });
@@ -2334,289 +2086,292 @@
 
     document.getElementById('btn-dictate-in-editor').addEventListener('click', toggleEditorCursorVoice);
 
-    // Modal de Links - Sub-Abas
-    var modalTabs = document.querySelectorAll('.modal-tab');
-    modalTabs.forEach(function(mt) {
-      mt.addEventListener('click', function() {
-        modalTabs.forEach(function(t) { t.classList.remove('active'); });
-        mt.classList.add('active');
-        document.querySelectorAll('.subtab-content').forEach(function(c) { c.classList.remove('active'); });
-        var target = document.getElementById('subtab-' + mt.dataset.subtab);
-        if (target) target.classList.add('active');
-      });
-    });
-
-    var internalSelect = document.getElementById('link-internal-select');
-    if (internalSelect) {
-      internalSelect.addEventListener('change', function() {
-        var opt = internalSelect.options[internalSelect.selectedIndex];
-        document.getElementById('link-internal-text').value = opt.dataset.title;
+    // 7. Textarea Markdown
+    var mdInput = document.getElementById('markdown-input');
+    if (mdInput) {
+      mdInput.addEventListener('input', function() {
+        updateEditorMetrics(mdInput.value);
+        updateTextLivePreview();
       });
     }
 
-    var embedUrlInput = document.getElementById('link-embed-url');
-    if (embedUrlInput) {
-      embedUrlInput.addEventListener('input', function() {
-        var prev = document.getElementById('link-embed-preview');
-        if (prev) {
-          prev.innerHTML = generateResponsiveEmbed(embedUrlInput.value, 'video', 'Prévia');
+    // 8. Alternância de Modo de Prévia (Reader vs Card)
+    var btnPrevReader = document.getElementById('btn-preview-mode-reader');
+    var btnPrevCard = document.getElementById('btn-preview-mode-card');
+
+    if (btnPrevReader && btnPrevCard) {
+      btnPrevReader.addEventListener('click', function() {
+        btnPrevReader.classList.add('active');
+        btnPrevCard.classList.remove('active');
+        state.previewMode = 'reader';
+        updateTextLivePreview();
+      });
+
+      btnPrevCard.addEventListener('click', function() {
+        btnPrevCard.classList.add('active');
+        btnPrevReader.classList.remove('active');
+        state.previewMode = 'card';
+        updateTextLivePreview();
+      });
+    }
+
+    // 9. Formulário de Mídia (Áudio / Vídeo)
+    var mediaUrl = document.getElementById('media-url');
+    var mediaTitle = document.getElementById('media-title');
+    var mediaStatus = document.getElementById('media-status');
+    var mediaSummary = document.getElementById('media-summary');
+
+    if (mediaUrl) {
+      mediaUrl.addEventListener('input', function() {
+        var val = mediaUrl.value.trim();
+        var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
+        if (item) {
+          if (/spotify\.com/i.test(val)) {
+            item.type = 'audio';
+            item.category = 'Transmissões Sonoras';
+            var badge = document.getElementById('media-form-type-badge');
+            if (badge) {
+              badge.textContent = 'ÁUDIO';
+              badge.className = 'badge badge-amber';
+            }
+          } else if (/youtu(be|\.be)/i.test(val)) {
+            item.type = 'video';
+            item.category = 'Registros Visuais';
+            var badgeV = document.getElementById('media-form-type-badge');
+            if (badgeV) {
+              badgeV.textContent = 'VÍDEO';
+              badgeV.className = 'badge badge-cyan';
+            }
+          }
         }
+        updateMediaLivePreview();
       });
     }
 
-    document.getElementById('btn-insert-link-confirm').addEventListener('click', function() {
-      var activeSubtab = document.querySelector('.modal-tab.active').dataset.subtab;
-      var markdownToInsert = '';
+    if (mediaTitle) mediaTitle.addEventListener('input', updateMediaLivePreview);
+    if (mediaStatus) mediaStatus.addEventListener('change', updateMediaLivePreview);
+    if (mediaSummary) mediaSummary.addEventListener('input', updateMediaLivePreview);
 
-      if (activeSubtab === 'internal') {
-        var sel = document.getElementById('link-internal-select');
-        var txt = document.getElementById('link-internal-text').value || (sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].dataset.title : 'Link');
-        markdownToInsert = '[' + txt + '](#' + sel.value + ')';
-      } else if (activeSubtab === 'external') {
-        var url = document.getElementById('link-external-url').value;
-        var extTxt = document.getElementById('link-external-text').value || url;
-        markdownToInsert = '[' + extTxt + '](' + url + ')';
-      } else if (activeSubtab === 'embed') {
-        var embedUrl = document.getElementById('link-embed-url').value;
-        markdownToInsert = '\n\n' + generateResponsiveEmbed(embedUrl, 'video', 'Transmissão do Multiverso') + '\n\n';
-      }
-
-      insertTextAtCursor(markdownToInsert);
-      closeModal('modal-link');
-      showToast('[ CONEXÃO INSERIDA NO CONTO ]', 'success');
-    });
-
-    // Modal de Imagens
-    var imgWidthSelect = document.getElementById('img-width-select');
-    var imgWidthCustom = document.getElementById('img-width-custom');
-    if (imgWidthSelect && imgWidthCustom) {
-      imgWidthSelect.addEventListener('change', function() {
-        if (imgWidthSelect.value === 'custom') {
-          imgWidthCustom.classList.remove('hidden');
-          imgWidthCustom.focus();
-        } else {
-          imgWidthCustom.classList.add('hidden');
-        }
-      });
-    }
-
-    var galleryUpload = document.getElementById('gallery-file-upload');
-    if (galleryUpload) {
-      galleryUpload.addEventListener('change', function(e) {
-        handleImageUpload(e.target.files[0], function() {
-          populateImageGalleryGrid();
-          showToast('[ IMAGEM ADICIONADA AO ACERVO ]', 'success');
-        });
-      });
-    }
-
-    document.getElementById('btn-insert-image-confirm').addEventListener('click', function() {
-      var imgPath = document.getElementById('img-selected-path').value;
-      var altText = document.getElementById('img-alt-text').value || 'Ilustração do Multiverso';
-      var widthVal = document.getElementById('img-width-select').value;
-      if (widthVal === 'custom') {
-        widthVal = document.getElementById('img-width-custom').value || '333';
-      }
-
-      var imgHtml = '\n\n<img src="' + imgPath + '" alt="' + escapeHtml(altText) + '" width="' + widthVal + '"/>\n\n';
-      insertTextAtCursor(imgHtml);
-      closeModal('modal-image');
-      showToast('[ IMAGEM INSERIDA NO CONTO ]', 'success');
-    });
-
-    // Modal de Conversão HTML
-    document.getElementById('btn-convert-confirm-cursor').addEventListener('click', function() {
-      var raw = document.getElementById('convert-input').value;
-      var cleanMd = convertHtmlToCleanMarkdown(raw);
-      insertTextAtCursor(cleanMd);
-      closeModal('modal-convert');
-      showToast('[ HTML CONVERTIDO E INSERIDO NO CURSOR ]', 'success');
-    });
-
-    document.getElementById('btn-convert-confirm-replace').addEventListener('click', function() {
-      if (confirm('Deseja substituir todo o texto do editor com o resultado da conversão?')) {
-        var raw = document.getElementById('convert-input').value;
-        var cleanMd = convertHtmlToCleanMarkdown(raw);
-        if (mdInput) {
-          mdInput.value = cleanMd;
-          updateMarkdownPreview(cleanMd);
-          updateEditorMetrics(cleanMd);
-        }
-        closeModal('modal-convert');
-        showToast('[ EDITOR SUBSTITUÍDO COM O MARKDOWN CONVERTIDO ]', 'success');
-      }
-    });
-
-    // Fechamento de Modais
-    document.querySelectorAll('[data-close-modal]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        closeModal(btn.dataset.closeModal);
-      });
-    });
-
-    // 7. Central de Links & Mídias (Aba 2)
-    var mediaUrlInput = document.getElementById('media-url');
-    if (mediaUrlInput) {
-      mediaUrlInput.addEventListener('input', function() {
-        handleMediaUrlInput(mediaUrlInput.value);
-      });
-    }
-
-    document.getElementById('btn-save-media').addEventListener('click', saveMediaFromForm);
-    document.getElementById('btn-clear-media').addEventListener('click', function() {
-      document.getElementById('media-url').value = '';
-      document.getElementById('media-title').value = '';
-      document.getElementById('media-saga').value = '';
-      document.getElementById('media-tags').value = '';
-      document.getElementById('media-summary').value = '';
-      document.getElementById('media-player-preview').innerHTML = '<p class="placeholder-text">Aguardando inserção de URL válida para carregar o player...</p>';
-    });
-
-    // 8. Voz & Anotações (Aba 3)
+    // 10. Aba de Anotações & Voz
     document.getElementById('btn-toggle-main-voice').addEventListener('click', toggleMainVoiceRecording);
+
     document.getElementById('btn-clear-transcript').addEventListener('click', function() {
       document.getElementById('voice-transcript-output').value = '';
       document.getElementById('voice-interim-text').textContent = '';
     });
 
-    document.getElementById('btn-send-to-editor').addEventListener('click', function() {
-      var text = document.getElementById('voice-transcript-output').value;
-      if (!text.trim()) {
-        showToast('Nenhum texto transcrito para enviar.', 'warning');
-        return;
-      }
-      insertTextAtCursor('\n\n' + text.trim() + '\n\n');
-      switchTab('stories');
-      showToast('[ TRANSCRIÇÃO INSERIDA NO EDITOR DE CONTOS ]', 'success');
-    });
-
     document.getElementById('btn-save-as-note').addEventListener('click', function() {
-      var text = document.getElementById('voice-transcript-output').value;
-      if (!text.trim()) {
+      var text = document.getElementById('voice-transcript-output').value.trim();
+      if (!text) {
         showToast('Nenhum texto transcrito para arquivar.', 'warning');
         return;
       }
-      var title = prompt('Título da Anotação:', 'Registro Captado por Voz ' + new Date().toLocaleDateString('pt-BR'));
-      if (!title) return;
-
       var newNote = {
         id: 'note-' + Date.now(),
-        title: title.trim(),
+        title: 'Nota de Voz ' + new Date().toLocaleDateString('pt-BR'),
         category: 'Crônicas & Sagas',
         tags: ['Voz', 'Lore'],
-        content: text.trim(),
-        createdAt: new Date().toISOString().split('T')[0]
+        content: text,
+        createdAt: new Date().toISOString().slice(0, 10)
       };
-
-      if (!state.catalog.notes) state.catalog.notes = [];
+      state.catalog.notes = state.catalog.notes || [];
       state.catalog.notes.unshift(newNote);
       renderNotesGrid();
-      showToast('[ TRANSCRIÇÃO ARQUIVADA NAS ANOTAÇÕES DO MULTIVERSO ]', 'success');
+      document.getElementById('voice-transcript-output').value = '';
+      showToast('Anotação arquivada em catalog.notes', 'success');
     });
 
     document.getElementById('btn-create-story-from-voice').addEventListener('click', function() {
-      var text = document.getElementById('voice-transcript-output').value;
-      if (!text.trim()) {
-        showToast('Nenhum texto transcrito para criar conto.', 'warning');
+      var text = document.getElementById('voice-transcript-output').value.trim();
+      if (!text) {
+        showToast('Nenhum texto transcrito para criar texto.', 'warning');
         return;
       }
-      var title = prompt('Título do Novo Conto:', 'Novo Registro do Multiverso');
-      if (!title) return;
-
-      var slug = title.toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)+/g, '');
-
-      var filename = 'texts/' + slug + '.md';
-
-      var newStory = {
-        id: 'story-' + Date.now(),
-        title: title.trim(),
-        slug: slug,
-        type: 'text',
-        status: 'draft',
-        category: 'Crônicas & Sagas',
-        saga: 'Cérebro de Matriosca',
-        tags: ['Ditado por Voz', 'Rascunho'],
-        summary: text.substring(0, 150) + '...',
-        coverImage: 'images/maltuk1.png',
-        file: filename,
-        readingTime: Math.max(1, Math.ceil(text.split(/\s+/).length / 200)),
-        createdAt: new Date().toISOString().split('T')[0],
-        relatedIds: []
-      };
-
-      state.markdownFiles[filename] = '# ' + title + '\n\n' + text.trim() + '\n\n';
-      state.catalog.items.unshift(newStory);
-      state.activeItemId = newStory.id;
-
-      switchTab('stories');
-      renderSidebarRecordsList();
-      loadActiveStoryToEditor();
-      showToast('[ NOVO RASCUNHO CRIADO A PARTIR DA VOZ ]', 'success');
+      createStoryFromNote({
+        title: 'Novo Texto (Voz)',
+        content: text,
+        category: 'Crônicas & Sagas'
+      });
+      document.getElementById('voice-transcript-output').value = '';
     });
 
-    document.getElementById('btn-new-note').addEventListener('click', createNewNoteManual);
+    document.getElementById('btn-new-note').addEventListener('click', function() {
+      var title = prompt('Título da Anotação:');
+      if (!title) return;
+      var content = prompt('Conteúdo da Anotação:');
+      if (!content) return;
 
-    // 9. Laboratório de Design & Tema (Aba 4)
-    var presetCards = document.querySelectorAll('.preset-card');
-    presetCards.forEach(function(card) {
+      var newNote = {
+        id: 'note-' + Date.now(),
+        title: title,
+        category: 'Crônicas & Sagas',
+        tags: [],
+        content: content,
+        createdAt: new Date().toISOString().slice(0, 10)
+      };
+      state.catalog.notes = state.catalog.notes || [];
+      state.catalog.notes.unshift(newNote);
+      renderNotesGrid();
+      showToast('Nova anotação salva', 'success');
+    });
+
+    // 11. Presets e Visual
+    document.querySelectorAll('.preset-card').forEach(function(card) {
       card.addEventListener('click', function() {
         applyPreset(card.dataset.preset);
       });
     });
 
-    // Inputs de Cores
-    var colorInputs = document.querySelectorAll('.picker-input-wrap input[type="color"]');
-    colorInputs.forEach(function(inp) {
-      inp.addEventListener('input', function() {
-        var label = document.getElementById('val-' + inp.id.replace('color-', ''));
-        if (label) label.textContent = inp.value;
-        collectThemeFromInputs();
-      });
-    });
-
-    // Sliders
-    var sliders = [
-      { id: 'typo-size', label: 'val-baseSize', unit: 'px' },
-      { id: 'typo-height', label: 'val-lineHeight', unit: '' },
-      { id: 'cosmos-stars', label: 'val-starCount', unit: '' },
-      { id: 'cosmos-streams', label: 'val-streamCount', unit: '' },
-      { id: 'cosmos-speed', label: 'val-speed', unit: '' },
-      { id: 'cosmos-nebula', label: 'val-nebula', unit: '' },
-      { id: 'cosmos-matrix', label: 'val-matrix', unit: '' }
+    var colorPickers = [
+      'color-accentPrimary', 'color-accentSecondary',
+      'color-bgPrimary', 'color-textPrimary', 'color-matrixGlow'
     ];
-
-    sliders.forEach(function(item) {
-      var el = document.getElementById(item.id);
+    colorPickers.forEach(function(id) {
+      var el = document.getElementById(id);
       if (el) {
         el.addEventListener('input', function() {
-          var lbl = document.getElementById(item.label);
-          if (lbl) lbl.textContent = el.value + item.unit;
+          var valLabel = document.getElementById(id.replace('color-', 'val-'));
+          if (valLabel) valLabel.textContent = el.value;
           collectThemeFromInputs();
         });
       }
     });
 
-    var selects = ['typo-display', 'typo-body', 'typo-reading', 'typo-mono', 'cosmos-pauseOnReading'];
-    selects.forEach(function(id) {
-      var el = document.getElementById(id);
+    var typoReading = document.getElementById('typo-reading');
+    if (typoReading) typoReading.addEventListener('change', collectThemeFromInputs);
+
+    var typoSize = document.getElementById('typo-size');
+    if (typoSize) {
+      typoSize.addEventListener('input', function() {
+        document.getElementById('val-baseSize').textContent = typoSize.value + 'px';
+        collectThemeFromInputs();
+      });
+    }
+
+    var cosmosInputs = [
+      { id: 'cosmos-stars', valId: 'val-starCount', unit: '' },
+      { id: 'cosmos-streams', valId: 'val-streamCount', unit: '' },
+      { id: 'cosmos-speed', valId: 'val-speed', unit: '' },
+      { id: 'cosmos-nebula', valId: 'val-nebula', unit: '' },
+      { id: 'cosmos-matrix', valId: 'val-matrix', unit: '' }
+    ];
+    cosmosInputs.forEach(function(item) {
+      var el = document.getElementById(item.id);
       if (el) {
-        el.addEventListener('change', collectThemeFromInputs);
+        el.addEventListener('input', function() {
+          document.getElementById(item.valId).textContent = el.value + item.unit;
+          collectThemeFromInputs();
+        });
       }
     });
 
-    document.getElementById('btn-apply-theme').addEventListener('click', function() {
+    var pauseOnReading = document.getElementById('cosmos-pauseOnReading');
+    if (pauseOnReading) pauseOnReading.addEventListener('change', collectThemeFromInputs);
+
+    document.getElementById('btn-apply-theme').addEventListener('click', async function() {
       collectThemeFromInputs();
-      saveAllToProject();
+      await saveAllToProject();
+      showToast('Visual aplicado e salvo no projeto', 'success');
     });
 
     document.getElementById('btn-reset-theme').addEventListener('click', function() {
       applyPreset('matrioshka-amber');
     });
 
-    // 10. Downloads de Exportação (Modal 4)
+    // 12. Modais - Fechamento
+    document.querySelectorAll('[data-close-modal]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        closeModal(btn.dataset.closeModal);
+      });
+    });
+
+    // Modal de Links - Sub-Abas
+    var modalTabs = document.querySelectorAll('#modal-link .modal-tab');
+    modalTabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        modalTabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        document.querySelectorAll('#modal-link .subtab-content').forEach(function(c) { c.classList.remove('active'); });
+        var target = document.getElementById('subtab-' + tab.dataset.subtab);
+        if (target) target.classList.add('active');
+      });
+    });
+
+    document.getElementById('btn-insert-link-confirm').addEventListener('click', function() {
+      var activeSubtab = document.querySelector('#modal-link .modal-tab.active').dataset.subtab;
+      if (activeSubtab === 'internal') {
+        var slug = document.getElementById('link-internal-select').value;
+        var text = document.getElementById('link-internal-text').value.trim() || 'Ver registro';
+        insertTextAtCursor('[' + text + '](#' + slug + ')');
+      } else if (activeSubtab === 'external') {
+        var url = document.getElementById('link-external-url').value.trim() || 'https://';
+        var extText = document.getElementById('link-external-text').value.trim() || 'Link';
+        insertTextAtCursor('[' + extText + '](' + url + ')');
+      } else if (activeSubtab === 'embed') {
+        var embedUrl = document.getElementById('link-embed-url').value.trim();
+        if (embedUrl) {
+          if (/spotify\.com/i.test(embedUrl)) {
+            var spotSrc = getSpotifyEmbedUrl(embedUrl);
+            insertTextAtCursor('\n\n<iframe src="' + spotSrc + '" width="100%" height="152" allow="encrypted-media"></iframe>\n\n');
+          } else if (/youtu(be|\.be)/i.test(embedUrl)) {
+            var yt = getYoutubeId(embedUrl);
+            if (yt) {
+              insertTextAtCursor('\n\n<iframe src="https://www.youtube-nocookie.com/embed/' + yt + '?rel=0" width="100%" height="315" allowfullscreen></iframe>\n\n');
+            }
+          }
+        }
+      }
+      closeModal('modal-link');
+      showToast('Link inserido no texto', 'success');
+    });
+
+    // Modal de Imagem
+    var galleryUpload = document.getElementById('gallery-file-upload');
+    if (galleryUpload) {
+      galleryUpload.addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+          handleImageUpload(e.target.files[0], false);
+          e.target.value = '';
+        }
+      });
+    }
+
+    document.getElementById('btn-insert-image-confirm').addEventListener('click', function() {
+      var path = document.getElementById('img-selected-path').value;
+      var alt = document.getElementById('img-alt-text').value.trim();
+      var width = document.getElementById('img-width-select').value;
+
+      var tag = '<img src="' + path + '" alt="' + alt + '" width="' + width + '"/>';
+      insertTextAtCursor('\n\n' + tag + '\n\n');
+      closeModal('modal-image');
+      showToast('Imagem inserida no texto', 'success');
+    });
+
+    // Modal Colar HTML
+    document.getElementById('btn-convert-confirm-cursor').addEventListener('click', function() {
+      var raw = document.getElementById('convert-input').value;
+      var cleanMd = convertHtmlToCleanMarkdown(raw);
+      insertTextAtCursor(cleanMd);
+      closeModal('modal-convert');
+      showToast('HTML convertido e inserido no cursor', 'success');
+    });
+
+    document.getElementById('btn-convert-confirm-replace').addEventListener('click', function() {
+      if (confirm('Deseja substituir todo o texto do editor?')) {
+        var raw = document.getElementById('convert-input').value;
+        var cleanMd = convertHtmlToCleanMarkdown(raw);
+        var input = document.getElementById('markdown-input');
+        if (input) {
+          input.value = cleanMd;
+          updateEditorMetrics(cleanMd);
+          updateTextLivePreview();
+        }
+        closeModal('modal-convert');
+        showToast('Texto do editor substituído', 'success');
+      }
+    });
+
+    // Modal de Exportações
     document.getElementById('btn-download-catalog').addEventListener('click', function() {
       downloadJson('catalog.json', state.catalog);
     });
@@ -2627,28 +2382,31 @@
 
     document.getElementById('btn-download-active-md').addEventListener('click', function() {
       var item = state.catalog.items.find(function(i) { return i.id === state.activeItemId; });
-      if (item && item.file && state.markdownFiles[item.file]) {
-        var rawName = item.file.replace(/^texts\//, '');
-        downloadText(rawName, state.markdownFiles[item.file]);
+      if (item && item.type === 'text') {
+        var content = state.markdownFiles[item.file] || '';
+        var filename = (item.file || 'story.md').replace(/^texts\//, '');
+        downloadText(filename, content);
       } else {
-        showToast('Nenhum texto ativo para download.', 'warning');
+        showToast('Nenhum texto ativo selecionado para baixar.', 'warning');
       }
     });
 
     document.getElementById('btn-download-legacy').addEventListener('click', function() {
       var publishedTexts = ["intro.md"];
-      var publishedMedia = [];
-
       state.catalog.items.forEach(function(item) {
         if (item.type === 'text' && item.status === 'published' && item.file) {
-          publishedTexts.push(item.file.replace(/^texts\//, ''));
+          var rawName = item.file.replace(/^texts\//, '');
+          if (publishedTexts.indexOf(rawName) === -1) publishedTexts.push(rawName);
         }
+      });
+      downloadJson('texts.json', publishedTexts);
+
+      var publishedMedia = [];
+      state.catalog.items.forEach(function(item) {
         if ((item.type === 'video' || item.type === 'audio') && item.status === 'published') {
           publishedMedia.push({ type: item.type, title: item.title, url: item.url });
         }
       });
-
-      downloadJson('texts.json', publishedTexts);
       downloadJson('media.json', publishedMedia);
     });
 
@@ -2657,42 +2415,10 @@
         catalog: state.catalog,
         theme: state.theme,
         markdownFiles: state.markdownFiles,
-        exportedAt: new Date().toISOString()
+        timestamp: new Date().toISOString()
       };
-      downloadJson('esquizofrenia_estelar_bundle_' + Date.now() + '.json', bundle);
+      downloadJson('ee_studio_backup_bundle.json', bundle);
     });
-  }
-
-  function switchTab(tabKey) {
-    document.querySelectorAll('.nav-tab').forEach(function(tab) {
-      tab.classList.toggle('active', tab.dataset.tab === tabKey);
-    });
-    document.querySelectorAll('.tab-panel').forEach(function(panel) {
-      panel.classList.toggle('active', panel.id === 'panel-' + tabKey);
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function handleImageUpload(file, callback) {
-    if (!file) return;
-
-    var fileName = file.name.toLowerCase().replace(/\s+/g, '_');
-    var objUrl = URL.createObjectURL(file);
-    var imageObj = {
-      name: fileName,
-      path: 'images/' + fileName,
-      url: objUrl,
-      blob: file,
-      isNew: true
-    };
-
-    // Adiciona ao acervo em memória
-    state.images.push(imageObj);
-    updateCoverSelectors();
-
-    if (typeof callback === 'function') {
-      callback('images/' + fileName);
-    }
   }
 
 })();
